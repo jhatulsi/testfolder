@@ -58,7 +58,8 @@
             <div id="sidebar_title"> Categories</div>
             
             <ul id="cats">
-            	 <?php getCats(); 
+            	 <?php 
+				 getCats(); 
 				 
 				 ?>
                     
@@ -75,9 +76,20 @@
                 		<div id="headline_content">
                         	<b>Welcome Guest!</b>
                             <b style="color:yellow;">Shopping Cart</b>
-                            <span>- Items:- Price:</span>
+                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a></span>
                         </div>
                 </div>
+                
+                <?php 
+				//$ip= getIP();
+				//echo $ip;
+				?>
+                
+                <?php 
+					cart();
+				
+				?>
+                
                 	<div id="products_box">
                     		<?php getPro();
 									getCatPro();
