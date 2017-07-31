@@ -104,7 +104,10 @@
 				<form action="checkout.php" method="post" enctype="multipart/form-data">
 		
 		<table width="750" bgcolor="#66CCCC" align="center">
-		<h3>Create an Account</h3>
+		<tr align="center">
+		<td colspan="8"><h3>Create an Account</h3></td>
+		<tr>
+		<tr></tr>
 		<tr>
 		<td align="right"><b>Customer Name:</b></td>
 		<td><input type="text" name="c_name" required /></td>
@@ -116,7 +119,12 @@
 		</tr>
 		
 		<tr>
-		<td align="right" size="3"><b>Customer Country:</b></td>
+		<td align="right"><b>Customer Password:</b></td>
+		<td><input type="password" name="c-password" required /></td>
+		</tr>
+		
+		<tr>
+		<td align="right" size="6"><b>Customer Country:</b></td>
 		<td><select name="c_country">
 			<option>India</option>
 			<option>Pakistan</option>
@@ -144,7 +152,7 @@
 		</tr>
 	<tr>
 	
-	<td><input type="submit" name="submit" required /></td>
+	<td colspan="8" align="center"><input type="submit" name="register" value="Submit" required /></td>
 	</tr>
 		
 		</table>
@@ -177,3 +185,93 @@
 
 </body>
 </html>
+
+<?php 
+	if(isset($_POST['register'])){
+	
+	$c_name	= $_POST['c_name'];
+	$c_email = $_POST['c_email'];
+	$c_pass = $_POST['c_pass'];
+	$c_country	= $_POST['c_country'];
+	$c_city	= $_POST['c_city'];
+	$c_contact	= $_POST['c_contact'];
+	$c_address	= $_POST['c_address'];
+	$c_image	= $_POST['c_image']['name'];
+	$c_image_tmp = $_FILES['c_image']['tmp_name'];
+	
+	$c_ip = getIP();
+	
+	$insert_customer =  mysql_query("insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image','1')");
+	
+	
+	//exit($insert_customer);
+		
+		$run_customer = mysql_num_rows($insert_customer);
+		
+		move_uploaded_file($c_image_tmp,"customer/customerPhotos/$c_image");
+		
+		$sel_cart = mysql_query("select * from cart where ip_add = '1'");
+		//$run_cart = mysql_query($sel_cart, $conn);
+		
+		$check_cart = mysql_num_rows($sel_cart);
+	
+		//echo '<pre>';print_r($check_cart);exit;
+		
+		
+		if($check_cart>0){
+			
+			$_SESSION['customer_email'] = $c_email;
+			
+			echo "<script>alert('Account Created Successfuly,Thank You!')</script>";
+			echo "<script>window.open('checkout.php','_self')</script>";
+			
+		}else{
+			$_SESSION['customer_email'] = $c_email;
+			
+			echo "<script>alert('Account Created Successfuly,Thank You!')</script>";
+			echo "<script>window.open('index.php','_self')</script>";
+		}
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+

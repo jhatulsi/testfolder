@@ -73,9 +73,15 @@
             </div>
             <div id="right_content">
             	<div id="headline">
-                		<div id="headline_content">
-                        	<b>Welcome Guest!</b>
-                            <b style="color:yellow;">Shopping Cart</b>
+                		<div id="headline_content"> 
+						<?php 
+						if(!isset($_SESSION['customer_email'])){
+                        	echo "<b>Welcome Guest!</b>  <b style='color:yellow;'>Shopping Cart</b>" ;
+						}else{
+							echo "<b>Welcome:" . $_SESSION['customer_email'] . "</b>" . "<b style='color:yellow;'>Shopping Cart</b>";
+						}
+						?>
+                           
                             <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a> <?php	
 							if(!isset($_SESSION['customer_email'])){
 								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";

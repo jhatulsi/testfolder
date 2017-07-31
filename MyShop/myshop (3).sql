@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2017 at 02:07 PM
+-- Generation Time: Jul 31, 2017 at 02:21 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -58,8 +58,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
-(2, 1, 2),
-(3, 1, 2);
+(1, 1, 0),
+(2, 1, 0),
+(3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -96,16 +97,48 @@ CREATE TABLE `customers` (
   `customer_country` text NOT NULL,
   `customer_city` text NOT NULL,
   `customer_contact` int(100) NOT NULL,
-  `customer_address` text NOT NULL
+  `customer_address` text NOT NULL,
+  `customer_image` text NOT NULL,
+  `customer_ip` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`) VALUES
-(1, 'tulsi', 'admin@gmail.com', 'admin@123', 'India', 'Delhi', 1122334455, '0'),
-(2, 'aaa', 'aaa@gmail.com', 'aaa@123', 'india', 'delhi', 134235345, 'sdfsdfsdf');
+INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`, `customer_ip`) VALUES
+(1, 'admin', 'admin@gmail.com', 'admin', 'india', 'delhi', 123456789, 'my address', '', 1),
+(2, 'aaa', 'aaa@gmail.com', 'aaa@123', 'india', 'delhi', 134235345, 'sdfsdfsdf', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_order`
+--
+
+CREATE TABLE `customer_order` (
+  `order_id` int(10) NOT NULL,
+  `customer_id` int(10) NOT NULL,
+  `due_amount` int(100) NOT NULL,
+  `invoice_no` int(100) NOT NULL,
+  `total_products` int(100) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `order_status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pending_order`
+--
+
+CREATE TABLE `pending_order` (
+  `customer_id` int(10) NOT NULL,
+  `invoice_no` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `qty` int(10) NOT NULL,
+  `order_status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -117,6 +150,7 @@ CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
   `cat_id` int(10) NOT NULL,
   `brand_id` int(10) NOT NULL,
+  `date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `product_title` text NOT NULL,
   `product_img1` text NOT NULL,
   `product_img2` text NOT NULL,
@@ -165,6 +199,18 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`);
 
 --
+-- Indexes for table `customer_order`
+--
+ALTER TABLE `customer_order`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `pending_order`
+--
+ALTER TABLE `pending_order`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -189,6 +235,16 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `customers`
   MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `customer_order`
+--
+ALTER TABLE `customer_order`
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pending_order`
+--
+ALTER TABLE `pending_order`
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `products`
 --
