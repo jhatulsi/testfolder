@@ -1,5 +1,5 @@
 <?php 
-
+	session_start();
 	include 'includes/dbconn.php';
 	include 'functions/functions.php';
 
@@ -76,8 +76,18 @@
                 		<div id="headline_content">
                         	<b>Welcome Guest!</b>
                             <b style="color:yellow;">Shopping Cart</b>
-                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a></span>
+                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a> <?php	
+							if(!isset($_SESSION['customer_email'])){
+								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";
+							}
+							else{
+							echo "<a href='logout.php' style='color:#F93;'> LogOut</a>";
+								}
+							?>
+							
+							</span>
                         </div>
+						<br>
                 </div>
                 
                 <?php 

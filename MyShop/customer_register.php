@@ -76,8 +76,8 @@
                 		<div id="headline_content">
                         	<b>Welcome Guest!</b>
                             <b style="color:yellow;">Shopping Cart</b>
-                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="index.php" style="background:white;">Continue Shopping</a>&nbsp;
-							<?php	
+                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a> &nbsp;
+						<?php	
 							if(!isset($_SESSION['customer_email'])){
 								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";
 							}
@@ -100,114 +100,61 @@
 				?>
                 
                 	<div id="products_box">
-					<form action="cart.php" method="post" enctype="multipart/form-data">
-					<br>
-					<table width="740" height="40" bgcolor="#0099CC" >
-					
-					<tr align="center">
-						<td><b>Remove</b></td>
-						<td><b>Product(s)</b></td>
-						<td><b>Quantity</b></td>
-						<td><b>Total Price</b></td>
-					
-					</tr>
-					<?php 
-						$ip_add = getIP();
-						
-						$total = 0;
-						
-						$sel_price = "select * from cart where ip_add='1'";
-						$run_price = mysql_query($sel_price, $conn);
-						while ($record= mysql_fetch_array($run_price)){
-							$pro_id = $record['p_id'];
-							$pro_price = "select * from products where product_id='$pro_id'";
-							$run_pro_price = mysql_query($pro_price , $conn);
-						while ($p_price = mysql_fetch_array($run_pro_price)){
-						$product_price = array($p_price['product_price']);
-						$product_title = $p_price['product_title'];
-						$product_image = $p_price['product_img1'];
-						$only_price = $p_price['product_price'];
-						
-						$values = array_sum($product_price);
-						
-						$total += $values;
-			
-					
-						//echo "$" . $total;
+                    		
+				<form action="checkout.php" method="post" enctype="multipart/form-data">
+		
+		<table width="750" bgcolor="#66CCCC" align="center">
+		<h3>Create an Account</h3>
+		<tr>
+		<td align="right"><b>Customer Name:</b></td>
+		<td><input type="text" name="c_name" required /></td>
+		</tr>
+	
+		<tr>
+		<td align="right"><b>Customer Email:</b></td>
+		<td><input type="text" name="c-email" required /></td>
+		</tr>
+		
+		<tr>
+		<td align="right" size="3"><b>Customer Country:</b></td>
+		<td><select name="c_country">
+			<option>India</option>
+			<option>Pakistan</option>
+			<option>China</option>
+			<option>USA</option>
+		
+		</select></td>
+		</tr>
+		<tr>
+		<td align="right"><b>Customer City:</b></td>
+		<td><input type="text" name="c_city" required /></td>
+		</tr>
+		<tr>
+		<td align="right"><b>Customer Mobile no.:</b></td>
+		<td><input type="text" name="c_contact" required /></td>
+		</tr>
+		<tr>
+		<td align="right"><b>Customer Address:</b></td>
+		<td><input type="text" name="c_address" required /></td>
+		</td>
+		</tr>
+		<tr>
+		<td align="right"><b>Customer Image:</b></td>
+		<td><input type="file" name="c_image" required /></td>
+		</tr>
+	<tr>
+	
+	<td><input type="submit" name="submit" required /></td>
+	</tr>
+		
+		</table>
+		
+		
+		
+		</form>		
 							
-							?>
-							<tr>
-								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
-								<td><?php echo $product_title; ?><br><img src="admin_area/product_images/<?php echo $product_image;?>" width="100" height="100"></td>
-								<td><input type="text" name="qty" value="1" size="3"></td>
-								<?php 
-									$ip_add = getIP(); 
-								
-									if(isset($_POST['update'])){
-										$qty = $_POST['qty'];
-										$insert_qty = "update cart set qty='$qty' where ip_add=1";
-										$run_qty = mysql_query($insert_qty, $conn);
-										
-										$total = $total*$qty;
-										
-										
-										
-									}
-									
-								?>
-								
-								
-								
-								
-								<td><?php echo $only_price; ?></td>
 							
-							</tr>
-				
-						<?php }} ?>
-						
-						<tr>
-						<td  colspan="4" align="right"><b>Sub Total</b></td>
-						<td align="right"><b><?php echo $total;?></b></td>
-						
-						</tr>
-                            
-						<tr>
-							<td><input type="submit" name="update" value="Update Cart"></td>
-							<td><input type="submit" name="continue" value="Continue Shopping"></td>
-							<td><button><a href="checkout.php" >Check Out</a></button></td>
 							
-						</tr>
-                            </table>
-							
-                            </form>
-                            
-							<?php 
-								function updateCart(){
-								
-									if(isset($_POST['update'])){
-										
-										foreach($_POST['remove'] as $remove_id){
-										
-											$delete_products =	" delete from cart where p_id ='$remove_id'";
-											$run_delete = mysql_query($delete_products , $conn);
-											
-											if($run_delete){
-												echo "<script>window.open('cart.php','_self')</script>";
-										}
-									}
-									
-								}
-								
-								if(isset($_POST['continue'])){
-										echo "<script>window.open('index.php','_self')</script>";
-										
-									}
-							}	
-						echo	@$update_cart= updateCart() ;
-							?>
-                            
-                            
-                            
                          </div>
                 
                 

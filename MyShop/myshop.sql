@@ -117,7 +117,6 @@ CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
   `cat_id` int(10) NOT NULL,
   `brand_id` int(10) NOT NULL,
-  `date` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `product_title` text NOT NULL,
   `product_img1` text NOT NULL,
   `product_img2` text NOT NULL,

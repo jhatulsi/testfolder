@@ -1,8 +1,7 @@
 <?php 
 @session_start();
 include 'includes/dbconn.php';
-//important line
-//include 'function/functions.php';
+
 ?>
 
 <div>
@@ -58,41 +57,24 @@ include 'includes/dbconn.php';
 		//$sel_customer ="Select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'";
 			$sel_customer =mysql_query("Select * from customers where customer_email='$customer_email' AND customer_pass='$customer_pass'");
 			$number_of_rows = mysql_num_rows($sel_customer);  
+		//echo "Number of rows fetched are : ". $number_of_rows;  
 		
-		/*if( $number_of_rows>0){
+		
+		
+		
+		
+		
+		
+		//$run_customer = mysql_query($sel_customer, $conn);
+		//$result = mysql_query ($run_customer) or die(mysql_error());
+		//exit($run_customer);
+		if( $number_of_rows>0){
 				$_SESSION['customer_email']=$customer_email;
 				echo "<script>window.open('index.php','_self')</script>";
 			}
 			else{
 				echo "<script>alert('Email or Password is wrong.')</script>";
-			} */
-		//$c_ip = getIP();
-	$sel_cart = "select * from cart where ip_add='1'"; 
-	
-	$run_cart = mysql_query($sel_cart, $conn);
-	$check_cart = mysql_num_rows($run_cart);
-	
-	if($number_of_rows == 0){
-echo "<script>alert('Password or Email Address is not correct')<script>";
-	}
-	if($number_of_rows==1 AND $check_cart==0){
-		$_SESSION['customer_email']=$customer_email;
-		echo "<script>window.open('customer/my_account.php','_self')</script>";
-	}/*else{
-			$_SESSION['customer_email']=$customer_email;
-	echo "<script>window.open('payment_options.php','_self')</script>";
-	}*/
-	
-	else{
-	echo "<scritp>alert('successfully loged in ,You can order now.')</script>";
-		$_SESSION['customer_email']=$customer_email;
-		include("payment_options.php");
-	}
-	
-
-	
-	
-	
+			}
 	
 		}
 		
