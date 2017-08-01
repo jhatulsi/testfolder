@@ -37,7 +37,8 @@
          
          
          <div id="form">
-         	<form method="get" action="results.php" enctype="multipart/form-data">
+         	<form method="get" action="results.php" enctype="multipart/form-data"> 
+			
             	<input type="text" name="user_query" placeholder="Search a Product">
                 <input type="submit" name="search" value="Search" >
             
@@ -79,7 +80,7 @@
                             <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a> &nbsp;
 						<?php	
 							if(!isset($_SESSION['customer_email'])){
-								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";
+								echo "<a href='checkout.php' style='color:#F93;'> LogIn</a>";
 							}
 							else{
 							echo "<a href='logout.php' style='color:#F93;'> LogOut</a>";
@@ -101,7 +102,7 @@
                 
                 	<div id="products_box">
                     		
-				<form action="checkout.php" method="post" enctype="multipart/form-data">
+				<form action="customer_register.php" method="POST" enctype="multipart/form-data">
 		
 		<table width="750" bgcolor="#66CCCC" align="center">
 		<tr align="center">
@@ -115,17 +116,18 @@
 	
 		<tr>
 		<td align="right"><b>Customer Email:</b></td>
-		<td><input type="text" name="c-email" required /></td>
+		<td><input type="text" name="c_email" required /></td>
 		</tr>
 		
 		<tr>
 		<td align="right"><b>Customer Password:</b></td>
-		<td><input type="password" name="c-password" required /></td>
+		<td><input type="password" name="c_password" required /></td>
 		</tr>
 		
 		<tr>
-		<td align="right" size="6"><b>Customer Country:</b></td>
+		<td align="right" ><b>Customer Country:</b></td>
 		<td><select name="c_country">
+			<option>Select Your City</option>
 			<option>India</option>
 			<option>Pakistan</option>
 			<option>China</option>
@@ -152,7 +154,8 @@
 		</tr>
 	<tr>
 	
-	<td colspan="8" align="center"><input type="submit" name="register" value="Submit" required /></td>
+	<td colspan="8" align="center">
+	<input type="submit" name="register" value="Submit"/></td>
 	</tr>
 		
 		</table>
@@ -187,7 +190,10 @@
 </html>
 
 <?php 
+
 	if(isset($_POST['register'])){
+		//echo 'hello';exit;
+	//echo '<pre>';print_r($_POST);exit;
 	
 	$c_name	= $_POST['c_name'];
 	$c_email = $_POST['c_email'];
@@ -201,10 +207,13 @@
 	
 	$c_ip = getIP();
 	
-	$insert_customer =  mysql_query("insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image','1')");
 	
 	
-	//exit($insert_customer);
+	$insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,customer_ip) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address','$c_image','1')";
+		
+		$run_customer =  mysql_query($insert_customer , $conn);
+	
+		//echo '<pre>';print_r($insert_customer);exit;
 		
 		$run_customer = mysql_num_rows($insert_customer);
 		
@@ -234,42 +243,6 @@
 		
 		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -86,10 +86,11 @@ function cart(){
 						mysql_select_db('myshop');
 						
 		if(isset($_GET['add_cart'])){
-			$ip_add = GetIP();
+			$ip_add = getIP();
 	$p_id = $_GET['add_cart'];
 	
-	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+	$check_pro = "select * from cart where ip_add='1' AND p_id='$p_id'";
+//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
 	
 	$run_check = mysql_query($check_pro , $db);
 	

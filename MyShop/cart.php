@@ -190,25 +190,30 @@
 								function updateCart(){
 								
 									if(isset($_POST['update'])){
-										
+										//echo '<pre>';print_r($_POST);exit;
 										foreach($_POST['remove'] as $remove_id){
 										
-											$delete_products =	" delete from cart where p_id ='$remove_id'";
-											$run_delete = mysql_query($delete_products , $conn);
+											$delete_products =	 mysql_query(" delete from cart where p_id ='$remove_id'");
+												//echo '<pre>';print_r($delete_products);exit;
+												
+										//	$run_delete = mysql_query($delete_products , $conn);
 											
-											if($run_delete){
+												//echo '<pre>';print_r($run_delete);exit;
+											if($delete_products){
 												echo "<script>window.open('cart.php','_self')</script>";
+											}else{
+												echo 'not possible';
+											}
 										}
-									}
-									
-								}
-								
-								if(isset($_POST['continue'])){
-										echo "<script>window.open('index.php','_self')</script>";
 										
-									}
+										}
+										
+										if(isset($_POST['continue'])){
+												echo "<script>window.open('index.php','_self')</script>";
+												
+										}
 							}	
-						echo	@$update_cart= updateCart() ;
+							echo	@$update_cart= updateCart() ;
 							?>
                             
                             

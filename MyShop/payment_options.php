@@ -21,7 +21,7 @@
 		?>
 
 <div>
-	<b>Pay With</b><h3>PAYPAL</h3><b>Or<a href="order.php?c_id<?php echo $customer_id; ?>">PAY Offline</a></b>
+	<b>Pay With</b><h3>PAYPAL</h3><b>Or<a href="order.php?c_id=<?php echo $customer_id; ?>">PAY Offline</a></b>
 	<br>
 	<b style="color:red;"> If you selected "Pay Offline" option then please check your email or account to find the Invoice No for your order</b>
 	<hr>

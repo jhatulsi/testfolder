@@ -73,7 +73,7 @@ include 'includes/dbconn.php';
 	$check_cart = mysql_num_rows($run_cart);
 	
 	if($number_of_rows == 0){
-echo "<script>alert('Password or Email Address is not correct')</script>";
+		echo "<script>alert('Password or Email Address is not correct')</script>";
 	}
 	if($number_of_rows==1 AND $check_cart==0){
 		$_SESSION['customer_email']=$customer_email;

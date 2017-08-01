@@ -16,6 +16,56 @@ return $ip;
 }
 
 
+ function getDefault(){
+	 
+	 
+	 $c = $_SESSION['customer_email'];
+	 
+	 $db = mysql_connect('localhost','root','');
+						mysql_select_db('myshop');
+	 $get_c = "select * from customers where customer_email='$c'";
+	 
+	 //echo '<pre>';print_r( $get_c);exit;
+	 
+	 $run_c = mysql_query($get_c, $db);
+	 
+	$row_c =  mysql_fetch_array($run_c);
+		$customer_id = $row_c['customer_id'];
+	
+			if(!isset($_GET['my_orders'])){
+			if(!isset($_GET['edit_account'])){
+			if(!isset($_GET['change_pass'])){
+			if(!isset($_GET['delete_account'])){
+			
+		$get_orders = "select * from customer_order where customer_id= '$customer_id' AND order_status = 'pending'";
+	 
+		$run_orders = mysql_query( $get_orders, $db );
+	 
+		$count_orders = mysql_num_rows($run_orders);
+		
+		if($count_orders>0){
+			echo "<div style='padding:10px'><h1 style='color:red; text-decoration:underline; '>Important</h1><h2>You have ($count_orders) Pending orders</h2> <h3>Please see your orders details by clicking this <a href='my_account.php?my_orders'>LINK</a><br> Or you can <a href='pay_offline.php'>Pay Offline</a></h3></div>";
+			
+		}else{
+			echo "<div style='padding:10px'><h1 style='color:red; text-decoration:underline; '>Important</h1><h2>You have no Pending orders!</h2> <h3>You can see your orders history by clicking this <a href='my_account?my_orders.php'>LINK</a><br> Or you can <a href='pay_offline.php'>Pay Offline</a></h3></div>";
+			
+			
+		}
+	 
+	 }
+		}
+		}
+		}
+	 
+ }
+
+
+
+
+
+
+
+
 //getting the number of items from the cart
 function items(){
 	if(isset($_GET['add_cart'])){

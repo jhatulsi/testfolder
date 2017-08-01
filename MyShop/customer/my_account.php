@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	include 'includes/dbconn.php';
-	include 'functions/functions.php';
+	include 'function/functions.php';
 
 ?>
 
@@ -19,7 +19,7 @@
 	<div class="main_wrapper">
     	<!-------Header Starts----->
         <div class="header_wrapper">
-        	<img src="images/image.png" style="float:left; width:100%; height:100%;">
+        	<img src="../images/image.png" style="float:left; width:100%; height:100%;">
         </div>
          <!-------Header ends----->
          
@@ -27,12 +27,20 @@
          <div id="navbar">
          		<ul id="menu">
                 
-                	<li><a href="index.php">Home</a></li>
-                    <li><a href="all_products.php">All Products</a></li>
+                	<li><a href="../index.php">Home</a></li>
+                    <li><a href="../all_products.php">All Products</a></li>
                     <li><a href="customer/my_account.php">My Account</a></li>
-                    <li><a href="user_register.php">Sign Up</a></li>
-                     <li><a href="cart.php">Shopping Cart</a></li>
-                      <li><a href="contact.php">Contact Us</a></li>
+					
+					<?php 
+					if(isset($_SESSION['customer_email'])){
+                   echo "<span style='display:none;'> <li><a href='../user_register.php'>Sign Up</a></li></span>";
+					}else{
+						echo " <li><a href='../user_register.php'>Sign Up</a></li>";
+					}
+					
+					 ?>
+                     <li><a href="../cart.php">Shopping Cart</a></li>
+                      <li><a href="../contact.php">Contact Us</a></li>
                 </ul>
          
          
@@ -55,34 +63,48 @@
          <div class="content_wrapper" >
          	<div id="left_sidebar">
             
-            <div id="sidebar_title"> Categories</div>
+            <div id="sidebar_title"> Manage Account</div>
             
             <ul id="cats">
-            	 <?php 
-				 getCats(); 
-				 
-				 ?>
+				<?php 
+					if(isset($_SESSION['customer_email'])){
+						$user_session = $_SESSION['customer_email'];
+						
+						$get_customer_pic = "select * from customers where customer_email='$user_session'";
+						
+						$run_customer = mysql_query($get_customer_pic , $conn);
+						
+						$row_customer = mysql_fetch_array($run_customer);
+						
+						$customer_pic = $row_customer['customer_image'];
+						
+						echo "<img src='customer_photos/$customer_pic' width='150' height='150'><a href= 'change_pic'>Change Photo</a>";
+						
+					}
+				
+				?>
+			
+					<li><a href="my_account.php?my_orders"> My Orders </a></li>
+					<li><a href="my_account.php?edit_account"> Edit Account </a></li>
+					<li><a href="my_account.php?change_pass"> Change Password </a></li>
+					<li><a href="my_account.php?delete_account"> Delete Account</a></li>
+					<li><a href="logout.php"> LogOut </a></li>
                     
                 </ul>
-             </ul>   
-            <div id="sidebar_title"> Brands </div>
-            	 <ul id="cats">
-            	<?php getBrands();?>
-             </ul> 
-            
             </div>
+			
+		
             <div id="right_content">
             	<div id="headline">
                 		<div id="headline_content"> 
 						<?php 
-						if(!isset($_SESSION['customer_email'])){
-                        	echo "<b>Welcome Guest!</b>  <b style='color:yellow;'>Shopping Cart</b>" ;
-						}else{
-							echo "<b>Welcome:" . $_SESSION['customer_email'] . "</b>" . "<b style='color:yellow;'>Shopping Cart</b>";
-						}
-						?>
-                           
-                            <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="cart.php" style="background:white;">Go to Cart</a> <?php	
+						if(isset($_SESSION['customer_email'])){
+							
+							echo "<b>Welcome:" . "</b>" . "<b style='color:yellow;'>" . $_SESSION['customer_email'] .  "</b>";
+							
+						}?>
+					
+						 <?php	
 							if(!isset($_SESSION['customer_email'])){
 								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";
 							}
@@ -106,11 +128,26 @@
 				
 				?>
                 
-                	<div id="products_box">
-                    		<?php getPro();
-									getCatPro();
-									getBrandPro();
+                	<div>
+						<h2 style="background:#000; color:#FC9; padding:20p; text-align:center; border-top:2px solid #FFF; ">Manage Your Account</h2>
+                    		
+								<?php getDefault(); ?>
+							
+							<?php    
+								if(isset($_GET['my_orders']))
+									{
+									include 'my_orders.php';
+									}
+							
+							
 							?>
+							
+							
+							
+							
+							
+							
+							
                          </div>
                 
                 
