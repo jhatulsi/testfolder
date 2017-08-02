@@ -13,7 +13,7 @@
 
 <body bgcolor="#999999"; float="center">
 	<form action="insert_product.php" method="post" enctype="multipart/form-data">
-    	<table width="700" align="center" border="2" bgcolor='#CCCCCC'>
+    	<table width="700" align="center" border="2" bgcolor='#CCCCCC' height="730">
         
        		<tr>
             	<td colspan="2"><h2>Insert New Product:</h2></td>
@@ -143,21 +143,22 @@
 		}
 		else{
 			
-			move_uploaded_file($temp_name1,"product_images/$image1");
-			move_uploaded_file($temp_name2,"product_images/$image2");
-			move_uploaded_file($temp_name3,"product_images/$image3");
-			
-			$insert_product = " insert into products (	cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,status) values ('$product_cat','$product_brand','NOW()','$product_title','$image1','$image2','$image3','$product_price','$product_desc','$status')";
-			
-			//echo '<pre>';print_r($insert_product);exit;
-			
-			$run_product = mysql_query($insert_product, $conn);
-			
-			if($run_product){
+				move_uploaded_file($temp_name1,"product_images/$image1");
+				move_uploaded_file($temp_name2,"product_images/$image2");
+				move_uploaded_file($temp_name3,"product_images/$image3");
 				
-				echo "<script>alert('Product inserted Successfully')</script>";
-				}
-			
+				$insert_product = " insert into products (	cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,status) values ('$product_cat','$product_brand','NOW()','$product_title','$image1','$image2','$image3','$product_price','$product_desc','$status')";
+				
+				//echo '<pre>';print_r($insert_product);exit;
+				
+				$run_product = mysql_query($insert_product, $conn);
+				
+				if($run_product){
+					
+					echo "<script>alert('Product inserted Successfully')</script>";
+					echo "<script>window_open('index.php?insert_product','_self ')</script>";
+					}
+				
 			
 			}
 

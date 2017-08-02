@@ -202,7 +202,7 @@
 	$c_city	= $_POST['c_city'];
 	$c_contact	= $_POST['c_contact'];
 	$c_address	= $_POST['c_address'];
-	$c_image	= $_POST['c_image']['name'];
+	$c_image	= $_FILES['c_image']['name'];
 	$c_image_tmp = $_FILES['c_image']['tmp_name'];
 	
 	$c_ip = getIP();

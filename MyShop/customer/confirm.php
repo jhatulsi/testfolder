@@ -15,7 +15,7 @@
 <title></title>
 </head>
 
-<form action='confirm.php' method='post'>
+<form action="confirm.php?update_id=<?php echo $order_id; ?>" method="post">
 
 <input type="hidden" name="order_id" value="<?php echo $order_id;?>" />
 
@@ -71,6 +71,8 @@
 <?php 
 
 if(isset($_POST['confirm'])){
+	
+	$update_id = $_GET['update_id'];
 	$invoice = $_POST['invoice_no'];
 	$amount = $_POST['amount'];
 	$payment_method = $_POST['payment_method'];
