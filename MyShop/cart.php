@@ -84,7 +84,7 @@
                             <span>- Total Items: <?php items(); ?> -Total Price:<?php totalPrice(); ?><a href="index.php" style="background:white;">Continue Shopping</a>&nbsp;
 							<?php	
 							if(!isset($_SESSION['customer_email'])){
-								echo "<a href=checkout.php style='color:#F93;'> LogIn</a>";
+								echo "<a href='checkout.php' style='color:#F93;'> LogIn</a>";
 							}
 							else{
 							echo "<a href='logout.php' style='color:#F93;'> LogOut</a>";

@@ -46,7 +46,7 @@
 					$qty = $qty;
 					$sub_total = $total * $qty;
 				}
-				$insert_order = "insert into customer_order (customer_id, due_amount, invoice_no, total_products, order_date, order_status) values ('$customer_id','$sub_total','$invoice_no','$count_pro','NOW()','$status')";
+				$insert_order = "insert into customer_order (customer_id, due_amount, invoice_no, total_products, order_date, order_status) values ('$customer_id','$sub_total','$invoice_no','$count_pro',NOW(),'$status')";
 				
 				$run_order = mysql_query($insert_order , $conn);
 				

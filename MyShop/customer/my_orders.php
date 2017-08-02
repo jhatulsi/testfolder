@@ -17,7 +17,7 @@
 		$customer_id = $row_c['customer_id'];
 		
 ?>
-
+<h2>All Order Details:</h2>
 &nbsp;&nbsp;&nbsp;<table width="700" align="center" bgcolor="#6699FF">
 <tr></tr>
 		<tr>
@@ -64,7 +64,7 @@
 					<td>$products</td>
 					<td>$date</td>
 					<td>$status</td>
-					<td><a href='confirm.php'>Confirm If Paid</a></td>
+					<td><a href='confirm.php?order_id=$order_id' target='_blank'>Confirm If Paid</a></td>
 					</tr>
 		
 		";
