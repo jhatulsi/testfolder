@@ -6,6 +6,9 @@
 </head>
 
 <body>
+
+<?php 
+if(isset($_GET[''view_products])){ ?>
 		<table align="center" width="794" bgcolor="#FFCC99">
 			<tr align="center">
 			<td colspan="6"><h2>View All Products</h2></td>
@@ -32,6 +35,7 @@
 					$p_title = $row_pro['product_title'];
 					$p_img = $row_pro['product_img1'];
 					$p_price = $row_pro['product_price'];
+					$status = $row_pro['status'];
 					$i++;
 				}
 			
@@ -52,39 +56,45 @@
 			<td><?php echo $p_price;?></td>
 			<td>
 				<?php 
-					$get_sold = "select * from pending_orders where products_id='$p_id'";
+					$get_sold = "select * from pending_order where product_id='$p_id'";
 			
 			//exit($get_sold);
 					$run_sold = mysql_query($get_sold , $conn);
 					
-					 mysql_num_rows($run_sold);
-					exit(mysql_num_rows($run_sold));
+					$count = mysql_num_rows($run_sold);
+					
 					 echo $count;
 					
 				?>
 			</td>
 			<td>
 				<?php 
-				/*	$get_status = "select * from pending_orders where products_id='$p_id'";
+					$get_status = "select * from products where product_id='$p_id'";
 			
 				//exit($get_sold);
 					$run_status = mysql_query($get_status , $conn);
 					$row_status = mysql_fetch_array($run_status);
 					//echo '<pre>';print_r($row_status);exit;
-					$p_status = $row_status['order_status'];
+					$p_status = $row_status['status'];
 					
 					 echo $p_status;
-					 */
+					 
 					
 				?>
 			</td>
-			<td></td>
-			<td><a href="#">Edit</a></td>
-			<td><a href="#">Delete</a></td>
+			<td><?php echo $status; ?></td>
+			<td><a href="index.php?edit_pro=<?php echo $p_id; ?>">Edit</a></td>
+			<td><a href="index.php?delete_pro=<?php echo $p_id; ?>">Delete</a></td>
 			</tr>
 			
 		
 		</table>
+		
+		<?php 
+		}
+		
+		
+		?>
 </body>
 
 </html>

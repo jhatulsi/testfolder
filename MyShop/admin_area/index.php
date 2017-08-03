@@ -36,11 +36,19 @@ th,tr{border:3px groove #000}
 				}
 				if(isset($_GET['view_products'])){
 						include 'view_products.php';
-					
-					
-				}
-				
+						}
+			
+
+					if(isset($_GET['edit_pro'])){
+						include 'edit_pro.php';
+						}
+
+
+			
 			?>
+			
+			
+			
 		
 		
 		</div>
