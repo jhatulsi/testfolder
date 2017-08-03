@@ -1,3 +1,21 @@
+<?php
+		session_start();
+		if(!isset($_SESSION['admin_email']))
+		{
+			echo "<script>window.open('login.php', '_self')</script>";
+		}else{
+			
+	
+ ?>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +45,8 @@ th,tr{border:3px groove #000}
 		</div>
 		
 		<div class="left">
+				<h2 style="color:red; text-align:center;"><?php echo $_GET['logged_in']; ?></h2>
+		
 			<?php 
 				include "includes/dbconn.php";
 					if(isset($_GET['insert_product'])){
@@ -42,8 +62,49 @@ th,tr{border:3px groove #000}
 					if(isset($_GET['edit_pro'])){
 						include 'edit_pro.php';
 						}
-
-
+						
+						if(isset($_GET['view_cats'])){
+						include 'view_cats.php';
+						}
+					
+					if(isset($_GET['edit_cat'])){
+						include 'edit_cat.php';
+						}
+						
+						if(isset($_GET['delete_cat'])){
+						include 'delete_cat.php';
+						}
+						
+						if(isset($_GET['insert_brand'])){
+						include 'insert_brand.php';
+						}
+						
+			
+						if(isset($_GET['view_brands'])){
+						include 'view_brands.php';
+						}
+			
+					if(isset($_GET['edit_brand'])){
+						include 'edit_brand.php';
+					}
+			
+						if(isset($_GET['delete_brand'])){
+						include 'delete_brand.php';
+					}
+					
+						if(isset($_GET['view_customers'])){
+						include 'view_customers.php';
+					}
+					
+					if(isset($_GET['view_order'])){
+						include 'view_orders.php';
+					}
+					
+					
+					if(isset($_GET['view_payments'])){
+						include 'view_payments.php';
+					}
+			
 			
 			?>
 			
@@ -58,6 +119,8 @@ th,tr{border:3px groove #000}
 
 </div>
 
-<body></body>
+
 
 </html>
+
+		<?php } ?>

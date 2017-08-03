@@ -128,7 +128,7 @@
             </tr>
             
               <tr colspan="2" align="center">
-            	<td><input type="submit" name="insert_product" value="Insert Product"></td>
+            	<td><input type="submit" name="update_product" value="Update Product"></td>
             </tr>
             
       </table>      
@@ -138,7 +138,7 @@
 
 <?php
 
-	if(isset($_POST['insert_product'])){
+	if(isset($_POST['update_product'])){
 		
 		//echo '<pre>';print_r($_POST);exit;
 	 
@@ -180,16 +180,16 @@
 				move_uploaded_file($temp_name2,"product_images/$image2");
 				move_uploaded_file($temp_name3,"product_images/$image3");
 				
-				$insert_product = " insert into products (	cat_id,brand_id,date,product_title,product_img1,product_img2,product_img3,product_price,product_desc,status) values ('$product_cat','$product_brand','NOW()','$product_title','$image1','$image2','$image3','$product_price','$product_desc','$status')";
+				$update_product = " update products set	 cat_id='$product_cat',brand_id='$product_brand',date=NOW(),product_title='$product_title',product_img1='$image1',product_img2='$image2',product_img3='$image1',product_price='$product_price',product_desc='$product_desc',product_keywords= '$product_keywords' where product_id='$update_id'";
 				
 				//echo '<pre>';print_r($insert_product);exit;
 				
-				$run_product = mysql_query($insert_product, $conn);
+				$run_product = mysql_query($update_product, $conn);
 				
-				if($run_product){
+				if($run_update){
 					
-					echo "<script>alert('Product inserted Successfully')</script>";
-					echo "<script>window_open('index.php?insert_product','_self ')</script>";
+					echo "<script>alert('Product updated Successfully')</script>";
+					echo "<script>window_open('index.php?view_products','_self ')</script>";
 					}
 				
 			

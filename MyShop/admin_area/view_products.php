@@ -8,7 +8,7 @@
 <body>
 
 <?php 
-if(isset($_GET[''view_products])){ ?>
+if(isset($_GET['view_products'])){ ?>
 		<table align="center" width="794" bgcolor="#FFCC99">
 			<tr align="center">
 			<td colspan="6"><h2>View All Products</h2></td>
@@ -84,7 +84,7 @@ if(isset($_GET[''view_products])){ ?>
 			</td>
 			<td><?php echo $status; ?></td>
 			<td><a href="index.php?edit_pro=<?php echo $p_id; ?>">Edit</a></td>
-			<td><a href="index.php?delete_pro=<?php echo $p_id; ?>">Delete</a></td>
+			<td><a href="delete_pro.php?delete_pro=<?php echo $p_id; ?>">Delete</a></td>
 			</tr>
 			
 		

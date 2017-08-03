@@ -85,14 +85,17 @@ if(isset($_POST['confirm'])){
 	$insert_payment = "insert into payment (invoice_no ,amount ,payment_mode,ref_no,code,payment_date ) values ('$invoice','$amount','$payment_method','$ref_no','$code','$date')";
 	
 	$run_payment = mysql_query($insert_payment, $conn);
+	
+	
+	$update_orders = "update customer_order set order_status='complete' where order_id='$orderId'";
+	$run_order = mysql_query($update_orders, $conn);
+	$update_pending_orders = "update pending_order set order_status='complete' where order_id= '$update_id'";
+	
+	$run_pending_orders = mysql_query($update_pending_orders , $conn);
 	if($run_payment){
 		echo "<h2 style='text-align:center; color:white;'>Payment received, Your order will be completed within 24 hours.</h2>";
 	
 	}
-	
-	$update_orders = "update customer_order set order_status='complete' where order_id='$orderId'";
-	$run_order = mysql_query($update_orders, $conn);
-	
 	
 }
 
