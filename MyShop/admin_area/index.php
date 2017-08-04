@@ -1,13 +1,12 @@
+
 <?php
-		session_start();
-		if(!isset($_SESSION['admin_email']))
-		{
-			echo "<script>window.open('login.php', '_self')</script>";
-		}else{
+//		if(!isset($_SESSION['admin_email']))
+	//	{
+	//		echo "<script>window.open('login.php', '_self')</script>";
+	//	}else{
 			
 	
  ?>
-
 
 
 
@@ -123,4 +122,4 @@ th,tr{border:3px groove #000}
 
 </html>
 
-		<?php } ?>
+
