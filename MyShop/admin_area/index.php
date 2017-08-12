@@ -44,7 +44,7 @@ th,tr{border:3px groove #000}
 		</div>
 		
 		<div class="left">
-				<h2 style="color:red; text-align:center;"><?php echo $_GET['logged_in']; ?></h2>
+				
 		
 			<?php 
 				include "includes/dbconn.php";
