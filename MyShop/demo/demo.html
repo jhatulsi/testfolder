@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>jQuery4u UILock plugin - Demo</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.uilock.js"></script>
+	<style>
+	#countdown_box {
+	position:absolute;
+	top:32%;
+	left:32%;
+	width:300px;
+	border:3px solid blue;
+	padding:70px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	}
+	#countdown_title {
+	font-family: tahoma;
+	font-weight: bold;
+	colour: blue;
+	font-size: 18px;
+	}
+	#countdown_div {
+	font-family: tahoma;
+	font-weight: bold;
+	font-size: 56px;
+	}
+	</style>
+	
+	<Script>
+	//function to open url a new window/tab
+	function load_url(url) {
+	var load = window.open(url);
+	}
+	// -->
+	</Script>
+		
+	<script>
+	//function to show the countdown in seconds until the web page is unfrozen (active) again
+	 function do_countdown(duration) {
+	 //10 seconds fix
+	 start_num = duration;
+	 var countdown_output = document.getElementById('countdown_div');
+
+	 if (start_num > 0) {
+	 countdown_output.innerHTML = format_as_time(start_num);
+	 var t=setTimeout("update_clock(\"countdown_div\", "+start_num+")", 1000);
+	 }
+
+	 return false;
+	 }
+
+	//helper function to update the timer on the web page this is frozen
+	 function update_clock(countdown_div, new_value) {
+	 var countdown_output = document.getElementById(countdown_div);
+	 var new_value = new_value - 1;
+
+	 if (new_value > 0) {
+	 new_formatted_value = format_as_time(new_value);
+	 countdown_output.innerHTML = new_formatted_value;
+
+	 var t=setTimeout("update_clock(\"countdown_div\", "+new_value+")", 1000);
+	 } else {
+		//finish!
+		countdown_output.innerHTML = "";
+		$('#countdown_box').hide();
+		
+		//unlock UI
+		$.uiUnlock();
+		
+		//perform anything here after the web page is unfrozen
+	 }
+	 }
+
+	//helper function to calculate the time (seconds) remaining as minutes and seconds
+	 function format_as_time(seconds) {
+	 var minutes = parseInt(seconds/60);
+	 var seconds = seconds - (minutes*60);
+
+	 if (minutes < 10) {
+	 minutes = "0"+minutes;
+	 }
+
+	 if (seconds < 10) {
+	 seconds = "0"+seconds;
+	 }
+
+	 var return_var = minutes+':'+seconds;
+
+	 return return_var;
+	 }
+	 </script>
+	 
+	 <script>
+	//main function to load the new website and start the countdown
+	  function view_blog_countdown(blog_url, duration) {
+				load_url(blog_url);
+				$('#countdown_box').show(); //countdown
+				$('#countdown_title').html(blog_url);
+				$.uiLock('');
+				//alert(duration);
+				//performs countdown then unlocks
+				do_countdown(duration);
+	  }
+	 </script>
+		
+	<script>
+		//funciton to initialise a click event for the webpage buttons
+		$(document).ready(function() {
+			$('#lock').click(function(){
+				
+				//show content
+				$('#countdown_box').show(); //countdown
+				
+				//lock interface
+				$.uiLock('');
+				
+				//start the countdown (unlocks interface at end)
+				do_countdown();
+				
+			});
+			
+			//Initial settings
+			$('#countdown_box').hide();
+			
+		});
+	</script> 
+		
+</head>
+
+<BODY>
+ <div id="countdown_box">
+	 <div id="countdown_title">&nbsp;</div>
+	 <div id="countdown_div">&nbsp;</div>
+	 <div id="countdown_msg">Please take the time to check out their website. This window unfrezes in a few seconds.</div>
+ </div>
+
+ <input type="button" onclick="javascript:view_blog_countdown('http://jquery4u.com','3')" value="View - http://jquery4u.com (3 sec timer)" /><br />
+ <input type="button" onclick="javascript:view_blog_countdown('http://blogoola.com','10')" value="View - http://blogoola.com (10 sec timer)" /><br />
+
+</body>
+</html>
