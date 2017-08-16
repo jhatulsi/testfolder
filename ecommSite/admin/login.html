@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="utf-8">
+<title>3dcart Admin - Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">	
+
+<!-- favicons -->
+<link rel="shortcut icon" href="templates/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="templates/images/favicon.ico" type="image/x-icon">
+	
+<!-- Basic Styles -->
+<link rel="stylesheet" type="text/css" media="screen" href="templates/css/bootstrap.min.SA5b9f.css?vcart=7.6.0&amp;vcart_temp=1">
+<link rel="stylesheet" type="text/css" media="screen" href="templates/css/font-awesome.min.SA5b9f.css?vcart=7.6.0&amp;vcart_temp=1">
+
+<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+<link rel="stylesheet" type="text/css" media="screen" href="templates/css/smartadmin-production.min.SA5b9f.css?vcart=7.6.0&amp;vcart_temp=1">
+<link rel="stylesheet" type="text/css" media="screen" href="templates/css/smartadmin-skins.min.SA5b9f.css?vcart=7.6.0&amp;vcart_temp=1">
+<!-- fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,600,700">
+
+<!-- global styles -->
+<link rel="stylesheet" type="text/css" href="templates/css/plugins5b9f.css?vcart=7.6.0&amp;vcart_temp=1" />
+<link rel="stylesheet" type="text/css" href="templates/css/global5b9f.css?vcart=7.6.0&amp;vcart_temp=1" />
+
+<script src="templates/js/libs/jquery.min5b9f.js?vcart=7.6.0&amp;vcart_temp=1" type="text/javascript"></script>
+<script src="templates/js/libs/jquery-ui-1.10.3.min5b9f.js?vcart=7.6.0&amp;vcart_temp=1" type="text/javascript"></script>
+<!-- redactor wysiwyg -->
+<script type="text/javascript" src="templates/redactor/redactor.all5b9f.js?vcart=7.6.0&amp;vcart_temp=1"></script>
+<!-- kendo ui framework -->
+<script type="text/javascript" src="templates/kendoui/kendoui.all5b9f.js?vcart=7.6.0&amp;vcart_temp=1"></script>
+<script type="text/javascript" src="templates/js/plugins5b9f.js?vcart=7.6.0&amp;vcart_temp=1"></script>
+
+<script type="text/javascript">
+hs.graphicsDir = 'templates/js/graphics/index.html';
+hs.outlineType = 'rounded-white';
+hs.outlineWhileAnimating = true;
+</script>
+<script type="text/javascript">
+var doLogin = 0;
+
+function handleKey(e, strFormName) {
+    try {
+		var KeyID = (window.event) ? event.keyCode : e.keyCode;
+		
+        if (KeyID == 13) {
+            if (strFormName == 'login') {
+				ajaxlogin();
+			}
+            else {
+				ajaxfp();
+			}
+		}
+	}
+    catch (err) {
+		//alert('An error has occured. Please, refresh the page and try again.');
+		//ajaxlogin();
+	}
+}
+
+function forgotpassdisplay() {
+    document.getElementById("loginbox").style.display = "none";
+    var t = setTimeout("jQuery('#forgotpass').fadeIn();", 500)
+	doLogin = 0;
+}
+
+function forgotpasshide() {
+    document.getElementById("forgotpass").style.display = "none";
+    var t = setTimeout("jQuery('#loginbox').fadeIn();", 500)
+	doLogin = 0;
+}
+
+
+function ajaxlogin() {
+	var strLogin = document.getElementById("username").value.trim();
+	var strPassword = document.getElementById("password").value.trim();
+	
+    if (strLogin == "" || strPassword == "") {
+		alert('Username and Password cannot be blank');
+		return false;
+	}
+	
+    if (doLogin == 0) {
+		ajax_adminlogin(strLogin, strPassword);
+		doLogin = 1;
+	}
+}
+
+function ajaxfp() {
+    ajax_adminfp(document.getElementById("fpusername").value, document.getElementById("recaptcha_challenge_field").value, document.getElementById("recaptcha_response_field").value);
+	doLogin = 0;
+}
+
+String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, "");
+}
+</script>
+<style type="text/css">
+html, body, #content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#recaptcha_widget_div {
+    margin: 2px;
+    transform:scale(0.833);
+    transform-origin:0 0;
+}
+#admin_banner .btn {
+	margin: 8px 0;
+}
+.fade-in {
+  -webkit-animation: fade-in 2s ease;
+  -moz-animation: fade-in ease-in-out 2s both;
+  -ms-animation: fade-in ease-in-out 2s both;
+  -o-animation: fade-in ease-in-out 2s both;
+  animation: fade-in 2s ease;
+  visibility: visible;
+  -webkit-backface-visibility: hidden;
+}
+ 
+@-webkit-keyframes fade-in{0%{opacity:0;} 100%{opacity:1;}}
+@-moz-keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
+@keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
+</style>
+</head>
+<body id="admin_login" class="fixed-header fixed-navigation fixed-ribbon">
+<!--START: SWITCH_ADMIN--><!--END: SWITCH_ADMIN-->
+	<div id="content">
+		<div class="split-layout">
+			<div class="side side-left">
+				<div class="login-container">
+					<div id="abm">
+						<!--START: LOGIN_LEFT-->
+                        <!--START: banner_user--><script type="text/javascript" src="https://www.3dcart.com/absolutebm/abm.aspx?z=12"></script><!--END: banner_user-->
+                        <!--START: banner_demo--><!--END: banner_demo-->
+						<!--END: LOGIN_LEFT-->
+					</div>
+				</div>
+				<div class="div-gradient-line"></div>
+			</div>
+			<div class="side side-right">
+				<div class="login-container">
+					<div class="login-section">
+						<h1 id="login_storename" class="text-center"> Black Eagle (Responsive) </h1>
+						<h5 class="text-center">Log in to your store manager</h5>
+						<div id="errorbox" style="display:none;">
+							<div id="error" class="errorbox"> </div>
+						</div>
+						<div id="forgotpass" style="display:none">
+							<!--START: LOGIN-->
+							<div class="no-padding">
+								<form action="javascript:ajaxfp();" method="post" name="login2" id="Form1" autocomplete="off" class="smart-form client-form">
+									<fieldset>
+										<section>
+											<label class="input">
+												<input type="text" id="fpusername" name="fpusername" onkeypress="handleKey(event,'login2');" autocomplete="off" placeholder="Username" class="input-lg" />
+											</label>
+											<label class="text">
+												<script type="text/javascript">var RecaptchaOptions = { theme: 'clean' };</script>
+												<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Lc0Bd8SAAAAAOapgLTJ1AhE88nrgwaZMkG5j8dM"></script>
+												<noscript>
+													<iframe src="http://www.google.com/recaptcha/api/noscript?k=6Lc0Bd8SAAAAAOapgLTJ1AhE88nrgwaZMkG5j8dM" height="300" width="200" frameborder="0"></iframe><br>
+													<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+													<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+												</noscript>
+											</label>
+											<button type="button" class="btn btn-lg btn-block btn-green" onclick="ajaxfp();"> Request Password </button>
+											<button type="button" class="btn-pass-back" onclick="window.location.href='login.html';"> <i class="fa fa-arrow-left"></i> </button>
+										</section>
+									</fieldset>
+									<footer></footer>
+								</form>
+							</div>
+							<!--END: LOGIN-->
+						</div>
+						<div id="loginbox">
+							<div class="no-padding">
+								<form name="login" id="login" action="javascript:ajaxlogin();" autocomplete="off" class="smart-form client-form">
+									<input type="hidden" id="loginDirectResponse" value="" />
+									<fieldset>
+										<section>
+											<div class="input">
+												<input type="email" name="username" id="username" onenter="ajaxlogin()" onkeypress="handleKey(event,'login');" autocomplete="off" placeholder="Username" class="input-lg" />
+
+												<input type="password" name="password" id="password" onenter="ajaxlogin()" onkeypress="handleKey(event,'login');" autocomplete="off" placeholder="Password" class="input-lg" />
+
+												<button type="button" class="btn btn-lg btn-block btn-green" onclick="ajaxlogin();"> Log in </button>
+											</div>
+											<div class="row">
+												<div class="col col-6">
+													<label class="checkbox remember-me">
+														<input type="checkbox" id="remember_me" name="remember_me" />
+														<i></i>
+														Remember me
+													</label>
+												</div>
+												<div class="col col-6">
+													<label class="text pull-right">
+														<a href="javascript:void(0);" onclick="javascript:forgotpassdisplay();">Forgot password?</a>
+													</label>
+												</div>
+											</div>
+										</section>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+						<div id="login_logo"> <a href="http://www.3dcart.com/" target="_blank"><img src="templates/images/admin-logo.png" alt="3dcart Store Manager"></a> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+    jQuery(function () {
+        if (jQuery.cookie('save_user') != null) {
+            document.getElementById("remember_me").checked = true;
+            document.getElementById("username").value = jQuery.cookie('save_user');
+        }
+        else {
+            document.getElementById("remember_me").checked = false;
+            document.getElementById("username").value = '';
+        }
+    });
+</script>
+
+    <!--START: remarketing_user-->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 1072635779;
+        var google_conversion_label = "UmmtCNr5r1YQg7-8_wM";
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="../../www.googleadservices.com/pagead/f.txt">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="http://googleads.g.doubleclick.net/pagead/viewthroughconversion/1072635779/?value=1.00&amp;currency_code=USD&amp;label=UmmtCNr5r1YQg7-8_wM&amp;guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+    <!--END: remarketing_user-->
+    <!--START: remarketing_demo--><!--END: remarketing_demo-->
+
+
+
+
+<script type="text/javascript">
+//Call anonymous function after page load.
+	(function () {
+		var loginContent;
+		loginContent = document.getElementById("loginDirectResponse").value;
+
+		if (loginContent != "") {
+			handleLoginResponse(loginContent);
+		}
+	}());
+
+	jQuery(document).ready(function () {
+	    if (window.innerWidth <= 768) {
+	        jQuery('meta[name="viewport"]').prop('content', 'width=1200');
+	    }
+	});
+
+</script>
+
+</body>
+</html>

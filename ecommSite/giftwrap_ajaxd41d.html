@@ -1,0 +1,26 @@
+
+<div id="divGiftWrap">
+  <form method="post" name="frmGiftWrap" id="frmGiftWrap">
+    <div class="header">
+      <h3>Gift Wrapping Options</h3>
+      <div class="clear"></div>
+    </div>
+    <label for="giftwrap_id">Select Gift Wrapping:</label>
+    <select id="giftwrap_id" name="giftwrap_id" class="txtBoxStyle" onchange="updateGiftWrapOption()">
+      <option value="">-- Select Gift Wrapping --</option>
+      
+    </select>
+    <div class="clear"></div>
+    <div id="divGiftwrapItem"> 
+      <!--START: giftwrapitem--><!--END: giftwrapitem--> 
+    </div>
+    <div id="divGiftwrapMsg">
+      <label for="giftwrap_message">Giftcard Message:</label>
+      <textarea name="giftwrap_message" id="giftwrap_message" onkeyup="countChar(this)" rows="6" cols="45"></textarea>
+      <div class="chars-left"><span id="spnChars"><!--START: giftwrapcount-->400<!--END: giftwrapcount--></span>&nbsp;Characters left</div>
+      <div class="clear"></div>
+    </div>
+    <input type="button" name="cmdGWCancel" id="cmdGWCancel" value="Cancel" onclick="cmdGWCancel_Click()" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    <input type="button" name="cmdGWAdd" id="cmdGWAdd" value="Add Giftwrap" onclick="cmdGWAdd_Click()" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+  </form>
+</div>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<title>Email a Friend | Billy The Kid Leather Jacket</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout4a2e.css?vcart=7.6.0" type="text/css" media="all" />
+<link rel="StyleSheet" href="assets/templates/common-html5/css/responsive4a2e.css?vcart=7.6.0" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/black-eagle-html5-premium/css/default.css" type="text/css" media="screen" />
+<script type="text/javascript" src="assets/templates/common-html5/js/utilities4a2e.js?vcart=7.6.0"></script>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write("<script type=\"text/javascript\" src=\"assets/templates/common-html5/js/jquery.min4a2e.js?vcart=7.6.0\"></" + "script>");
+    }
+</script>
+<style type="text/css">
+
+@media only screen and (max-width: 480px) {
+
+html, body {
+    max-width: 90% !important;
+}
+section {
+    padding: 15px 15px 0;
+}
+
+}
+</style>
+<script type="text/javascript">
+function sendEmailFriend(objForm)
+{
+	var strMsg = "";
+	
+	if (objForm.visitorname.value.trim() == "")
+		strMsg += " - Please enter your Your Name.\n";
+		
+	if (objForm.visitormail.value.trim() == "")
+		strMsg += " - Please enter your Your Email.\n";
+	else
+		if (!validateEmail(objForm.visitormail.value.trim()))
+			strMsg += " - Your Email: enter a valid email address.\n";
+
+	if (objForm.friendname.value.trim() == "")
+		strMsg += " - Please enter your Friend's Name.\n";
+		
+	if (objForm.friendmail.value.trim() == "")
+		strMsg += " - Please enter your Friend's Email.\n";
+	else
+		if (!validateEmail(objForm.friendmail.value.trim()))
+			strMsg += " - Friend's Email: enter a valid email address.\n";
+	
+	if (objForm.message.value.trim() == "")
+		strMsg += " - Please enter your Note to friend:.\n";
+	if (eval(objForm.message.value.length) > 500)
+	    strMsg += " - Max length for Note to friend: is 500.\n";
+
+	//<!--START: captchascript--><!--END: captchascript-->
+			
+	if (strMsg != ""){
+		alert(strMsg);
+		return(false);
+	}
+	else
+	    objForm.submit();
+}	
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+jQuery(function () {
+    jQuery('body').addClass('modal-bg');
+});
+</script>
+</head>
+<body>
+<section id="recommendAFriend">
+  <h1 class="page_headers">Email a Friend</h1>
+  <form method="post" action="http://blackeagle-preview-com.3dcartstores.com/recommendafriend.asp?action=send" name="frmRecomend" id="frmRecomend" onsubmit="sendEmailFriend(this)">
+    <input type="hidden" name="catalogid" value="12" />
+    <input type="hidden" name="sitename" value="" />
+    <input type="hidden" name="siteurl" value="Billy-The-Kid-Leather-Jacket_p_12.html?itemid=12" />
+    <!--START: recomendBlock-->
+    <p>Please complete the fields below to send your friend a link to this product. Your friend will receive an email from you with a link to our site.</p>
+    <div class="clear"></div>
+    <div class="recommendBlock boxShadow">
+      <!--START: thumbnail-->
+      <div class="thumbnail"><img src="thumbnail0358.jpg?file=assets/images/vest_thumbnail.jpg&amp;maxx=100&amp;maxy=100" alt="Billy The Kid Leather Jacket" /><span>Billy The Kid Leather Jacket</span></div>
+      <!--END: thumbnail-->
+      <div class="recomField left">
+        <label for="visitorname">Your Name</label>
+        <input name="visitorname" value="" type="text" size="25" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="recomField left">
+        <label for="visitormail">Your Email</label>
+        <input name="visitormail" value="" type="text" size="25" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="recomField left">
+        <label for="friendname">Friend's Name</label>
+        <input name="friendname" type="text" size="25" tabindex="3" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="recomField left">
+        <label for="friendmail">Friend's Email</label>
+        <input name="friendmail" type="text" size="25" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="recomField">
+        <label for="message">Note to friend:</label>
+        <textarea name="message" rows="3" cols="32" tabindex="5" class="txtareaStyle"></textarea>
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha--><!--END: captcha-->
+      <!--START: recaptcha--><!--END: recaptcha-->
+    <!--START: recaptcharobot-->
+    <script type="text/javascript">
+        var onSubmit = function (token) {
+            if ('invisible' == 'invisible')
+                jQuery("#frmRecomend").submit();
+        }
+        var onloadCallback = function () {
+            grecaptcha.render('submitted', {
+                'sitekey': '6Lf9BBkUAAAAAJoQH1mGjLuPIra-ZcFwPoZfFtkJ',
+                'theme': 'light',
+                'size': 'invisible',
+                'type': 'image',
+                'callback': onSubmit
+            });
+        }
+    </script>
+    <script src="../www.google.com/recaptcha/api85f1.js?onload=onloadCallback&amp;render=explicit" async defer></script>
+    <div id="divRobocop"></div>
+    <div class="blogField">
+        <!--START: verificationlabel--><!--END: verificationlabel-->&nbsp;
+    </div>
+    <!--END: recaptcharobot-->
+      <div class="recommend-submit-button">
+        <input type="submit" id='submitted' name="submitted" value="Recommend!" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: recomendBlock--> 
+    <!--START: errorMsg--><!--END: errorMsg-->
+    <!--START: thankyouMsg--><!--END: thankyouMsg-->
+  </form>
+</section>
+</body>
+</html>
