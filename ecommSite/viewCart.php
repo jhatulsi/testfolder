@@ -101,7 +101,7 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span></a>
+        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink">Total price: <?php totalPrice(); ?></span></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -214,18 +214,61 @@
     </aside>
     <!--END: LEFT BAR-->
   <div id="mainContent"><section id="message">
-  <form method="post" action="http://blackeagle-preview-com.3dcartstores.com/home.asp">
+  <form method="post" action="viewCart.php">
     <h1>View Cart</h1>
 	
 	
-    <div class="notice">You don't have any products in your shopping cart.</div>
+    <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
 	
 	 
            <?php getIP(); ?>
 
 
+		
+		   
 <?php cart();?>
 
+<?php 
+						$ip_add = getIP();
+						
+						$total = 0;
+						
+						$sel_price = "select * from cart where ip_add='1'";
+						$run_price = mysql_query($sel_price, $conn);
+						while ($record= mysql_fetch_array($run_price)){
+							$pro_id = $record['p_id'];
+							$pro_price = "select * from products where product_id='$pro_id'";
+							$run_pro_price = mysql_query($pro_price , $conn);
+						while ($p_price = mysql_fetch_array($run_pro_price)){
+						$product_price = $p_price['product_price'];
+						$product_title = $p_price['product_title'];
+						$product_image = $p_price['product_image'];
+						$only_price = $p_price['product_price'];
+						
+						
+						echo "
+					<div id='single_product'>
+						<h3>$product_title</h3>
+						
+						<img src='$product_image' width='180' height='180' /> <br>
+						<p><b>Price: $product_price</b></p>
+						</div>
+						";
+						
+						
+						
+						//$values = array_sum($product_price);
+						
+						//$total += $values;
+			}
+					
+				}	//echo "$" . $total;
+							
+							?>
+							
+							
+							
+					
 
 
 

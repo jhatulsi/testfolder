@@ -136,6 +136,51 @@ function cart(){
 	}
 	
 	
+	
+	function details(){
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+						
+		if(isset($_GET['pro_id'])){
+				$ip_add = getIP();
+		$p_id = $_GET['pro_id'];
+		
+		$check_pro = "select * from products where product_id='$p_id'";
+	//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+		
+		$run_check = mysql_query($check_pro , $db);
+			
+			while($row_products = mysql_fetch_array($run_check)){
+							 $pro_id = $row_products['product_id'];
+							 $pro_title = $row_products['product_title'];
+							// $pro_cat = $row_products['cat_id'];
+							 //$pro_brand = $row_products['brand_id'];
+							 $pro_desc = $row_products['product_desc'];
+							 $pro_price = $row_products['product_price'];
+							 $pro_image = $row_products['product_image'];
+							
+							 
+						 	
+                	echo "
+					<div id='single_product'>
+						<h3>$pro_title</h3>
+						
+						<img src='$pro_image' width='180' height='180' /> <br>
+						<p><b>Price: $pro_price</b></p>
+						<p><b>Product description: $pro_desc</b></p>
+						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						</div>
+						";
+						
+						}
+			
+		
+		
+		
+			}
+	}
+	
+	
 	function items(){
 	if(isset($_GET['add_cart'])){
 		//$ip_add = getIP();
@@ -162,5 +207,36 @@ function cart(){
 
 }
 
+
+function totalPrice(){
+	$ip_add = getIP();
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+						$total = 0;
+						
+			$sel_price = "select * from cart where ip_add='1'";
+			$run_price = mysql_query($sel_price, $db);
+			while ($record= mysql_fetch_array($run_price)){
+				$pro_id = $record['p_id'];
+				$pro_price = "select * from products where product_id='$pro_id'";
+				$run_pro_price = mysql_query($pro_price , $db);
+			while ($p_price = mysql_fetch_array($run_pro_price)){
+				$product_price = array($p_price['product_price']);
+				$values = array_sum($product_price);
+				
+				$total += $values;
+				
+				}
+				
+				
+				}
+			
+			
+				echo "$" . $total;
+	
+	}
+
+	
+	
 
 ?>

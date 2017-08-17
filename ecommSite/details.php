@@ -1,3 +1,4 @@
+
 <?php 
 
 	include 'function/dbconn.php';
@@ -5,8 +6,6 @@
 
 
 ?>
-
-
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -19,7 +18,6 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Welcome to Black Eagle (Responsive)  - Preview</title>
-<link rel="canonical" href="index.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
 <script type="text/javascript" src="assets/templates/common-html5/js/modernizr.min4a2e.js?vcart=7.6.0"></script>
@@ -103,7 +101,7 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span></a>
+        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink">Total price: <?php totalPrice(); ?></span></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -113,7 +111,7 @@
 	<!--START: FRAME_CATEGORY-->
 	<ul id="desktopMenu">
 		
-		<li>
+				<li>
 			
 			<a href="index.php" class="cat">Home</a>
 			
@@ -127,7 +125,7 @@
 			
 
 		</li>
-		
+		 
 	</ul>
 	<!--END: FRAME_CATEGORY-->
 	
@@ -135,62 +133,113 @@
     </div>
   </nav>
   <div class="wrapper">
-    <!--START: LEFT BAR--><!--START: FRAME_CATEGORY--><!--END: FRAME_CATEGORY--><!--END: LEFT BAR-->
-  <div id="mainContent"><section id="home">
-<!--START: home_carousel-->
-<link rel="stylesheet" href="assets/templates/common-html5/css/flexslider4a2e.css?vcart=7.6.0" type="text/css" media="screen" />
-<script type="text/javascript" src="assets/templates/common-html5/js/jquery.flexslider-min4a2e.js?vcart=7.6.0"></script>
+    <!--START: LEFT BAR-->
+    <aside id="leftBar" class="leftBar">
+      <div class="column" id="column1"> 
+        <!--START: LEFT_BAR_BLOCKS-->
+         
+        
+        <div id="modNewReleases" class="module"> <span class="menu-headers">New Releases</span>
+          <div class="clear"></div>
+          
+          <div class="info">
+            <div class="name"><a href="Mirage-Black-Leather-Belt_p_13.html" class="link">Mirage Black Leather Belt</a></div>
+            <div class="clear"></div>
+            <!--START: product_review--> 
+            <!--START: product_review_average-->
+            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
+            <!--END: product_review_average--> 
+            <!--END: product_review-->
+            <div class="price2"> 
+              $12.99 
+               
+              </div>
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="div"></div>
+          <div class="info">
+            <div class="name"><a href="Billy-The-Kid-Leather-Jacket_p_12.html" class="link">Billy The Kid Leather Jacket</a></div>
+            <div class="clear"></div>
+            <!--START: product_review--> 
+            <!--START: product_review_average-->
+            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
+            <!--END: product_review_average--> 
+            <!--END: product_review-->
+            <div class="price2"> 
+              $12.99 
+               
+              </div>
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class="div"></div>
+          <div class="info">
+            <div class="name"><a href="Heavy-Duty-Leather-Boots_p_6.html" class="link">Heavy Duty Leather Boots</a></div>
+            <div class="clear"></div>
+            <!--START: product_review--> 
+            <!--START: product_review_average-->
+            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
+            <!--END: product_review_average--> 
+            <!--END: product_review-->
+            <div class="price2"> 
+              $12.99 
+               
+              </div>
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+           
+        </div>
+         
+        <!--START: FRAME_BYPRICE-->
+        <div id="modPrice" class="module"> <span class="menu-headers">Browse by Price</span>
+          <ul>
+            <!--START: byprice_format-->
+            <li><a href="products_byprice_1-1-1.html" class="cat">$0 - $24.99</a></li>
+            
+            <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
+            
+            <li><a href="products_byprice_3-1-1.html" class="cat">Over $50</a></li>
+            <!--END: byprice_format-->
+          </ul>
+        </div>
+        <!--END: FRAME_BYPRICE-->
+        <!--START: FRAME_MANUFACTURER--><!--END: FRAME_MANUFACTURER-->
+        <!--START: LEFT_BANNER--><!--END: LEFT_BANNER--> 
+        <!--END: LEFT_BAR_BLOCKS--> 
+      </div>
+    </aside>
+    <!--END: LEFT BAR-->
+  <div id="mainContent"><section id="message">
+  <form method="post" action="viewCart.php">
+    <h1>View Cart</h1>
+	
+	
+    <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
+	
+	 
+           <?php getIP(); ?>
 
-<div id="homeCarousel" class="flexslider">
-  <ul class="slides">
-    <!--START: carousel-->
-    <li><a href="admin/login.html"><img src="assets/images/banner.png" alt="" /></a></li>
-    
-    <li><a href="admin/login.html"><img src="assets/images/banner.png" alt="" /></a></li>
-    <!--END: carousel-->
-  </ul>
-</div>
 
-<script type="text/javascript" charset="utf-8">
-    jQuery(document).ready(function () {
-        jQuery('#homeCarousel').flexslider({
-            animation: "fade",
-            slideshowSpeed: 2000,
-            controlNav: false,
-            keyboard: false
-        });
-    });
-</script>
-<!--END: home_carousel-->
-<!--START: CATEGORY_HEADER--><!--END: CATEGORY_HEADER--> 
-<!--START: FEATURE_MENU-->
-<h2 class="header-specials">Featured Products</h2>
-<!--START: CATEGORY_ITEMS--><div class="productBlockContainer columns-3"><div class="product-container first-item"> 
-
-<?php getIP(); ?>
-
-
+		
+		   
 <?php cart();?>
 
-
-<div class="product-item alternative">
-   <li> <?php getCatPro(); ?> </li>
-   <li> <?php getPro(); ?> </li>
-   
- <?php  details(); ?>
-</div>
-</div><div class="product-container middle-item"> 
+<?php details(); ?>
+							
+					
 
 
 
-
-
-
-
-<div class="clear"></div>
-<!--START: CATEGORY_FOOTER--><!--END: CATEGORY_FOOTER-->
+    <!--START: RETURNMESSAGE-->
+    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
+    <!--END: RETURNMESSAGE-->
+  </form>
 </section></div>
-    <!--START: RIGHT BAR--><!--START: FRAME_CATEGORY--><!--END: FRAME_CATEGORY--><!--END: RIGHT BAR-->
+    <!--START: RIGHT BAR--><!--END: RIGHT BAR-->
   <div class="clear"></div>
   </div>
   <footer>
