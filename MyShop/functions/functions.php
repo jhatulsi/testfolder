@@ -94,19 +94,19 @@ function cart(){
 	
 	$run_check = mysql_query($check_pro , $db);
 	
-	if(mysql_num_rows($run_check)>0){
-			echo "";
-		}else{
-			$insert_in_cart = "insert into cart (p_id,ip_add) values ('$p_id','1')";
-			
-			$run_inserted_cart = mysql_query($insert_in_cart, $db);
-			
-			echo '<script>window_open("index.php","_self")</script>';
+		if(mysql_num_rows($run_check)>0){
+				echo "";
+			}else{
+				$insert_in_cart = "insert into cart (p_id,ip_add) values ('$p_id','1')";
+				
+				$run_inserted_cart = mysql_query($insert_in_cart, $db);
+				
+				echo '<script>window_open("index.php","_self")</script>';
+				}
+		
+		
+		
 			}
-	
-	
-	
-		}
 	}
 
 

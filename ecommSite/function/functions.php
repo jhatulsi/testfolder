@@ -163,11 +163,11 @@ function cart(){
 						 	
                 	echo "
 					<div id='single_product'>
-						<h3>$pro_title</h3>
+						<h3 align='center'>$pro_title</h3>
 						
 						<img src='$pro_image' width='180' height='180' /> <br>
-						<p><b>Price: $pro_price</b></p>
-						<p><b>Product description: $pro_desc</b></p>
+						<p align='center'><b>Price: $ $pro_price</b></p>
+						<p align='center'><b>Product description: $pro_desc</b></p>
 						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
 						</div>
 						";

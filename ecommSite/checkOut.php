@@ -1,3 +1,18 @@
+
+<?php 
+
+	include 'function/dbconn.php';
+	include 'function/functions.php';
+
+
+?>
+
+
+
+
+
+
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -48,7 +63,7 @@
         <ul>
           <li class="m-search show-mobile">
               <div>
-                <form method="get" name="mSearchForm" action="http://blackeagle-preview-com.3dcartstores.com/search.asp">
+                <form method="get" name="mSearchForm" action="">
                   <input type="text" name="keyword" value="" placeholder="Search" />
                   <button name="search"><i class="icon-search"></i></button>
                   <div class="clear"></div>
@@ -69,7 +84,7 @@
         </ul>
         <div id="FRAME_SEARCH" ><!--START: FRAME_SEARCH-->
           <div id="searchBox" class="hidden-mobile">
-            <form method="get" name="searchForm" action="http://blackeagle-preview-com.3dcartstores.com/search.asp">
+            <form method="get" name="searchForm" action="">
               <input type="text" id="searchlight" name="keyword" value="" placeholder="Search" />
               <input type="submit" name="search" value="" />
             </form>
@@ -92,7 +107,11 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="messageeb96.html" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems">1</span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span></a>
+	  
+	
+	  
+	  
+        <a id="cart" href="#" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items(); ?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -110,97 +129,12 @@
 			
 			</ul>
 		</li>
-		
 		<li>
 			
-			<a href="Jackets_c_7.html" class="cat">Jackets</a>
+			<a href="" class="cat"><?php get_categories();?></a>
 			
-			<ul class="subMenu">
-			
-			</ul>
+
 		</li>
-		
-		<li>
-			
-			<a href="Pants_c_8.html" class="cat">Pants</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Gloves_c_11.html" class="cat">Gloves</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Cuts_c_12.html" class="cat">Cuts</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Boots_c_13.html" class="cat">Boots</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Handbags_c_14.html" class="cat">Handbags</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Belts_c_15.html" class="cat">Belts</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Wallets_c_16.html" class="cat">Wallets</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Saddle-Bags_c_17.html" class="cat">Saddle Bags</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		
-		<li>
-			
-			<a href="Accessories_c_18.html" class="cat">Accessories</a>
-			
-			<ul class="subMenu">
-			
-			</ul>
-		</li>
-		 
 	</ul>
 	<!--END: FRAME_CATEGORY-->
 	
@@ -390,12 +324,46 @@
         <div class="item-remove">&nbsp;</div>
         <div class="clear"></div>
       </div>
+	  
+	  
+	   <?php 
+						$ip_add = getIP();
+						
+						$total = 0;
+						
+						$sel_price = "select * from cart where ip_add='1'";
+						$run_price = mysql_query($sel_price, $conn);
+						while ($record= mysql_fetch_array($run_price)){
+							$pro_id = $record['p_id'];
+							$pro_qty = $record['qty'];
+							$pro_price = "select * from products where product_id='$pro_id'";
+							$run_pro_price = mysql_query($pro_price , $conn);
+						while ($p_price = mysql_fetch_array($run_pro_price)){
+						$product_price = $p_price['product_price'];
+						$product_title = $p_price['product_title'];
+						$product_image = $p_price['product_image'];
+						$only_price = $p_price['product_price'];
+						
+						//$values = array_sum($product_price);
+						
+						//$total += $values;
+			
+					
+						//echo "$" . $total;
+						
+							?>
+	  
+	  
+	  
+	  
+	  
+	  
       <!--START: SHOPPING_CART_ITEM-->
       <div class="row">
         <div class="item-info">
-          <div class="product-image"><!--START: itemthumbnail--><a href="80s-Classic-Leather-Jacket_p_5.html"><img src="thumbnail1e42.jpg?file=assets/images/ladychic_thumbnail.jpg" height="55" width="55" /></a><!--END: itemthumbnail--><!--START: thumbnailnolink--><!--END: thumbnailnolink--></div>
+          <div class="product-image"><!--START: itemthumbnail--><a href="80s-Classic-Leather-Jacket_p_5.html"><img src="<?php echo $product_image;?>" height="55" width="55" /></a><!--END: itemthumbnail--><!--START: thumbnailnolink--><!--END: thumbnailnolink--></div>
           <div class="product-name-options"> 
-            <!--START: itemnamelink--><a href="80s-Classic-Leather-Jacket_p_5.html">80's Classic Leather Jacket</a><!--END: itemnamelink--> 
+            <!--START: itemnamelink--><a href="80s-Classic-Leather-Jacket_p_5.html"><?php echo $product_title; ?></a><!--END: itemnamelink--> 
             <!--START: itemnamenolink--><!--END: itemnamenolink--> 
             <!--START: itemoptions--><!--END: itemoptions--> 
             <!--START: recurring_frequency--><!--END: recurring_frequency--> 
@@ -407,24 +375,32 @@
           <input type="hidden" name="colid0" value="279" size="3" maxlength="5" />
           <a href="#" onclick="document.forms['recalculate'].submit();return false;" class="update-qty">Update</a>
         </div>
-        <div class="item-price">$34.99</div>
-        <div class="item-total">$34.99</div>
-        <div class="item-remove"><a href="#" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
+        <div class="item-price"><?php echo "$" . $product_price; ?></div>
+        <div class="item-total"><?php echo "$" . $product_price; ?></div>
+        <div class="item-remove"><a href="checkOut.php?pro_" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
         <div class="clear"></div>
       </div>
+	  
+	  	<?php }} ?>
+	  
+	  
       <!--END: SHOPPING_CART_ITEM-->
       <div class="shoppingCartTotal">
         <div class="clear">&nbsp;</div>
-        <div class="item-total">$34.99</div>
+        <div class="item-total"><?php totalPrice(); ?></div>
         <div class="item-price">Subtotal</div>
         <div class="clear"></div>
         <!--START: DISCOUNTS--><!--END: DISCOUNTS-->
         <div class="clear">&nbsp;</div>
-        <div class="item-total"><strong>$34.99</strong></div>
+        <div class="item-total"><strong><?php totalPrice(); ?></strong></div>
         <div class="item-price"><strong>Total</strong></div>
         <div class="clear"></div>
       </div>
     </div>
+	
+					
+	
+	
     <div class="clear"></div>
     <!--START: apply_coupon-->
     <div class="applyCoupon pad10 boxShadow">

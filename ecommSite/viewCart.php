@@ -213,10 +213,11 @@
       </div>
     </aside>
     <!--END: LEFT BAR-->
-  <div id="mainContent"><section id="message">
+  <div id=""><section id="">
   <form method="post" action="viewCart.php">
     <h1>View Cart</h1>
 	
+								
 	
     <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
 	
@@ -227,8 +228,18 @@
 		
 		   
 <?php cart();?>
-
-<?php 
+	<form action="viewCart.php" method="post" enctype="multipart/form-data">
+					<br>
+					<table width="740" height="40" bgcolor="" >
+					
+					<tr align="center">
+						<td><b>Remove</b></td>
+						<td><b>Product(s)</b></td>
+						<td><b>Quantity</b></td>
+						<td><b>Total Price</b></td>
+					
+					</tr>
+					<?php 
 						$ip_add = getIP();
 						
 						$total = 0;
@@ -237,35 +248,102 @@
 						$run_price = mysql_query($sel_price, $conn);
 						while ($record= mysql_fetch_array($run_price)){
 							$pro_id = $record['p_id'];
+							$pro_qty = $record['qty'];
 							$pro_price = "select * from products where product_id='$pro_id'";
 							$run_pro_price = mysql_query($pro_price , $conn);
 						while ($p_price = mysql_fetch_array($run_pro_price)){
-						$product_price = $p_price['product_price'];
+						$product_price = array($p_price['product_price']);
 						$product_title = $p_price['product_title'];
 						$product_image = $p_price['product_image'];
 						$only_price = $p_price['product_price'];
 						
+						$values = array_sum($product_price);
 						
-						echo "
-					<div id='single_product'>
-						<h3>$product_title</h3>
-						
-						<img src='$product_image' width='180' height='180' /> <br>
-						<p><b>Price: $product_price</b></p>
-						</div>
-						";
-						
-						
-						
-						//$values = array_sum($product_price);
-						
-						//$total += $values;
-			}
+						$total += $values;
+			
 					
-				}	//echo "$" . $total;
+						//echo "$" . $total;
 							
 							?>
+							<tr>
+								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
+								<td><?php echo $product_title; ?><br><img src="<?php echo $product_image;?>" width="100" height="100"></td>
+								<td><input type="text" name="qty" value="<?php echo $pro_qty; ?>" size="3"></td>
+								<?php 
+									$ip_add = getIP(); 
+								
+									if(isset($_POST['update'])){
+										$qty = $_POST['qty'];
+										
+										//echo '<pre>';print_r($_POST);exit;
+										
+										$insert_qty = "update cart set qty='$qty' where p_id='$pro_id'";
+										
+											//echo '<pre>';print_r($insert_qty);exit;
+										
+										$run_qty = mysql_query($insert_qty, $conn);
+										
+										$total = $total*$qty;
+										
+									}
+									
+								?>
+								
+								
+								
+								
+								<td><?php echo "$" . '&nbsp;' . $only_price; ?></td>
 							
+							</tr>
+				
+						<?php }} ?>
+						
+						
+						
+                            
+						<tr>
+						
+							<td><input type="submit" name="update" value="Update Cart"></td>
+							<td><input type="submit" name="continue" value="Continue Shopping"></td>
+							<td><button><a href="checkout.php" >Check Out</a></button></td>
+							<td  colspan="4" align="right"><b>Sub Total</b></td>
+						<td align="right"><b><?php echo "$" . '&nbsp;' . $total;?></b></td>
+							
+						</tr>
+                            </table>
+							
+                            </form>
+                            
+							<?php 
+								function updateCart(){
+								
+									if(isset($_POST['update'])){
+										//echo '<pre>';print_r($_POST);exit;
+										foreach($_POST['remove'] as $remove_id){
+										
+											$delete_products =	 mysql_query(" delete from cart where p_id ='$remove_id'");
+												//echo '<pre>';print_r($delete_products);exit;
+												
+										//	$run_delete = mysql_query($delete_products , $conn);
+											
+												//echo '<pre>';print_r($run_delete);exit;
+											if($delete_products){
+												echo "<script>window.open('viewCart.php','_self')</script>";
+											}else{
+												echo 'not possible';
+											}
+										}
+										
+										}
+										
+										if(isset($_POST['continue'])){
+												echo "<script>window.open('index.php','_self')</script>";
+												
+										}
+							}	
+							echo	@$update_cart= updateCart() ;
+							?>
+                            
 							
 							
 					

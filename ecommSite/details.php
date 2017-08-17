@@ -213,8 +213,8 @@
       </div>
     </aside>
     <!--END: LEFT BAR-->
-  <div id="mainContent"><section id="message">
-  <form method="post" action="viewCart.php">
+  <div id=""><section id="">
+  <form method="post" action="viewCart.php" enctype="multipart/form-data">
     <h1>View Cart</h1>
 	
 	
