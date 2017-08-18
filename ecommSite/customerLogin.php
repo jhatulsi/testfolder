@@ -1,11 +1,31 @@
-
 <?php 
-
+	session_start();
 	include 'function/dbconn.php';
 	include 'function/functions.php';
 
+	/* $sql = 'SELECT * FROM shipping';
+
+   mysql_select_db('ecommsite');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+  $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+   
+   //echo "Fetched data successfully\n";
+   mysql_close($conn);
+	
+	*/
 
 ?>
+
+
+
+
+
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -57,7 +77,7 @@
         <ul>
           <li class="m-search show-mobile">
               <div>
-                <form method="get" name="mSearchForm" action="http://blackeagle-preview-com.3dcartstores.com/search.asp">
+                <form method="get" name="mSearchForm" action="">
                   <input type="text" name="keyword" value="" placeholder="Search" />
                   <button name="search"><i class="icon-search"></i></button>
                   <div class="clear"></div>
@@ -78,7 +98,7 @@
         </ul>
         <div id="FRAME_SEARCH" ><!--START: FRAME_SEARCH-->
           <div id="searchBox" class="hidden-mobile">
-            <form method="get" name="searchForm" action="http://blackeagle-preview-com.3dcartstores.com/search.asp">
+            <form method="get" name="searchForm" action="">
               <input type="text" id="searchlight" name="keyword" value="" placeholder="Search" />
               <input type="submit" name="search" value="" />
             </form>
@@ -101,7 +121,11 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink">Total price: <?php totalPrice(); ?></span></a>
+	  
+	
+	  
+	  
+        <a id="cart" href="#" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items(); ?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -111,251 +135,145 @@
 	<!--START: FRAME_CATEGORY-->
 	<ul id="desktopMenu">
 		
-				<li>
+		<li>
 			
-			<a href="index.php" class="cat">Home</a>
+			<a href="Home_c_1.html" class="cat">Home</a>
 			
+			<ul class="subMenu">
 			
+			</ul>
 		</li>
-		
-		
 		<li>
 			
 			<a href="" class="cat"><?php get_categories();?></a>
 			
 
 		</li>
-		 
 	</ul>
 	<!--END: FRAME_CATEGORY-->
 	
     <div class="clear"></div>
     </div>
   </nav>
-  <div class="wrapper">
-    <!--START: LEFT BAR-->
-    <aside id="leftBar" class="leftBar">
-      <div class="column" id="column1"> 
-        <!--START: LEFT_BAR_BLOCKS-->
-         
-        
-        <div id="modNewReleases" class="module"> <span class="menu-headers">New Releases</span>
-          <div class="clear"></div>
-          
-          <div class="info">
-            <div class="name"><a href="Mirage-Black-Leather-Belt_p_13.html" class="link">Mirage Black Leather Belt</a></div>
-            <div class="clear"></div>
-            <!--START: product_review--> 
-            <!--START: product_review_average-->
-            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
-            <!--END: product_review_average--> 
-            <!--END: product_review-->
-            <div class="price2"> 
-              $12.99 
-               
-              </div>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-          
-          <div class="div"></div>
-          <div class="info">
-            <div class="name"><a href="Billy-The-Kid-Leather-Jacket_p_12.html" class="link">Billy The Kid Leather Jacket</a></div>
-            <div class="clear"></div>
-            <!--START: product_review--> 
-            <!--START: product_review_average-->
-            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
-            <!--END: product_review_average--> 
-            <!--END: product_review-->
-            <div class="price2"> 
-              $12.99 
-               
-              </div>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-          
-          <div class="div"></div>
-          <div class="info">
-            <div class="name"><a href="Heavy-Duty-Leather-Boots_p_6.html" class="link">Heavy Duty Leather Boots</a></div>
-            <div class="clear"></div>
-            <!--START: product_review--> 
-            <!--START: product_review_average-->
-            <div class="stars"><img src="assets/templates/common-html5/images/star0.png" alt="Average Rating" /></div>
-            <!--END: product_review_average--> 
-            <!--END: product_review-->
-            <div class="price2"> 
-              $12.99 
-               
-              </div>
-            <div class="clear"></div>
-          </div>
-          <div class="clear"></div>
-           
-        </div>
-         
-        <!--START: FRAME_BYPRICE-->
-        <div id="modPrice" class="module"> <span class="menu-headers">Browse by Price</span>
-          <ul>
-            <!--START: byprice_format-->
-            <li><a href="products_byprice_1-1-1.html" class="cat">$0 - $24.99</a></li>
-            
-            <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
-            
-            <li><a href="products_byprice_3-1-1.html" class="cat">Over $50</a></li>
-            <!--END: byprice_format-->
-          </ul>
-        </div>
-        <!--END: FRAME_BYPRICE-->
-        <!--START: FRAME_MANUFACTURER--><!--END: FRAME_MANUFACTURER-->
-        <!--START: LEFT_BANNER--><!--END: LEFT_BANNER--> 
-        <!--END: LEFT_BAR_BLOCKS--> 
+   <div class="wrapper">
+    <!--START: LEFT BAR--><!--END: LEFT BAR-->
+  <div id="mainContent"><section id="loginAccount"> 
+  <!--START: BODY_HEADER-->
+  <div class="breadcrumbs"><a href="http://blackeagle-preview-com.3dcartstores.com/">Home</a> > <a href="http://blackeagle-preview-com.3dcartstores.com/myaccount.asp">My Account</a></div>
+  <!--END: BODY_HEADER-->
+  <h1 class="page_headers">My Account</h1>
+  <!--START: error_message--><!--END: error_message-->
+    <div class="alpha-col">
+      <div class="header">
+        <h3>Returning Customers</h3>
       </div>
-    </aside>
-    <!--END: LEFT BAR-->
-  <div id=""><section id="">
-  <form method="post" action="">
-    <h1>View Cart</h1>
-	
-								
-	
-    <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
-	
-	 
-           <?php getIP(); ?>
-
-
+      <div class="myaccountLogin pad10">
+        <form name="" action="" method="post" id="">
+          <p>Please log in to your account.</p>
+          <div class="loginField">
+            <input type="email" size="30" name="admin_email" id="admin_email" value="" placeholder="Email" tabindex="1" class="txtBoxStyle" />
+            <div class="clear"></div>
+          </div>
+          <div class="loginField">
+            <input type="password" size="12" autocomplete="off" name="admin_pass" id="admin_pass" placeholder="Password" tabindex="2" class="txtBoxStyle" />
+            <div class="clear"></div>
+          </div>
+          <div class="loginField">
+            <a href="javascript:resetLoginPass();" class="resetpass-link"><i class="icon-cw"></i>Reset my password</a>
+          </div>
+          <!--START: captcha--><!--END: captcha-->
+          <!--START: recaptcha--><!--END: recaptcha-->
+            <!--START: recaptcharobot--><!--END: recaptcharobot-->
+          <div class="submit-button">
+		<input type="submit" name="login" class="btn" value="Log in to my account"><i class="icon-login"></i>
+          </div>
+          
+        </form>
 		
-		   
-<?php cart();?>
-	<form action="" method="post" enctype="multipart/form-data">
-					<br>
-					<table width="740" height="40" bgcolor="" >
-					
-					<tr align="center">
-						<td><b>Remove</b></td>
-						<td><b>Product(s)</b></td>
-						<td><b>Quantity</b></td>
-						<td><b>Total Price</b></td>
-					
-					</tr>
-					<?php 
-						$ip_add = getIP();
-						
-						$total = 0;
-						
-						$sel_price = "select * from cart where ip_add='1'";
-						$run_price = mysql_query($sel_price, $conn);
-						while ($record= mysql_fetch_array($run_price)){
-							$pro_id = $record['p_id'];
-							$pro_qty = $record['qty'];
-							$pro_price = "select * from products where product_id='$pro_id'";
-							$run_pro_price = mysql_query($pro_price , $conn);
-						while ($p_price = mysql_fetch_array($run_pro_price)){
-						$product_price = array($p_price['product_price']);
-						$product_title = $p_price['product_title'];
-						$product_image = $p_price['product_image'];
-						$only_price = $p_price['product_price'];
-						
-						$values = array_sum($product_price);
-						
-						$total += $values;
+		
+		 <?php 
+		if(isset($_POST['login'])){
 			
-					
-						//echo "$" . $total;
-							
-							?>
-							<tr>
-								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
-								<td><?php echo $product_title; ?><br><img src="<?php echo $product_image;?>" width="100" height="100"></td>
-								<td><input type="text" name="qty" value="<?php echo $pro_qty; ?>" size="3"></td>
-								<?php 
-									$ip_add = getIP(); 
-								
-									if(isset($_POST['update'])){
-										$qty = $_POST['qty'];
-										
-										//echo '<pre>';print_r($_POST);exit;
-										
-										$insert_qty = "update cart set qty='$qty' where p_id='$pro_id'";
-										
-											//echo '<pre>';print_r($insert_qty);exit;
-										
-										$run_qty = mysql_query($insert_qty, $conn);
-										
-										$total = $total*$qty;
-										
-									}
-									
-								?>
-								
-								
-								
-								
-								<td><?php echo "$" . '&nbsp;' . $only_price; ?></td>
-							
-							</tr>
+			$user_email = $_POST['admin_email'];
+			$user_pass = $_POST['admin_pass'];
+			
+			$sel_admin = "select * from admins where admin_email='$user_email' AND admin_pass='$user_pass'";
+			
+			
+			//echo '<pre>';print_r($sel_admin);exit;
+			
+			
+			$run_admin = mysql_query($sel_admin , $conn);
+			
+			$check_admin = mysql_num_rows($run_admin);
+			
+		//	echo '<pre>';print_r($check_admin);exit;
+			
+			if($check_admin>0){
+				$_SESSION['admin_email'] = $user_email;
 				
-						<?php }} ?>
-						
-						
-						
-                            
-						<tr>
-						
-							<td><input type="submit" name="update" value="Update Cart"></td>
-							<td><input type="submit" name="continue" value="Continue Shopping"></td>
-							<td><a href="checkOut.php"><h3 border="1px">Check Out</h3></a></td>
-					<!--		<td><button onclick="location.href='checkOut.php';"><a href="checkOut.php" >Check Out</a></button></td> --->
-							<td  colspan="4" align="right"><b>Sub Total</b></td>
-						<td align="right"><b><?php echo "$" . '&nbsp;' . $total;?></b></td>
-							
-						</tr>
-                            </table>
-							
-                            </form>
-                            
-							<?php 
-								function updateCart(){
-								
-									if(isset($_POST['update'])){
-										//echo '<pre>';print_r($_POST);exit;
-										foreach($_POST['remove'] as $remove_id){
-										
-											$delete_products =	 mysql_query(" delete from cart where p_id ='$remove_id'");
-												//echo '<pre>';print_r($delete_products);exit;
-												
-										//	$run_delete = mysql_query($delete_products , $conn);
-											
-												//echo '<pre>';print_r($run_delete);exit;
-											if($delete_products){
-												echo "<script>window.open('viewCart.php','_self')</script>";
-											}else{
-												echo 'not possible';
-											}
-										}
-										
-										}
-										
-										if(isset($_POST['continue'])){
-												echo "<script>window.open('index.php','_self')</script>";
-												
-										}
-							}	
-							echo	@$update_cart= updateCart() ;
-							?>
-                            
-							
-							
-					
+				echo "<script>window.open('paypalPayment.php?logged_in=You Successfully Logged in.', '_self')</script>";
+			}else{
+				echo "<script>alert('Admin Email or Password is incorrect, try again.')</script>";
+				
+			}
+			
+		}
+			
+			
+			
+	
+ 
+ ?>
+ 
+		
+		
+		
+		
+		
+		
+        <form name="forgotPass" action="login.asp?action=forgotpass&ordertracking=0" method="post">
+            <input type="hidden" name="email" id="resetEmail" value="" />
+        </form>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="beta-col">
+      <div class="header">
+        <h3>New Customers</h3>
+      </div>
+      <div class="createNewAccount pad10">
+        <p>If you don't have an account, please proceed by clicking the following button to continue first-time registration.
 
+</p>
+        <div class="clear"></div>
+        <div class="create-account-button">
+          <button type="button" onclick="window.location='register.asp?cg=0';" class="btn"><i class="icon-pencil"></i> Create Account</button>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+    </div>
+  <div class="clear"></div>
+</section>
 
+<script type="text/javascript">
+    function resetLoginPass() {
 
-    <!--START: RETURNMESSAGE-->
-    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
-    <!--END: RETURNMESSAGE-->
-  </form>
-</section></div>
+        var loginEmail = document.getElementById('loginEmail').value;
+        var resetPassBar = new MessageBar();
+        resetPassBar.initialize();
+
+        if (loginEmail == '' || loginEmail == null) {
+            document.getElementById('loginEmail').focus();
+            resetPassBar.alert('To Reset your password, Please enter your email address and then click "Reset my password".');
+        }
+        else {
+            document.getElementById('resetEmail').value = loginEmail;
+            document.forgotPass.submit();
+        }
+    }
+</script></div>
     <!--START: RIGHT BAR--><!--END: RIGHT BAR-->
   <div class="clear"></div>
   </div>
@@ -369,15 +287,15 @@
       <div id="modLinks">
           <ul class="frame-links">
             <!--START: LINKS-->
-            <li><a href="blog.html" target="_self" class="menu-bottom">Blog</a></li>
+            <li><a href="http://blackeagle-preview-com.3dcartstores.com/blog.asp" target="_self" class="menu-bottom">Blog</a></li>
             
-            <li><a href="Terms-and-Conditions_ep_2-1.html" target="_self" class="menu-bottom">Terms and Conditions</a></li>
+            <li><a href="http://blackeagle-preview-com.3dcartstores.com/Terms-and-Conditions_ep_2-1.html" target="_self" class="menu-bottom">Terms and Conditions</a></li>
             
-            <li><a href="affiliateInfo.html" target="_self" class="menu-bottom">Become an Affiliate</a></li>
+            <li><a href="http://blackeagle-preview-com.3dcartstores.com/affiliateInfo.asp" target="_self" class="menu-bottom">Become an Affiliate</a></li>
             
-            <li><a href="product_index.html" target="_self" class="menu-bottom">Product Index</a></li>
+            <li><a href="http://blackeagle-preview-com.3dcartstores.com/product_index.asp" target="_self" class="menu-bottom">Product Index</a></li>
             
-            <li><a href="category_index.html" target="_self" class="menu-bottom">Category Index</a></li>
+            <li><a href="http://blackeagle-preview-com.3dcartstores.com/category_index.asp" target="_self" class="menu-bottom">Category Index</a></li>
             <!--END: LINKS-->
           </ul>
       </div>
@@ -386,7 +304,7 @@
       <div class="ftr-col col3">
       <!--START: FRAME_MAILLIST-->
       <div id="mailistBox">
-        <form method="post" name="" action="" onsubmit="return mailing_list();">
+        <form method="post" name="mailing" action="https://blackeagle-preview-com.3dcartstores.com/mailing_list.asp?action=add" onsubmit="return mailing_list();">
           <label>Mailing List</label>
           <div class="mailist-box">
             <input type="text" name="email" value="" placeholder="Email Address" />            
@@ -426,19 +344,19 @@
   <div class="bottomBar">
     <div class="wrapper">
         <div id="globalFooter" class="footer"></div>
-        <div id="copyright" class="footer">Copyright  <script type="text/javascript" language="javascript">var date = new Date(); document.write(date.getFullYear());</script> Black Eagle (Responsive). All Rights Reserved. <a href="http://www.3dcartstores.com/" target="_blank">Web Store Software</a> by 3DCart.</div>
+        <div id="copyright" class="footer">Copyright  <script type="text/javascript" language="javascript">var date = new Date(); document.write(date.getFullYear());</script> Black Eagle (Responsive). All Rights Reserved. <a href="http://www.3dcartstores.com" target="_blank">Web Store Software</a> by 3DCart.</div>
     </div>
   </div>
 </div>
 <!--START: quicksearch--> 
-<script type="text/javascript" src="assets/templates/common-html5/quicksearch/jquery.quicksearch4a2e.js?vcart=7.6.0"></script> 
+<script type="text/javascript" src="assets/templates/common-html5/quicksearch/jquery.quicksearch.js?vcart=7.6.0"></script> 
 <script type="text/javascript">
 jQuery(function() {
-	jQuery('#searchlight').searchlight('search_quick.html');
+	jQuery('#searchlight').searchlight('/search_quick.asp');
 });
 </script> 
 <!--END: quicksearch--> 
-<script type="text/javascript" src="assets/templates/black-eagle-html5-premium/js/functions4a2e.js?vcart=7.6.0"></script>
+<script type="text/javascript" src="assets/templates/black-eagle-html5-premium/js/functions.js?vcart=7.6.0"></script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
     jQuery('#desktopMenu').slicknav({
@@ -454,7 +372,7 @@ jQuery(document).ready(function () {
   <!--START: 3dcart stats--> 
   <script type="text/javascript">
 //<![CDATA[
-var file='stats/spacer.gif';
+var file='/stats/count.asp';
 
 var stats_d=new Date();
 var stats_s=stats_d.getSeconds();
@@ -478,10 +396,10 @@ document.write('<img src="' + file + '?'+info+ '" width="1" height="1" border="0
 //]]>
 </script>
   <noscript>
-  <img src="stats/spacer.gif" width="90" height="30" alt="" />
+  <img src="/stats/count.asp" width="90" height="30" alt="" />
   </noscript>
   <!--END: 3dcart stats--> 
 </div>
 <div id="qv_buttontitle" style="display:none;">Quick View</div>
-<script>(new Image()).src = 'http://blackeagle-preview-com.3dcartstores.com/3dvisit.asp'</script></body>
+<script>(new Image()).src = 'https://blackeagle-preview-com.3dcartstores.com/3dvisit.asp'</script></body>
 </html>

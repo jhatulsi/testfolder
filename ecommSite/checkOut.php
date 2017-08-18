@@ -305,7 +305,7 @@
   <!--START: CATEGORY_HEADER--><!--END: CATEGORY_HEADER-->
   <div class="chk-buttons">
     <a href="80s-Classic-Leather-Jacket_p_5.html?itemid=5"><i class="icon-left-open"></i> Continue Shopping</a>
-    <button type="button" onclick="window.location='checkout0c17.html?step=1'" id="vc_ChkButton1" class="btn"><i class="icon-basket"></i> Proceed to Checkout</button>
+    <button type="button" onclick="window.location='shipping.php'" id="vc_ChkButton1" class="btn"><i class="icon-basket"></i> Proceed to Checkout</button>
     <div class="clear"></div>
   </div>
   <form action="http://blackeagle-preview-com.3dcartstores.com/shipquote.asp" method="post" name="shipquote" onSubmit="return submitForm();">
@@ -324,6 +324,7 @@
         <div class="item-remove">&nbsp;</div>
         <div class="clear"></div>
       </div>
+	 
 	  
 	  
 	   <?php 
@@ -356,7 +357,7 @@
 	  
 	  
 	  
-	  
+	 
 	  
       <!--START: SHOPPING_CART_ITEM-->
       <div class="row">
@@ -377,11 +378,14 @@
         </div>
         <div class="item-price"><?php echo "$" . $product_price; ?></div>
         <div class="item-total"><?php echo "$" . $product_price; ?></div>
-        <div class="item-remove"><a href="checkOut.php?pro_" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
+        <div class="item-remove"><a href="checkOut.php?proId='$pro_id'" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
         <div class="clear"></div>
       </div>
 	  
 	  	<?php }} ?>
+	  
+	  
+	  
 	  
 	  
       <!--END: SHOPPING_CART_ITEM-->
@@ -398,8 +402,34 @@
       </div>
     </div>
 	
-					
 	
+	
+	
+			  <?php 
+			if(isset($_GET['proId'])){
+				$ip_add = getIP();
+				$p_id = $_GET['proId'];
+				
+				echo $p_id;exit;
+				
+				//foreach($_GET['proId'] as $p_id){
+										
+					$delete_products =	 mysql_query(" delete from cart where p_id ='$p_id'");
+						//echo '<pre>';print_r($delete_products);exit;
+						
+				//	$run_delete = mysql_query($delete_products , $conn);
+					
+						//echo '<pre>';print_r($run_delete);exit;
+					if($delete_products){
+						echo "<script>window.open('checkOut.php','_self')</script>";
+					}else{
+						echo 'not possible';
+					}
+				//}
+	  }
+	  
+	  
+	  ?>
 	
     <div class="clear"></div>
     <!--START: apply_coupon-->
