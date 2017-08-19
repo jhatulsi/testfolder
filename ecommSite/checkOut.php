@@ -378,7 +378,7 @@
         </div>
         <div class="item-price"><?php echo "$" . $product_price; ?></div>
         <div class="item-total"><?php echo "$" . $product_price; ?></div>
-        <div class="item-remove"><a href="checkOut.php?proId='$pro_id'" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
+        <div class="item-remove"><a href="checkOut.php?proId=<?php echo $pro_id;?>" onclick="document.recalculate.qty0.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
         <div class="clear"></div>
       </div>
 	  
@@ -410,7 +410,7 @@
 				$ip_add = getIP();
 				$p_id = $_GET['proId'];
 				
-				echo $p_id;exit;
+				//echo $p_id;exit;
 				
 				//foreach($_GET['proId'] as $p_id){
 										

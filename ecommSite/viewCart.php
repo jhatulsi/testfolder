@@ -268,14 +268,16 @@
 							<tr>
 								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
 								<td><?php echo $product_title; ?><br><img src="<?php echo $product_image;?>" width="100" height="100"></td>
-								<td><input type="text" name="qty" value="<?php echo $pro_qty; ?>" size="3"></td>
+								<td><input type="text" name="qty_<?php echo $pro_id; ?>" value="<?php echo $pro_qty; ?>" size="3">
+								<input type="text" name="prod_id_<?php echo $pro_id; ?>" value="<?php echo $pro_id; ?>">
+								</td>
 								<?php 
 									$ip_add = getIP(); 
 								
 									if(isset($_POST['update'])){
 										$qty = $_POST['qty'];
 										
-										//echo '<pre>';print_r($_POST);exit;
+										echo '<pre>';print_r($_POST);//exit;
 										
 										$insert_qty = "update cart set qty='$qty' where p_id='$pro_id'";
 										
