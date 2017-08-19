@@ -101,7 +101,7 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink">Total price: <?php totalPrice(); ?></span></a>
+        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink"><!--Total price: <?php //totalPrice(); ?></span> ---></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -193,12 +193,39 @@
           <div class="clear"></div>
            
         </div>
+		
+		<?php 
+			//Browse by price from product table
+			$sql = 'SELECT * FROM products WHERE product_price BETWEEN 5 and 30';
+
+
+		   $retval = mysql_query( $sql, $conn );
+		   
+		   if(! $retval ) {
+			  die('Could not get data: ' . mysql_error());
+		   }
+		   
+		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+		 
+		 $price= $row['product_price'];
+			 // echo '<pre>';print_r($price);exit;
+   
+			
+		
+		?>
+		
+		
+		
+		
+		
+		
+		
          
         <!--START: FRAME_BYPRICE-->
-        <div id="modPrice" class="module"> <span class="menu-headers">Browse by Price</span>
+        <div id="modPrice" class="module" name="rangeItems"> <span class="menu-headers">Browse by Price</span>
           <ul>
             <!--START: byprice_format-->
-            <li><a href="products_byprice_1-1-1.html" class="cat">$0 - $24.99</a></li>
+            <li><a href="viewcart.php?range1" class="cat">$0 - $24.99</a></li>
             
             <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
             
@@ -217,7 +244,16 @@
   <form method="post" action="">
     <h1>View Cart</h1>
 	
-								
+			
+<?php 
+
+		if(isset($_GET['range1'])){
+			include 'rangeItems.php';
+				}
+	
+?>
+
+			
 	
     <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
 	
@@ -269,15 +305,16 @@
 								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
 								<td><?php echo $product_title; ?><br><img src="<?php echo $product_image;?>" width="100" height="100"></td>
 								<td><input type="text" name="qty_<?php echo $pro_id; ?>" value="<?php echo $pro_qty; ?>" size="3">
-								<input type="text" name="prod_id_<?php echo $pro_id; ?>" value="<?php echo $pro_id; ?>">
+								<input type="hidden" name="prod_id_<?php echo $pro_id; ?>" value="<?php echo $pro_id; ?>">
 								</td>
 								<?php 
 									$ip_add = getIP(); 
 								
 									if(isset($_POST['update'])){
-										$qty = $_POST['qty'];
+										$qty = $_POST['qty_' . $pro_id];
+										$pro_id = $_POST['prod_id_' . $pro_id];
 										
-										echo '<pre>';print_r($_POST);//exit;
+										//echo '<pre>';print_r($_POST['qty_' . $pro_id]);//exit;
 										
 										$insert_qty = "update cart set qty='$qty' where p_id='$pro_id'";
 										
