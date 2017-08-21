@@ -194,9 +194,6 @@
            
         </div>
          
-		 
-		 
-		 
         <!--START: FRAME_BYPRICE-->
         <div id="modPrice" class="module"> <span class="menu-headers">Browse by Price</span>
           <ul>
@@ -231,81 +228,17 @@
 		   
 <?php cart();?>
 
-
-
-
-
-
-
 <?php details(); ?>
-
-	<?php itemsColor();?>						
+							
 					
-	<?php productSize(); ?>
+
 
 
     <!--START: RETURNMESSAGE-->
-    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
-	
-	
-	
-	
-	</div>
+    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
     <!--END: RETURNMESSAGE-->
   </form>
 </section></div>
-
-<?php 
-
-if(isset($_GET['keywords'])){
-	echo 'hello';exit;
-	$keywords = $_POST['keywords'];
-		
-		echo '<111>';print_r($keywords);exit;
-			//Browse by price from product table
-			$sql = "SELECT product_keywords FROM products WHERE product_keywords=''";
-		//echo '<pre>';print_r($sql);exit;
-
-		   $retval = mysql_query( $sql, $conn );
-		   
-		   if(! $retval ) {
-			  die('Could not get data: ' . mysql_error());
-		   }
-		   
-		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
-		 
-		 $price= $row['product_price'];
-			 // echo '<pre>';print_r($price);exit;
-   
-			
-}
-		?>
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--START: RIGHT BAR--><!--END: RIGHT BAR-->
   <div class="clear"></div>
   </div>
@@ -314,8 +247,6 @@ if(isset($_GET['keywords'])){
       <div class="ftr-col col1">
 
       </div>
-	  
-	  
       <div class="ftr-col col2">
       <div id="FRAME_LINKS" ><!--START: FRAME_LINKS-->
       <div id="modLinks">

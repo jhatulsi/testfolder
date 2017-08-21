@@ -194,20 +194,22 @@
            
         </div>
 		
+		
+		
 		<?php 
 			//Browse by price from product table
-			$sql = 'SELECT * FROM products WHERE product_price BETWEEN 5 and 30';
+			// $sql = 'SELECT * FROM products WHERE product_price BETWEEN 5 AND 30';
 
 
-		   $retval = mysql_query( $sql, $conn );
+		   // $retval = mysql_query( $sql, $conn );
 		   
-		   if(! $retval ) {
-			  die('Could not get data: ' . mysql_error());
-		   }
+		   // if(! $retval ) {
+			  // die('Could not get data: ' . mysql_error());
+		   // }
 		   
-		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+		 // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
 		 
-		 $price= $row['product_price'];
+		 // $price= $row['product_price'];
 			 // echo '<pre>';print_r($price);exit;
    
 			
@@ -217,7 +219,7 @@
 		
 		
 		
-		
+		<?php priceRange();?>
 		
 		
          
@@ -225,7 +227,7 @@
         <div id="modPrice" class="module" name="rangeItems"> <span class="menu-headers">Browse by Price</span>
           <ul>
             <!--START: byprice_format-->
-            <li><a href="viewcart.php?range1" class="cat">$0 - $24.99</a></li>
+            <li><a href="viewcart.php?price_range" class="cat">$0 - $24.99</a></li>
             
             <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
             
@@ -247,9 +249,9 @@
 			
 <?php 
 
-		if(isset($_GET['range1'])){
-			include 'rangeItems.php';
-				}
+		//if(isset($_GET['range1'])){
+			//include 'rangeItems.php';
+				//}
 	
 ?>
 

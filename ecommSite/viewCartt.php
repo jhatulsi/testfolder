@@ -101,7 +101,7 @@
       <div id="logo">
         <!--START: global_header--><a href="index.html" title="Black Eagle (Responsive)"><img src="assets/images/logo.png" alt="Black Eagle (Responsive)" /></a><!--END: global_header-->
       </div>
-        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink">Total price: <?php totalPrice(); ?></span></a>
+        <a id="cart" href="viewCart.php" class="hidden-mobile"><img src="assets/templates/black-eagle-html5-premium/images/cart.png"><span id="noItems"><?php items();?></span> <span id="noItemsText">Item</span>, <span id="cartlink">View Cart</span>, &nbsp;<span id="cartlink"><!--Total price: <?php //totalPrice(); ?></span> ---></a>
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
@@ -193,15 +193,39 @@
           <div class="clear"></div>
            
         </div>
+		
+		<?php 
+			//Browse by price from product table
+			$sql = 'SELECT * FROM products WHERE product_price BETWEEN 5 and 30';
+
+
+		   $retval = mysql_query( $sql, $conn );
+		   
+		   if(! $retval ) {
+			  die('Could not get data: ' . mysql_error());
+		   }
+		   
+		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+		 
+		 $price= $row['product_price'];
+			 // echo '<pre>';print_r($price);exit;
+   
+			
+		
+		?>
+		
+		
+		
+		
+		
+		
+		
          
-		 
-		 
-		 
         <!--START: FRAME_BYPRICE-->
-        <div id="modPrice" class="module"> <span class="menu-headers">Browse by Price</span>
+        <div id="modPrice" class="module" name="rangeItems"> <span class="menu-headers">Browse by Price</span>
           <ul>
             <!--START: byprice_format-->
-            <li><a href="products_byprice_1-1-1.html" class="cat">$0 - $24.99</a></li>
+            <li><a href="viewcart.php?range1" class="cat">$0 - $24.99</a></li>
             
             <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
             
@@ -217,9 +241,19 @@
     </aside>
     <!--END: LEFT BAR-->
   <div id=""><section id="">
-  <form method="post" action="viewCart.php" enctype="multipart/form-data">
+  <form method="post" action="">
     <h1>View Cart</h1>
 	
+			
+<?php 
+
+		if(isset($_GET['range1'])){
+			include 'rangeItems.php';
+				}
+	
+?>
+
+			
 	
     <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
 	
@@ -230,82 +264,137 @@
 		
 		   
 <?php cart();?>
-
-
-
-
-
-
-
-<?php details(); ?>
-
-	<?php itemsColor();?>						
+	<form action="" method="post" enctype="multipart/form-data">
+					<br>
+					<table width="740" height="40" bgcolor="" >
 					
-	<?php productSize(); ?>
+					<tr align="center">
+						<td><b>Remove</b></td>
+						<td><b>Product(s)</b></td>
+						<td><b>Quantity</b></td>
+						<td><b>Total Price</b></td>
+					
+					</tr>
+					<?php 
+						$ip_add = getIP();
+						
+						$total = 0;
+						
+						$sel_price = "select * from cart where ip_add='1'";
+						$run_price = mysql_query($sel_price, $conn);
+						while ($record= mysql_fetch_array($run_price)){
+							$pro_id = $record['p_id'];
+							$pro_qty = $record['qty'];
+							$pro_price = "select * from products where product_id='$pro_id'";
+							$run_pro_price = mysql_query($pro_price , $conn);
+						while ($p_price = mysql_fetch_array($run_pro_price)){
+						$product_price = array($p_price['product_price']);
+						$product_title = $p_price['product_title'];
+						$product_image = $p_price['product_image'];
+						$only_price = $p_price['product_price'];
+						
+						$values = array_sum($product_price);
+						
+						$total += $values;
+			
+					
+						//echo "$" . $total;
+							
+							?>
+							<tr>
+								<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id; ?>"></td>
+								<td><?php echo $product_title; ?><br><img src="<?php echo $product_image;?>" width="100" height="100"></td>
+								<td><input type="text" name="qty_<?php echo $pro_id; ?>" value="<?php echo $pro_qty; ?>" size="3">
+								<input type="hidden" name="prod_id_<?php echo $pro_id; ?>" value="<?php echo $pro_id; ?>">
+								</td>
+								<?php 
+									$ip_add = getIP(); 
+								
+									if(isset($_POST['update'])){
+										$qty = $_POST['qty_' . $pro_id];
+										$pro_id = $_POST['prod_id_' . $pro_id];
+										
+										//echo '<pre>';print_r($_POST['qty_' . $pro_id]);//exit;
+										
+										$insert_qty = "update cart set qty='$qty' where p_id='$pro_id'";
+										
+											//echo '<pre>';print_r($insert_qty);exit;
+										
+										$run_qty = mysql_query($insert_qty, $conn);
+										
+										$total = $total*$qty;
+										
+									}
+									
+								?>
+								
+								
+								
+								
+								<td><?php echo "$" . '&nbsp;' . $only_price; ?></td>
+							
+							</tr>
+				
+						<?php }} ?>
+						
+						
+						
+                            
+						<tr>
+						
+							<td><input type="submit" name="update" value="Update Cart"></td>
+							<td><input type="submit" name="continue" value="Continue Shopping"></td>
+							<td><a href="checkOut.php"><h3 border="1px">Check Out</h3></a></td>
+					<!--		<td><button onclick="location.href='checkOut.php';"><a href="checkOut.php" >Check Out</a></button></td> --->
+							<td  colspan="4" align="right"><b>Sub Total</b></td>
+						<td align="right"><b><?php echo "$" . '&nbsp;' . $total;?></b></td>
+							
+						</tr>
+                            </table>
+							
+                            </form>
+                            
+							<?php 
+								function updateCart(){
+								
+									if(isset($_POST['update'])){
+										//echo '<pre>';print_r($_POST);exit;
+										foreach($_POST['remove'] as $remove_id){
+										
+											$delete_products =	 mysql_query(" delete from cart where p_id ='$remove_id'");
+												//echo '<pre>';print_r($delete_products);exit;
+												
+										//	$run_delete = mysql_query($delete_products , $conn);
+											
+												//echo '<pre>';print_r($run_delete);exit;
+											if($delete_products){
+												echo "<script>window.open('viewCart.php','_self')</script>";
+											}else{
+												echo 'not possible';
+											}
+										}
+										
+										}
+										
+										if(isset($_POST['continue'])){
+												echo "<script>window.open('index.php','_self')</script>";
+												
+										}
+							}	
+							echo	@$update_cart= updateCart() ;
+							?>
+                            
+							
+							
+					
+
 
 
     <!--START: RETURNMESSAGE-->
-    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
-	
-	
-	
-	
-	</div>
+    <div class="button"><input type="button" value="Click here to continue" class="btn" onclick="location.href='index.php';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
     <!--END: RETURNMESSAGE-->
   </form>
 </section></div>
-
-<?php 
-
-if(isset($_GET['keywords'])){
-	echo 'hello';exit;
-	$keywords = $_POST['keywords'];
-		
-		echo '<111>';print_r($keywords);exit;
-			//Browse by price from product table
-			$sql = "SELECT product_keywords FROM products WHERE product_keywords=''";
-		//echo '<pre>';print_r($sql);exit;
-
-		   $retval = mysql_query( $sql, $conn );
-		   
-		   if(! $retval ) {
-			  die('Could not get data: ' . mysql_error());
-		   }
-		   
-		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
-		 
-		 $price= $row['product_price'];
-			 // echo '<pre>';print_r($price);exit;
-   
-			
-}
-		?>
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--START: RIGHT BAR--><!--END: RIGHT BAR-->
   <div class="clear"></div>
   </div>
@@ -314,8 +403,6 @@ if(isset($_GET['keywords'])){
       <div class="ftr-col col1">
 
       </div>
-	  
-	  
       <div class="ftr-col col2">
       <div id="FRAME_LINKS" ><!--START: FRAME_LINKS-->
       <div id="modLinks">
@@ -338,7 +425,7 @@ if(isset($_GET['keywords'])){
       <div class="ftr-col col3">
       <!--START: FRAME_MAILLIST-->
       <div id="mailistBox">
-        <form method="post" name="mailing" action="https://blackeagle-preview-com.3dcartstores.com/mailing_list.asp?action=add" onsubmit="return mailing_list();">
+        <form method="post" name="" action="" onsubmit="return mailing_list();">
           <label>Mailing List</label>
           <div class="mailist-box">
             <input type="text" name="email" value="" placeholder="Email Address" />            
