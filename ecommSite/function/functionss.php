@@ -47,6 +47,7 @@ function get_categories(){
 						while($row_cat_pro = mysql_fetch_array($run_cat_pro)){
 							 $pro_id = $row_cat_pro['product_id'];
 							 $pro_title = $row_cat_pro['product_title'];
+							  $pro_key = $row_products['product_keywords'];
 							 $pro_desc = $row_cat_pro['product_desc'];
 							 $pro_price = $row_cat_pro['product_price'];
 							 $pro_image = $row_cat_pro['product_image'];
@@ -67,7 +68,297 @@ function get_categories(){
 			}
 	
 	}
+	
+	
+	
+	
+	function newItemsColor(){
+	
+		if(isset($_GET['pro_keyword'])){
+				$ip_add = getIP();
+		$p_key = $_GET['pro_keyword'];
+		
+	//	echo $p_id;exit;
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+		
+		
+		
+		$check_pro = "select color from products where product_keywords='$p_key'";
+	//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+		
+		
+		
+		$run_check = mysql_query($check_pro , $db);
+			
+			while($row_products = mysql_fetch_array($run_check)){
+							
+							 $pro_color = $row_products['color'];
+							
+						 	
+                	echo "
+		<div class='header' align='center' >
+					<h3>Choose Options</h3>
+					<div class='clear'></div>
+				</div>
+				<div class='container' align='center'>
+					<!--START: optionstemplate--><!--END: optionstemplate-->
+					<!--START: options--><!--START: optionBlock13-->
+					<div class='opt-regular' align='center'>
+						<!--START: required--><span class='required'><img src='assets/templates/common/images/error2.gif' width='12' height='12' alt='' /></span><!--END: required-->
+						<span class='label'>Color</span>
+						<!--START: help--><!--END: help-->
+						<div class='clear'></div>
+						<div class='opt-field'>
+						
+						
+					<div class='dropdownimage-format' align='center'>
+						<select name='option-di_13-12' onchange='validateValues(document.add,1);selectOption(this);' class='txtBoxStyle'>
+							<!--START: option-->
+							
+							foreach(){
+							<option value='$pro_color' >$pro_color </option>
+							}
+							
+							<!--END: option-->
+						</select>
+						<div class='dropdown-image'><img name='img_option-di_13-12' width='50' src='assets/templates/common-html5/images/spacer.gif' /></div>
+					</div>
+					</div>
 
+	</div>
+
+						
+						
+						
+						
+						
+						
+						
+						<!--------------------->
+						
+					
+						";
+						
+						}
+			
+		
+		
+		
+			}
+		
+	}
+	
+	
+	
+	
+	
+	
+	function itemsColor(){
+		
+		if(isset($_GET['pro_id'])){
+				$ip_add = getIP();
+		$p_id = $_GET['pro_id'];
+		
+	//	echo $p_id;exit;
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+		
+		
+		
+		$check_pro = "select product_color,color_id from products_color where product_id='$p_id'";
+									// echo '<pre>';print_r($check_pro);exit;
+
+		
+	//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+		
+		
+		
+			
+							// echo '<pre>';print_r($row_products);exit;
+							
+							
+							// $pro_image = $row_products['product_image'];
+							
+						 	
+                	$returnStr = "
+		<div class='header' align='center' >
+					<h3>Choose Options</h3>
+					<div class='clear'></div>
+				</div>
+				<div class='container' align='center'>
+					<!--START: optionstemplate--><!--END: optionstemplate-->
+					<!--START: options--><!--START: optionBlock13-->
+					<div class='opt-regular' align='center'>
+						<!--START: required--><span class='required'><img src='assets/templates/common/images/error2.gif' width='12' height='12' alt='' /></span><!--END: required-->
+						<span class='label'>Color</span>
+						<!--START: help--><!--END: help-->
+						<div class='clear'></div>
+						<div class='opt-field'>
+						
+						
+					<div class='dropdownimage-format' align='center'>
+						<select name='option-di_13-12' onchange='validateValues(document.add,1);selectOption(this);' class='txtBoxStyle'>
+							<!--START: option-->";
+			
+		$run_check = mysql_query($check_pro , $db);				
+			while($row_products = mysql_fetch_array($run_check)){
+					 $pro_color = $row_products['product_color'];		
+					 $pro_colorId = $row_products['color_id'];		
+							$returnStr .= "<option value='$pro_colorId' >$pro_color </option>";
+							}
+							
+					$returnStr .= "<!--END: option-->
+						</select>
+						<div class='dropdown-image'><img name='img_option-di_13-12' width='50' src='assets/templates/common-html5/images/spacer.gif' /></div>
+					</div>
+					</div>
+
+	</div>
+
+						
+						
+						
+						
+						
+						
+						
+						<!--------------------->
+						
+					
+						";
+						
+						
+			
+		echo $returnStr;
+		
+		
+			}
+		
+	}
+
+	
+	
+	
+	function productSize(){
+		
+		if(isset($_GET['pro_id'])){
+				$ip_add = getIP();
+		$p_id = $_GET['pro_id'];
+		
+	//	echo $p_id;exit;
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+		
+		
+		
+		$sel_color = "select product_color,color_id,product_image from products_color where product_id='$p_id'";
+									// echo '<pre>';print_r($check_pro);exit;
+
+									$run_color = mysql_query($sel_color , $db);				
+			//while($row_products = mysql_fetch_array($run_check)){
+			
+					$row_products = mysql_fetch_array($run_color);
+					 $pro_color = $row_products['product_color'];		
+					 $pro_colorId = $row_products['color_id'];	
+					 $pro_image = $row_products['product_image'];	
+					
+		
+					//echo '<pre>';print_r($pro_color);exit;
+						
+			$sel_size = "select size_id,product_size from size_tb where product_id='$p_id' AND color_id='$pro_colorId'";
+									
+		
+	//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+		
+		
+		
+			
+							// echo '<pre>';print_r($row_products);exit;
+							
+							
+							// $pro_image = $row_products['product_image'];
+							
+						 	
+                	$returnStr = "
+		<div class='header' align='center' >
+					<h3>Choose Sizes</h3>
+					<div class='clear'></div>
+				</div>
+				<div class='container' align='center'>
+					<!--START: optionstemplate--><!--END: optionstemplate-->
+					<!--START: options--><!--START: optionBlock13-->
+					<div class='opt-regular' align='center'>
+						<!--START: required--><span class='required'><img src='assets/templates/common/images/error2.gif' width='12' height='12' alt='' /></span><!--END: required-->
+						
+						<!--START: help--><!--END: help-->
+						<div class='clear'></div>
+						<div class='opt-field'>
+						
+						
+					<div class='dropdownimage-format' align='center'>
+						<select name='option-di_13-12' onchange='validateValues(document.add,1);selectOption(this);' class='txtBoxStyle'>
+							<!--START: option-->";
+			
+		$run_size = mysql_query($sel_size , $db);				
+			while($sizes_row = mysql_fetch_array($run_size)){
+					 $pro_sizeId = $sizes_row['size_id'];		
+					 $pro_size = $sizes_row['product_size'];		
+							$returnStr .= "<option value='$pro_sizeId' >$pro_size </option>";
+							}
+							
+					$returnStr .= "<!--END: option-->
+						</select>
+						<div class='dropdown-image'><img name='img_option-di_13-12' width='50' src='assets/templates/common-html5/images/spacer.gif' /></div>
+					</div>
+					</div>
+
+	</div>
+
+						
+						
+						
+						
+						
+						
+						
+						<!--------------------->
+						
+					
+						";
+						
+						
+			
+		echo $returnStr;
+		
+		
+			}
+		
+	}
+	
+	function productTaxes(){
+	
+	<///////////////tax rates//////>
+	
+	
+	
+	}
+	
+	function shippingRates(){
+	
+		<///////////////shipping rates//////>
+
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
 
 function getPro(){
 		
@@ -82,6 +373,8 @@ function getPro(){
 							 $pro_id = $row_products['product_id'];
 							 $pro_title = $row_products['product_title'];
 							 $pro_cat = $row_products['cat_id'];
+							  $pro_key = $row_products['product_keywords'];
+							 
 							 //$pro_brand = $row_products['brand_id'];
 							 $pro_desc = $row_products['product_desc'];
 							 $pro_price = $row_products['product_price'];
@@ -95,7 +388,7 @@ function getPro(){
 						
 						<img src='$pro_image' width='180' height='180' /> <br>
 						<p><b>Price: $pro_price</b></p>
-						<a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a>
+						<a href='details.php?pro_id=$pro_id&pro_keyword=$pro_key' style='float:left;'>Details</a>
 						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
 						</div>
 						";
@@ -153,7 +446,7 @@ function cart(){
 			while($row_products = mysql_fetch_array($run_check)){
 							 $pro_id = $row_products['product_id'];
 							 $pro_title = $row_products['product_title'];
-							// $pro_cat = $row_products['cat_id'];
+							 $pro_key = $row_products['product_keywords'];
 							 //$pro_brand = $row_products['brand_id'];
 							 $pro_desc = $row_products['product_desc'];
 							 $pro_price = $row_products['product_price'];
@@ -163,9 +456,12 @@ function cart(){
 						 	
                 	echo "
 					<div id='single_product'>
-						<h3 align='center'>$pro_title</h3>
+						<h3 align=''>$pro_title</h3>
 						
 						<img src='$pro_image' width='180' height='180' /> <br>
+						<input type='text' value='$pro_key' name='keywords'>
+						
+						
 						<p align='center'><b>Price: $ $pro_price</b></p>
 						<p align='center'><b>Product description: $pro_desc</b></p>
 						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
@@ -178,6 +474,36 @@ function cart(){
 		
 		
 			}
+			
+		
+	}
+	
+	function priceRange(){
+		
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+						
+		if(isset($_GET['price_range'])){
+				$ip_add = getIP();
+		$price = $_GET['price_range'];
+		
+		$get_items = "select product_price from products where status='on'";
+		$run_items = mysql_query($get_items , $db);
+		
+		echo '<pre>';print_r($get_items);exit;
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
