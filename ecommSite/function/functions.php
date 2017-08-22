@@ -336,6 +336,26 @@ function get_categories(){
 		
 	}
 	
+	function productTaxes(){
+	
+	
+	
+	
+	
+	}
+	
+	function shippingRates(){
+	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
 	
 
 function getPro(){
