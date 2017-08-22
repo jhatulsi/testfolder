@@ -430,6 +430,17 @@
 	  
 	  
 	  ?>
+	  
+	  <div align="">
+	  
+		
+		<h5>Tax Rates: $3</h5>
+		
+		<h5>Our Shipping Charges: $5</h5>
+		<h3>So,Total Charges: <?php shippingRates(); ?> </h3>
+	  </div>
+	  
+		
 	
     <div class="clear"></div>
     <!--START: apply_coupon-->
