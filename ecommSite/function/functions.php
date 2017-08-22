@@ -74,9 +74,9 @@ function get_categories(){
 	
 	function newItemsColor(){
 	
-		if(isset($_GET['pro_keyword'])){
+		if(isset($_GET['pro_id'])){
 				$ip_add = getIP();
-		$p_key = $_GET['pro_keyword'];
+		$p_id = $_GET['pro_id'];
 		
 	//	echo $p_id;exit;
 		$db = mysql_connect('localhost','root','');
@@ -84,9 +84,9 @@ function get_categories(){
 		
 		
 		
-		$check_pro = "select color from products where product_keywords='$p_key'";
-	//	$check_pro = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+		$check_pro = "select * from products_color";
 		
+		echo '<pre>';print_r($check_pro);exit;
 		
 		
 		$run_check = mysql_query($check_pro , $db);
@@ -338,7 +338,7 @@ function get_categories(){
 	
 	function productTaxes(){
 	
-	<///////////////tax rates//////>
+	
 	
 	
 	
@@ -346,10 +346,38 @@ function get_categories(){
 	
 	function shippingRates(){
 	
-		<///////////////shipping rates//////>
-
+		
+		$ip_add = getIP();
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+						$total = 0;
+					// Change Shipping charges:
+						$shipping_charges = 5;
+						$tax_rates = 3;
+						
+			$sel_price = "select * from cart where ip_add='1'";
+			$run_price = mysql_query($sel_price, $db);
+			while ($record= mysql_fetch_array($run_price)){
+				$pro_id = $record['p_id'];
+				$pro_price = "select * from products where product_id='$pro_id'";
+				$run_pro_price = mysql_query($pro_price , $db);
+			while ($p_price = mysql_fetch_array($run_pro_price)){
+				$product_price = array($p_price['product_price']);
+				$values = array_sum($product_price);
+				
+				$total += $values;
+				
+				$include_shipping =array($total,$shipping_charges,$tax_rates);
+				$new_values = array_sum($include_shipping);
+				}
+				
+				
+				}
+			
+			
+				echo "$" . $new_values;
 	
-	
+		
 	
 	
 	}
