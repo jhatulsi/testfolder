@@ -1,11 +1,36 @@
 
+
 <?php 
 
 	include 'function/dbconn.php';
 	include 'function/functions.php';
 
+ $sql = 'SELECT * FROM products ORDER BY  product_price DESC';
 
+   mysql_select_db('ecommsite');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+ // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+ $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+     //echo '<pre>';print_r($row);exit;
+	 
+	 $data = $row['product_price'];
+	 $range1 = $data/$data . '-' . $data/5;
+	 $range2 = $data/5 + 1 . '-' . $data/2;
+	 $range3 =  $data/2 + 1 . '-' . $data;
+	// echo($range3);exit;
+ //  echo "Fetched data successfully\n";
+  // mysql_close($conn);
+	
+	
 ?>
+
+
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -219,7 +244,7 @@
 		
 		
 		
-		<?php priceRange();?>
+		
 		
 		
          
@@ -227,14 +252,21 @@
         <div id="modPrice" class="module" name="rangeItems"> <span class="menu-headers">Browse by Price</span>
           <ul>
             <!--START: byprice_format-->
-            <li><a href="viewcart.php?price_range" class="cat">$0 - $24.99</a></li>
+            <li><a href="viewcart.php?p_range=<?php echo $data; ?>" class="cat"><?php echo $range1;?></a></li>
             
-            <li><a href="products_byprice_2-1-1.html" class="cat">$25 - $49.99</a></li>
+            <li><a href="products_byprice_2-1-1.html" class="cat"><?php echo $range2;?></a></li>
             
-            <li><a href="products_byprice_3-1-1.html" class="cat">Over $50</a></li>
+            <li><a href="products_byprice_3-1-1.html" class="cat"><?php echo $range3;?></a></li>
             <!--END: byprice_format-->
           </ul>
         </div>
+		<?php   
+		
+			price_ranges();
+		
+		
+		?>
+		
         <!--END: FRAME_BYPRICE-->
         <!--START: FRAME_MANUFACTURER--><!--END: FRAME_MANUFACTURER-->
         <!--START: LEFT_BANNER--><!--END: LEFT_BANNER--> 
@@ -284,7 +316,7 @@
 						
 						$sel_price = "select * from cart where ip_add='1'";
 						$run_price = mysql_query($sel_price, $conn);
-						while ($record= mysql_fetch_array($run_price)){
+						while ($record = mysql_fetch_array($run_price)){
 							$pro_id = $record['p_id'];
 							$pro_qty = $record['qty'];
 							$pro_price = "select * from products where product_id='$pro_id'";

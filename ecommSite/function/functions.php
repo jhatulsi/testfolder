@@ -47,7 +47,7 @@ function get_categories(){
 						while($row_cat_pro = mysql_fetch_array($run_cat_pro)){
 							 $pro_id = $row_cat_pro['product_id'];
 							 $pro_title = $row_cat_pro['product_title'];
-							  $pro_key = $row_products['product_keywords'];
+							  $pro_key = $row_cat_pro['product_keywords'];
 							 $pro_desc = $row_cat_pro['product_desc'];
 							 $pro_price = $row_cat_pro['product_price'];
 							 $pro_image = $row_cat_pro['product_image'];
@@ -72,73 +72,50 @@ function get_categories(){
 	
 	
 	
-	function newItemsColor(){
+	function price_ranges(){
 	
-		if(isset($_GET['pro_id'])){
+		if(isset($_GET['p_range'])){
 				$ip_add = getIP();
-		$p_id = $_GET['pro_id'];
+		$p_range = $_GET['p_range'];
 		
 	//	echo $p_id;exit;
 		$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
 		
+		$min_price= 1;
+		$max_price= $p_range/5;
 		
 		
-		$check_pro = "select * from products_color";
+		$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
 		
-		echo '<pre>';print_r($check_pro);exit;
+		//echo '<pre>';print_r($check_price);exit;
 		
 		
-		$run_check = mysql_query($check_pro , $db);
+		$run_price = mysql_query($check_price , $db);
 			
-			while($row_products = mysql_fetch_array($run_check)){
+			while($row_price = mysql_fetch_array($run_price)){
 							
-							 $pro_color = $row_products['color'];
+							// $pro_color = $row_price['color'];
+							 $pro_title = $row_price['product_title'];
+							 $pro_image = $row_price['product_image'];
+							 $pro_keywords = $row_price['product_keywords'];
 							
-						 	
-                	echo "
-		<div class='header' align='center' >
-					<h3>Choose Options</h3>
-					<div class='clear'></div>
-				</div>
-				<div class='container' align='center'>
-					<!--START: optionstemplate--><!--END: optionstemplate-->
-					<!--START: options--><!--START: optionBlock13-->
-					<div class='opt-regular' align='center'>
-						<!--START: required--><span class='required'><img src='assets/templates/common/images/error2.gif' width='12' height='12' alt='' /></span><!--END: required-->
-						<span class='label'>Color</span>
-						<!--START: help--><!--END: help-->
-						<div class='clear'></div>
-						<div class='opt-field'>
+		
+						echo "
+					<div id='single_product'>
+						<h3>$pro_title</h3>
 						
+						<p><b> $pro_keywords</b></p>
+						<p><b> $pro_title</b></p>
+						<img src='$pro_image' width='180' height='180' /> <br>
 						
-					<div class='dropdownimage-format' align='center'>
-						<select name='option-di_13-12' onchange='validateValues(document.add,1);selectOption(this);' class='txtBoxStyle'>
-							<!--START: option-->
-							
-							foreach(){
-							<option value='$pro_color' >$pro_color </option>
-							}
-							
-							<!--END: option-->
-						</select>
-						<div class='dropdown-image'><img name='img_option-di_13-12' width='50' src='assets/templates/common-html5/images/spacer.gif' /></div>
-					</div>
-					</div>
-
-	</div>
-
+						<a href='details.php?pro_id=$pro_id&pro_keyword=$pro_key' style='float:left;'>Details</a>
+						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						</div>
+						";
 						
-						
-						
-						
-						
-						
-						
-						<!--------------------->
 						
 					
-						";
 						
 						}
 			
@@ -146,7 +123,7 @@ function get_categories(){
 		
 		
 			}
-		
+		exit;
 	}
 	
 	
@@ -521,13 +498,6 @@ function cart(){
 		echo '<pre>';print_r($get_items);exit;
 		
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
