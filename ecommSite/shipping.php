@@ -407,49 +407,56 @@
 				
 				<div class="clear"></div>
 			</div>
+			<!----------------------------------------------------------->
 			<!--END: account_login1-->
 			<div class="leftCol">
 				<div class="header">
-					<h3 class="checkout-headers">Billing Information</h3>
+					<h3 class="checkout-headers">Customer Information</h3>
 					<div class="clear"></div>
 				</div>
 				<div id="billing_info" class="pad10 boxShadow">
 				
-					<form method="post" action="shipping.php" enctype="multipart/form-data">
+					<form method="post" action="" enctype="multipart/form-data">
 				
 					<!--START: SAVE_ADDRESSES--><!--END: SAVE_ADDRESSES-->
 					<div class="chkField">
 					
 					
-						<label for="billing_firstname">First Name</label>
-						<input name="billing_firstname" onchange="clearContent(this);" type="text" id="billing_firstname" value="" size="15" tabindex="2" maxlength="100" class="txtBoxStyle" />
+						<label for="billing_firstname">Customer Name:</label>
+						<input  type="text" id="billing_firstname" value="" size="15" tabindex="2" maxlength="100" class="txtBoxStyle"  name="c_name" required />
 						<!--START: req_billing_firstname-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_firstname-->
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_lastname">Last Name</label>
-						<input name="billing_lastname" type="text" onchange="clearContent(this);" id="billing_lastname" value="" size="15" tabindex="3" maxlength="100" class="txtBoxStyle" />
+						<label for="billing_lastname">Customer Email:</label>
+						<input  type="email"  id="billing_lastname" value="" size="15" tabindex="3" maxlength="100" class="txtBoxStyle" name="c_email" required />
 						<!--START: req_billing_lastname-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_lastname-->
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_company">Company</label>
-						<input name="billing_company" type="text" onchange="clearContent(this);" id="billing_company" value="" size="25" tabindex="4" maxlength="255" class="txtBoxStyle" />
+						<label for="billing_company">Customer Password:</label>
+						<input type="password"  id="billing_company" value="" size="25" tabindex="4" maxlength="255" class="txtBoxStyle"  name="c_password" required/>
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_phone">Phone</label>
-						<input name="billing_phone" type="text" onchange="clearContent(this);" id="billing_phone" value="" size="25" tabindex="5" maxlength="50" class="txtBoxStyle" />
+						<label for="billing_phone">Customer Country:</label>
+						<select name="c_country" >
+							<option>Select Your City</option>
+							<option>India</option>
+							<option>Pakistan</option>
+							<option>China</option>
+							<option>USA</option>
+					</select>
 						
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_address">Address</label>
-						<input name="billing_address" type="text" onchange="clearContent(this);" id="billing_address" value="" size="25" tabindex="5" maxlength="255" class="txtBoxStyle" />
+						<label for="billing_address">Customer City:</label>
+						<input type="text"  id="billing_address" value="" size="25" tabindex="5" maxlength="255" class="txtBoxStyle" name="c_city" required />
 						<!--START: req_billing_address-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_address-->
@@ -457,16 +464,16 @@
 					</div>
 					
 					<div class="chkField">
-						<label for="billing_city">City</label>
-						<input name="billing_city" type="text" onchange="clearContent(this);" id="billing_city" value="" size="25" tabindex="7" maxlength="100" class="txtBoxStyle" />
+						<label for="billing_city">Customer Mobile no.:</label>
+						<input type="text"  id="billing_city" value="" size="25" tabindex="7" maxlength="100" class="txtBoxStyle" name="c_contact" required />
 						<!--START: req_billing_city-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_city-->
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_country">Country</label>
-						<select name="billing_country" onchange="this.form.billing_zip.value = ''; populateState('billing_state', 'billing_country', '', true, 'State'); check_stateValidator('billing'); check_address('billing');" tabindex="8" class="txtBoxStyle" id="billing_country"></select>
+						<label for="billing_country">Customer Address:</label>
+						<input type="text"  id="billing_city" value="" size="25" tabindex="7" maxlength="100" class="txtBoxStyle" name="c_address" required />
 						<!--START: req_billing_country-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_country-->
@@ -474,7 +481,7 @@
 					</div>
 					<div class="chkField">
 						<label for="billing_state">State</label>
-						<select id="billing_state" onchange="this.form.billing_zip.value='';check_address('billing');" name="billing_state" tabindex="9" class="txtBoxStyle"></select>
+						<input id="billing_state" tabindex="9" class="txtBoxStyle" name="c_state" required />
 						<!--START: req_billing_state-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_state-->
@@ -482,15 +489,15 @@
 					</div>
 					<div class="chkField">
 						<label for="billing_zip">Zip</label>
-						<input name="billing_zip" type="text" id="billing_zip" value="" size="10" tabindex="10" maxlength="20" class="txtBoxStyle" onchange="clearContent(this);check_address('billing');" />
+						<input  type="text" id="billing_zip" value="" size="10" tabindex="10" maxlength="20" class="txtBoxStyle" onchange="clearContent(this);check_address('billing');" name="c_zip" required />
 						<!--START: req_billing_zip-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
 						<!--END: req_billing_zip-->
 						<div class="clear"></div>
 					</div>
 					<div class="chkField">
-						<label for="billing_email">Email</label>
-						<input name="billing_email" type="text" id="billing_email" onblur="fillEmailDiv();" onkeyup="fillEmailDiv();" onchange="clearContent(this);fillEmailDiv();updateOrderEmail();" value="" size="25" tabindex="11" maxlength="100" class="txtBoxStyle" />
+						<label for="billing_email">Customer Image:</label>
+						<input type="file" name="c_image" required />
 						<!--START: emailrequired-->
 						<!--START: req_email-->
 						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
@@ -499,145 +506,97 @@
 						<div class="clear"></div>
 					</div>
 					
-					<div class="chkField">
-						<div class="checkbox-format">
-							<input type="checkbox" value="1" name="maillist"  tabindex="13" />
-							<label for="maillist">Yes!, I would like to be notified of product updates.</label>
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
+					<div align="center">
+					<input type="submit" name="register" value="Submit"/>
 					</div>
-					<!--START: account_login2-->
-					<div class="create_newaccount">
-						<div class="header">
-							<h3 class="checkout-headers">Create New Account</h3>
-							<div class="clear"></div>
-						</div>
-						<div class="chkField">
-							<label for="createnewaccount_email">Email</label>
-							<div id="divEmail"></div>
-							<div class="clear"></div>
-						</div>
-						<div class="chkField">
-							<label for="pass">Password</label>
-							<input type="password" size="12" name="pass" id="pass" autocomplete="off" tabindex="14" class="txtBoxStyle" [callfunctionverifystrongpass] />
-							
-							<div class="chkField">
-							
-							<input type="button" name="submit" value="Submit"/>
-							
-							<>
-							
-							
-							<!--START: passwordrequired-->
-							<!--START: req_pass-->
-							<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-							<!--END: req_pass-->
-							<!--END: passwordrequired-->
-							<div class="clear"></div>
-						</div>
-						<!--START: StrongPasswordBar--><!--END: StrongPasswordBar-->
-						<!--START: PasswordMSG--><!--END: PasswordMSG-->
-						
+					
 					</div>
 					<!--END: account_login2-->
 					<div class="clear"></div>
 					</form>
-				</div>
+				
 			</div>
+	</div>
+
+
+<?php 
+//echo 'hello';exit;
+
+	if(count($_POST)>0){
+		
+		echo 'hello';exit;
+	//echo '<pre>';print_r($_POST);exit;
+	
+	$c_name	= $_POST['c_name'];
+	$c_email = $_POST['c_email'];
+	$c_pass = $_POST['c_pass'];
+	$c_country	= $_POST['c_country'];
+	$c_city	= $_POST['c_city'];
+	$c_contact	= $_POST['c_contact'];
+	$c_address	= $_POST['c_address'];
+	$c_state	= $_POST['c_state'];
+	$c_zip	= $_POST['c_zip'];
+	$c_image	= $_FILES['c_image']['name'];
+	$c_image_tmp = $_FILES['c_image']['tmp_name'];
+	
+	$c_ip = getIP();
+	
+	
+	
+	$insert_customer = "insert into customers (customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image,c_state,c_zip,customer_ip) values ('$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address',$c_state,$c_zip,'$c_image','1')";
+		
+		$run_customer =  mysql_query($insert_customer , $conn);
+	
+		//echo '<pre>';print_r($insert_customer);exit;
+		
+		$run_customer = mysql_num_rows($insert_customer);
+		
+		move_uploaded_file($c_image_tmp,"adminDashboard/production/$c_image");
+		
+		$sel_cart = mysql_query("select * from cart where ip_add = '1'");
+		//$run_cart = mysql_query($sel_cart, $conn);
+		
+		$check_cart = mysql_num_rows($sel_cart);
+	
+		//echo '<pre>';print_r($check_cart);exit;
+		
+		
+		if($check_cart>0){
+			
+			$_SESSION['customer_email'] = $c_email;
+			
+			echo "<script>alert('Account Created Successfuly,Thank You!')</script>";
+			echo "<script>window.open('checkout.php','_self')</script>";
+			
+		}else{
+			$_SESSION['customer_email'] = $c_email;
+			
+			echo "<script>alert('Account Created Successfuly,Thank You!')</script>";
+			echo "<script>window.open('index.php','_self')</script>";
+		}
+		
+		
+	}
+
+
+
+?>
+
+
+
+
+
+
+				
+							
+			
 			<div class="rightCol" align="center">
 				<!--START: GIFT_REGISTRY_SHIPPING--><!--END: GIFT_REGISTRY_SHIPPING-->
-				<div class="header">
-					<h3 class="checkout-headers">Shipping Information</h3>
-					<!--START: sameAsBilling1-->
-					<div class="sameAsBilling1">
-						<input type="checkbox" value="ON" name="sameAsBilling" id="sameAsBilling" onclick="showHideShipping();check_address('');" />
-						<label for="sameAsBilling">Same as Billing</label>
-						<div class="clear"></div>
-					</div>
-					<!--END: sameAsBilling1-->
-					<div class="clear"></div>
-				</div>
-				<div class="clear"></div>
-				<div id="shipping_info" class="pad10 boxShadow">
-					<!--START: sameAsBilling2-->
-					<!--START: SAVE_ADDRESSES2--><!--END: SAVE_ADDRESSES2-->
-					<div class="chkField">
-						<label for="shipping_firstname">First Name</label>
-						<input name="shipping_firstname" onchange="clearContent(this);" type="text" id="shipping_firstname" value="" size="15" tabindex="16" maxlength="100" class="txtBoxStyle" />
-						<!--START: req_shipping_firstname-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_firstname-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_lastname">Last Name</label>
-						<input name="shipping_lastname" type="text" onchange="clearContent(this);" id="shipping_lastname" value="" size="15" tabindex="17" maxlength="100" class="txtBoxStyle" />
-						<!--START: req_shipping_lastname-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_lastname-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_company">Company</label>
-						<input name="shipping_company" type="text" onchange="clearContent(this);" id="shipping_company" value="" size="25" tabindex="18" maxlength="255" class="txtBoxStyle" />
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_phone">Phone</label>
-						<input name="shipping_phone" type="text" onchange="clearContent(this);" id="shipping_phone" value="" size="25" tabindex="19" maxlength="50" class="txtBoxStyle" />
-						
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_address">Address</label>
-						<input name="shipping_address" type="text" onchange="clearContent(this);" id="shipping_address" value="" size="25" tabindex="20" maxlength="255" class="txtBoxStyle" />
-						<!--START: req_shipping_address-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_address-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_address2">Suite / Apt #</label>
-						<input name="shipping_address2" type="text" onchange="clearContent(this);" id="shipping_address2" value="" size="25" tabindex="21" maxlength="50" class="txtBoxStyle" />
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_city">City</label>
-						<input name="shipping_city" type="text" onchange="clearContent(this);" id="shipping_city" value="" size="25" tabindex="22" maxlength="100" class="txtBoxStyle" />
-						<!--START: req_shipping_city-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_city-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_country">Country</label>
-						<select name="shipping_country" onchange="this.form.shipping_zip.value = ''; populateState('shipping_state', 'shipping_country', '', true, 'State'); check_stateValidator('billing'); check_address('billing');" tabindex="23" class="txtBoxStyle" id="shipping_country"></select>
-						<!--START: req_shipping_country-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_country-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_state">State</label>
-						<select id="shipping_state" onchange="this.form.shipping_zip.value='';check_address('shipping');" name="shipping_state" tabindex="24" class="txtBoxStyle"></select>
-						<!--START: req_shipping_state-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_state-->
-						<div class="clear"></div>
-					</div>
-					<div class="chkField">
-						<label for="shipping_zip">Zip</label>
-						<input name="shipping_zip" type="text" id="shipping_zip" value="" size="10" tabindex="25" maxlength="20" class="txtBoxStyle" onchange="clearContent(this);check_address('shipping');" />
-						<!--START: req_shipping_zip-->
-						<img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
-						<!--END: req_shipping_zip-->
-						<div class="clear"></div>
-					</div>
-					<!--END: sameAsBilling2-->
-					<!--START: sameAsBilling3--><!--END: sameAsBilling3-->
-					<div class="clear"></div>
-				</div>
+				<!---
+				
+				
+				
+				
 				<div class="clear"></div>
 				<div class="divShippingMethod">
 					<div class="header">

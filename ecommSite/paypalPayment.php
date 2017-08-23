@@ -179,10 +179,10 @@
 			
 			<?php 
 		//	$ip = getIP();
-			$get_customer = "select * from customers where customer_ip = '1'"; // or use i in place of 0 //customer_ip = '0'
+			$get_customer = "select * from shipping where billing_ip = '0'"; // or use i in place of 0 //customer_ip = '0'
 			$run_customer = mysql_query($get_customer, $conn);
 			$customer = mysql_fetch_array($run_customer);
-			$customer_id = $customer['customer_id'];
+			$billing_id	 = $customer['billing_id'];
 			
 			
 			
@@ -313,7 +313,7 @@
 			    <h4>
 			        <label for="offline-42">
 			            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('42');" id="offline-42" name="payment" type="radio" value="offline-42" CHECKED/>
-			            Money Order
+			          <!--  Money Order ---><a href="order.php?c_id=<?php echo $billing_id; ?>">PAY Offline</a>
 			        </label>
 			    </h4>
 			    <div class="clear"></div>

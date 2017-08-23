@@ -262,7 +262,7 @@
         </div>
 		<?php   
 		
-			price_ranges();
+		//	price_ranges();
 		
 		
 		?>
