@@ -86,7 +86,8 @@ function get_categories(){
 		$max_price= $p_range/5;
 		
 		
-		$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
+		//$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
+		$check_price = "SELECT * FROM products ORDER BY product_price LIMIT $min_price, $max_price";
 		
 		//echo '<pre>';print_r($check_price);exit;
 		
@@ -96,6 +97,7 @@ function get_categories(){
 			while($row_price = mysql_fetch_array($run_price)){
 							
 							// $pro_color = $row_price['color'];
+							 $pro_id = $row_price['product_price'];
 							 $pro_title = $row_price['product_title'];
 							 $pro_image = $row_price['product_image'];
 							 $pro_keywords = $row_price['product_keywords'];
@@ -106,12 +108,13 @@ function get_categories(){
 						<h3>$pro_title</h3>
 						
 						<p><b> $pro_keywords</b></p>
-						<p><b> $pro_title</b></p>
-						<img src='$pro_image' width='180' height='180' /> <br>
 						
-						<a href='details.php?pro_id=$pro_id&pro_keyword=$pro_key' style='float:left;'>Details</a>
-						<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						<img src='$pro_image' width='180' height='180' /> <br><a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a> <a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						
+						
+						
 						</div>
+						<br>
 						";
 						
 						
@@ -127,6 +130,113 @@ function get_categories(){
 	}
 	
 	
+	function price_range_one(){
+	
+		if(isset($_GET['p_range1'])){
+				$ip_add = getIP();
+		$p_range1 = $_GET['p_range1'];
+		
+		echo $p_range1;exit;
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+		
+		$min_price= $p_range1/5 + 1;
+		$max_price= $p_range1/2;
+		
+		
+		//$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
+		$check_price1 = "SELECT * FROM products ORDER BY product_price LIMIT $min_price, $max_price";
+		
+		//echo '<pre>';print_r($check_price1);exit;
+		
+		
+		$run_price = mysql_query($check_price1 , $db);
+			
+			while($row_price = mysql_fetch_array($run_price)){
+							
+							// $pro_color = $row_price['color'];
+							 $pro_id = $row_price['product_price'];
+							 $pro_title = $row_price['product_title'];
+							 $pro_image = $row_price['product_image'];
+							 $pro_keywords = $row_price['product_keywords'];
+							
+		
+						echo "
+					<div id='single_product'>
+						<h3>$pro_title</h3>
+						
+						<p><b> $pro_keywords</b></p>
+						
+						<img src='$pro_image' width='180' height='180' /> <br><a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a> <a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						
+						
+						
+						</div>
+						<br>
+						";
+						
+						
+					
+						
+						}
+			
+		
+		
+		
+			}
+		exit;
+	}
+	
+	
+	
+	function price_range2(){
+	
+		if(isset($_GET['p_range2'])){
+				$ip_add = getIP();
+		$p_range2 = $_GET['p_range2'];
+		
+	//	echo $p_id;exit;
+		$db = mysql_connect('localhost','root','');
+						mysql_select_db('ecommsite');
+		
+		$min_price= $p_range2/2 + 1;
+		$max_price= $p_range2;
+		
+		
+		//$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
+		$check_price = "SELECT * FROM products ORDER BY product_price LIMIT $min_price, $max_price";
+		
+		//echo '<pre>';print_r($check_price);exit;
+		
+		
+		$run_price = mysql_query($check_price , $db);
+			
+			while($row_price = mysql_fetch_array($run_price)){
+							
+							// $pro_color = $row_price['color'];
+							 $pro_id = $row_price['product_price'];
+							 $pro_title = $row_price['product_title'];
+							 $pro_image = $row_price['product_image'];
+							 $pro_keywords = $row_price['product_keywords'];
+							
+		
+						echo "
+					<div id='single_product'>
+						<h3>$pro_title</h3>
+						
+						<p><b> $pro_keywords</b></p>
+						
+						<img src='$pro_image' width='180' height='180' /> <br><a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a> <a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+						
+						</div>
+						<br>
+						";
+						
+						}
+			
+			}
+		exit;
+	}
 	
 	
 	
