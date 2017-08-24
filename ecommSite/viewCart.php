@@ -219,53 +219,22 @@
            
         </div>
 		
-		
-		
-		<?php 
-			//Browse by price from product table
-			// $sql = 'SELECT * FROM products WHERE product_price BETWEEN 5 AND 30';
-
-
-		   // $retval = mysql_query( $sql, $conn );
-		   
-		   // if(! $retval ) {
-			  // die('Could not get data: ' . mysql_error());
-		   // }
-		   
-		 // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
-		 
-		 // $price= $row['product_price'];
-			 // echo '<pre>';print_r($price);exit;
-   
-			
-		
-		?>
-		
-		
-		
-		
-		
-		
-		
-         
+	
         <!--START: FRAME_BYPRICE-->
         <div id="modPrice" class="module" name="rangeItems"> <span class="menu-headers">Browse by Price</span>
           <ul>
             <!--START: byprice_format-->
             <li><a href="viewcart.php?p_range=<?php echo $data; ?>" class="cat"><?php echo $range1;?></a></li>
             
-            <li><a href="products_byprice_2-1-1.html" class="cat"><?php echo $range2;?></a></li>
+            <li><a href="viewcart.php?p_range1=<?php echo $data; ?>" class="cat"><?php echo $range2;?></a></li>
             
-            <li><a href="products_byprice_3-1-1.html" class="cat"><?php echo $range3;?></a></li>
+            <li><a href="viewcart.php?p_range2=<?php echo $data; ?>" class="cat"><?php echo $range3;?></a></li>
             <!--END: byprice_format-->
           </ul>
         </div>
-		<?php   
-		
-		//	price_ranges();
 		
 		
-		?>
+	
 		
         <!--END: FRAME_BYPRICE-->
         <!--START: FRAME_MANUFACTURER--><!--END: FRAME_MANUFACTURER-->
@@ -274,24 +243,17 @@
       </div>
     </aside>
     <!--END: LEFT BAR-->
+	
+	
+	
+	
   <div id=""><section id="">
+  	
+	
   <form method="post" action="">
     <h1>View Cart</h1>
 	
-			
-<?php 
-
-		//if(isset($_GET['range1'])){
-			//include 'rangeItems.php';
-				//}
-	
-?>
-
-			
-	
-    <!--<div class="notice">You don't have any products in your shopping cart.</div> ---->
-	
-	 
+ 
            <?php getIP(); ?>
 
 

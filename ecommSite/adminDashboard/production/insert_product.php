@@ -69,19 +69,7 @@
                   
 					  
 					  
-					<!--    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Product Color: </i></label>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                          <select class="form-control">
-                            <option><i>Select Color</i></option>
-                            <option value="Blue">Blue</option>
-                            <option value="Green">Green</option>
-                            <option value="Yellow">Yellow</option>
-                            <option value="Sky">Sky</option>
-                          </select>
-                        </div>
-                      </div>
-					  -->
+				
 					  
                 <!--       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Product Brand: </i></label>
@@ -121,16 +109,6 @@
                         </div>
                       </div>
 
-                    </form>
-                  </div>
-                </div>
-              </div>
-	
-	
-</body>
-</html>
-
-
 <?php
 
 	if(isset($_POST['insert_product'])){
@@ -138,6 +116,8 @@
 		//echo '<pre>';print_r($_POST);exit;
 	 
 //text data variable
+	
+	
 	$product_title = $_POST['product_title'];
 	$cat_id= $_POST['cat_id'];
 	$product_keywords = $_POST['product_keywords'];
@@ -165,14 +145,14 @@
 
 
 	
-	if($product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
+		if($product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
 		
 		echo "<script>alert('Please fill all the Fields!')</script>";
 		
 		}
 		else{
 			
-				move_uploaded_file($temp_name1,"product_images/$image1");
+				move_uploaded_file($temp_name1,"$image1");
 				//move_uploaded_file($temp_name2,"product_images/$image2");
 				//move_uploaded_file($temp_name3,"product_images/$image3");
 				
@@ -191,9 +171,91 @@
 			
 			}
 
-
+		
 
 	}
 
 ?>
+					  
+					  
+                    </form>
+             
+				  </br>
+				  <div class="ln_solid"></div>
+				  	<form id="f_color" action="" method="post" enctype="multipart/form-data">
 
+					<div>
+							
+							<div class="col-md-2 col-sm-2 col-xs-2">
+							  <select class="form-control" name="p_color">
+								<option><i>Select Color</i></option>
+								<option value="Blue">Blue</option>
+								<option value="Green">Green</option>
+								<option value="Yellow">Yellow</option>
+								<option value="Sky">Sky</option>
+							  </select>
+							</div>
+						 
+						  </br>
+					  
+					
+						</br><input type="file" name="product_image" id="product_image" align="center" >
+					</div>  
+						
+
+<input type="submit" name="color_submit" value="submit" align="center">
+					  
+<?php 
+
+	if(isset($_POST['color_submit'])){
+		
+		$get_proId = "SELECT * FROM products ORDER BY product_id DESC ";
+		
+			//echo'<pre>';print_r($get_proId);exit; 
+		
+		 mysql_select_db('ecommsite');
+		   $retval = mysql_query( $get_proId, $conn );
+		   
+		   if(! $retval ) {
+			  die('Could not get data: ' . mysql_error());
+		   }
+		   
+		 // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+			$pro_id = $row['product_id'];
+			//echo'<pre>';print_r($pro_id);exit; 
+		
+		$p_color = $_POST['p_color'];
+		$p_image = $_FILES['product_image']['name'];
+		$temp_image = $_FILES['product_image']['tmp_name'];
+		
+			move_uploaded_file($temp_image,"$p_image");
+		
+		$insert_color = " insert into products_color (product_id,product_color,product_image) values ('$pro_id','$p_color','$p_image')";
+		
+		
+		
+		$run_product = mysql_query($insert_color, $conn);
+				
+				if($run_product){
+					
+					echo "<script>alert('Product color and image inserted Successfully')</script>";
+					echo "<script>window_open('dashboardIndex.php?insert_product','_self ')</script>";
+					} 
+		
+	}
+
+
+?>					 
+</form>
+	<div class="ln_solid"></div>			  
+            
+
+
+
+
+
+					 
+	
+</body>
+</html>
