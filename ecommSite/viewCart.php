@@ -244,7 +244,9 @@
     </aside>
     <!--END: LEFT BAR-->
 	
-	
+	 <?php price_ranges();?>
+	 <?php p_ranges1();?>
+	 <?php price_range2();?>
 	
 	
   <div id=""><section id="">

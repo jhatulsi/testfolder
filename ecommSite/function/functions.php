@@ -123,20 +123,20 @@ function get_categories(){
 						}
 			
 		
-		
+		exit;
 		
 			}
-		exit;
+		
 	}
 	
 	
-	function price_range_one(){
-	
+	function p_ranges1(){
+		
 		if(isset($_GET['p_range1'])){
 				$ip_add = getIP();
 		$p_range1 = $_GET['p_range1'];
 		
-		echo $p_range1;exit;
+		//echo'<pre>';print_r($p_range1);exit; 
 		$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
 		
@@ -153,7 +153,9 @@ function get_categories(){
 		$run_price = mysql_query($check_price1 , $db);
 			
 			while($row_price = mysql_fetch_array($run_price)){
-							
+						
+						//echo '<pre>';print_r($row_price);exit;
+								
 							// $pro_color = $row_price['color'];
 							 $pro_id = $row_price['product_price'];
 							 $pro_title = $row_price['product_title'];
@@ -181,10 +183,10 @@ function get_categories(){
 						}
 			
 		
-		
+					exit;
 		
 			}
-		exit;
+	
 	}
 	
 	
@@ -195,7 +197,8 @@ function get_categories(){
 				$ip_add = getIP();
 		$p_range2 = $_GET['p_range2'];
 		
-	//	echo $p_id;exit;
+		//echo '<pre>';print_r($p_range2);exit;
+	
 		$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
 		
@@ -204,14 +207,18 @@ function get_categories(){
 		
 		
 		//$check_price = "select * from products where product_price MIN $min_price AND MAX $max_price";
-		$check_price = "SELECT * FROM products ORDER BY product_price LIMIT $min_price, $max_price";
+		$check_price = "SELECT * FROM products ORDER BY product_price LIMIT $min_price , $max_price";
 		
 		//echo '<pre>';print_r($check_price);exit;
 		
 		
 		$run_price = mysql_query($check_price , $db);
 			
+			//echo '<pre>';print_r($run_price);exit;
+			
 			while($row_price = mysql_fetch_array($run_price)){
+							
+							//echo '<pre>';print_r($row_price);exit;
 							
 							// $pro_color = $row_price['color'];
 							 $pro_id = $row_price['product_price'];
@@ -233,9 +240,9 @@ function get_categories(){
 						";
 						
 						}
-			
+				exit;
 			}
-		exit;
+	
 	}
 	
 	
