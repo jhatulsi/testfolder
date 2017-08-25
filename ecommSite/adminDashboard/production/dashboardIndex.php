@@ -79,6 +79,7 @@
 				  <li  class="" ><a href="dashboardIndex.php?insert_product"> Insert New Product</a>
 					
 				  <li><a href="dashboardIndex.php?view_products"><i class=""></i> View All Products <span class=""></span></a>
+				  <li><a href="dashboardIndex.php?added_products"><i class=""></i> Added Products <span class=""></span></a>
 						
                   <li><a  href="dashboardIndex.php?insert_category"><i class=""></i> Insert New Category<span class=""></span></a>
 						
@@ -90,6 +91,7 @@
                   <li><a  href="dashboardIndex.php?view_customers"><i class=""></i>View customers <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_orders"><i class=""></i>View Orders <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_payments"><i class=""></i>View Payments <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?view_companies"><i class=""></i>All Companies <span class=""></span></a>
 						
 				
 					<li><a href="../admin/logout.php"><i class=""></i><b>ADMIN LogOut </b><span class=""></span></a>
@@ -288,6 +290,10 @@
 				if(isset($_GET['view_products'])){
 						include 'view_products.php';
 					
+				}
+				
+					if(isset($_GET['added_products'])){
+						include 'added_products.php';
 					
 				}
 		

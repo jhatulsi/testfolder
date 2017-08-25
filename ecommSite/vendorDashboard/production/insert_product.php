@@ -15,6 +15,14 @@
 
 	   <form class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
 
+					<div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Company Name:</i></label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                          <input type="text" name="comp_name" id="comp_name" class="form-control" data-inputmask="'mask': '99/99/9999'">
+                        </div>
+                      </div>
+	   
+	   
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Product title:</i></label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -118,6 +126,7 @@
 //text data variable
 	
 	
+	$comp_name = $_POST['comp_name'];
 	$product_title = $_POST['product_title'];
 	$cat_id= $_POST['cat_id'];
 	$product_keywords = $_POST['product_keywords'];
@@ -145,7 +154,7 @@
 
 
 	
-		if($product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
+		if($comp_name=='' OR $product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
 		
 		echo "<script>alert('Please fill all the Fields!')</script>";
 		
@@ -156,7 +165,7 @@
 				//move_uploaded_file($temp_name2,"product_images/$image2");
 				//move_uploaded_file($temp_name3,"product_images/$image3");
 				
-				$insert_product = " insert into products (	cat_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$cat_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
+				$insert_product = " insert into products (	company_name,cat_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$comp_name','$cat_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
 				
 				//echo '<pre>';print_r($insert_product);exit;
 				
