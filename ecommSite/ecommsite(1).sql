@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2017 at 02:01 PM
+-- Generation Time: Aug 26, 2017 at 01:44 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -89,20 +89,24 @@ INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
 
 CREATE TABLE `categories` (
   `cat_id` int(10) NOT NULL,
-  `cat_title` text NOT NULL
+  `vendor_id` int(100) NOT NULL,
+  `cat_title` text NOT NULL,
+  `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
-(1, 'jacket'),
-(2, 'boot'),
-(3, 'belt'),
-(4, 'JEANS'),
-(5, 'SHIRT'),
-(6, 'Top');
+INSERT INTO `categories` (`cat_id`, `vendor_id`, `cat_title`, `status`) VALUES
+(1, 0, 'jacket', 'on'),
+(2, 0, 'boot', 'on'),
+(3, 0, 'belt', 'on'),
+(4, 0, 'JEANS', 'disapproved'),
+(5, 0, 'SHIRT', 'on'),
+(6, 0, 'Top', 'on'),
+(7, 0, 'Shrug', 'off'),
+(8, 1, 'Skirt', 'off');
 
 -- --------------------------------------------------------
 
@@ -163,6 +167,7 @@ INSERT INTO `pending_order` (`order_id`, `customer_id`, `invoice_no`, `product_i
 CREATE TABLE `products` (
   `product_id` int(10) NOT NULL,
   `cat_id` int(10) NOT NULL,
+  `vendor_id` int(50) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `product_title` text NOT NULL,
   `product_keywords` text NOT NULL,
@@ -176,23 +181,27 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `cat_id`, `date`, `product_title`, `product_keywords`, `product_price`, `product_desc`, `product_image`, `status`) VALUES
-(1, 1, '2017-08-24 05:50:28', 'jacket', 'SPORT LEATHER JACKET', 60, 'A beautiful SPORT LEATHER JACKET.', 'thumbnail3d3b.png', 'on'),
-(2, 4, '2017-08-21 15:48:32', 'jacket', 'RETRO MATE LEATHER CUT', 25, 'A beautiful RETRO MATE LEATHER CUT jacket.', 'thumbnail5843.png', 'on'),
-(3, 1, '2017-08-21 15:22:00', 'jacket', 'SPORT LEATHER JACKET', 17, 'A beautiful SPORT LEATHER JACKET.', 'thumbnaile6e7.png', 'on'),
-(4, 4, '2017-08-21 15:48:13', 'jacket', 'RETRO MATE LEATHER CUT', 25, 'A beautiful RETRO MATE LEATHER CUT jacket.', 'thumbnail5843.png', 'on'),
-(5, 2, '2017-08-21 15:22:26', 'boot', 'Heavy Duty Leather Boots', 13, 'A new Heavy Duty Leather Boots.', 'thumbnailffb9.png', 'on'),
-(6, 2, '2017-08-21 15:22:36', 'boot', 'Heavy Duty Leather Boots', 13, 'A new Heavy Duty Leather Boots.', 'thumbnailffb9.png', 'on'),
-(7, 3, '2017-08-21 15:22:52', 'belt', 'Mirage Black Leather Belt', 13, 'A beautiful Mirage Black Leather Belt.', 'thumbnail32f1.png', 'on'),
-(8, 5, '2017-08-22 12:17:13', 'SHIRT', 'Printed Shirt', 34, 'A New Printed Shirt', 'Penguins.jpg', 'on'),
-(9, 0, '0000-00-00 00:00:00', '', 'Denim Jeans', 50, 'Accidental Jeans', 'Desert.jpg', 'on'),
-(10, 0, '2017-08-22 12:28:02', '4', 'colorful Jeans', 45, 'A colorful attractive Jeans', 'Jellyfish.jpg', 'on'),
-(11, 4, '2017-08-23 05:08:02', 'JEANS', 'New jeans', 34, 'A colorful attractive Jeans', 'Jellyfish.jpg', 'on'),
-(12, 6, '2017-08-23 05:41:03', 'TOP', 'fancy  top', 25, 'A colorful attractive top', 'Tulips.jpg', 'on'),
-(13, 4, '2017-08-24 07:17:42', 'JEANS', 'accidental Denim Jeans', 70, 'A New Printed jeans', 'Hydrangeas.jpg', 'on'),
-(14, 4, '2017-08-24 07:18:15', 'JEANS', 'accidental Denim Jeans', 70, 'A New Printed jeans', 'Jellyfish.jpg', 'on'),
-(15, 6, '2017-08-24 07:46:45', 'TOP', 'fancy printed top', 25, 'a new fancy printed top', 'Chrysanthemum.jpg', 'on'),
-(16, 6, '2017-08-24 07:49:09', 'TOP', 'fancy printed top', 25, 'A colorful attractive top', 'Jellyfish.jpg', 'on');
+INSERT INTO `products` (`product_id`, `cat_id`, `vendor_id`, `date`, `product_title`, `product_keywords`, `product_price`, `product_desc`, `product_image`, `status`) VALUES
+(1, 1, 0, '2017-08-24 05:50:28', 'jacket', 'SPORT LEATHER JACKET', 60, 'A beautiful SPORT LEATHER JACKET.', 'thumbnail3d3b.png', 'on'),
+(2, 4, 0, '2017-08-26 06:58:10', 'jacket', 'RETRO MATE LEATHER CUT', 25, 'A beautiful RETRO MATE LEATHER CUT jacket.', 'thumbnail5843.png', 'disapproved'),
+(3, 1, 0, '2017-08-21 15:22:00', 'jacket', 'SPORT LEATHER JACKET', 17, 'A beautiful SPORT LEATHER JACKET.', 'thumbnaile6e7.png', 'on'),
+(4, 4, 0, '2017-08-26 06:58:10', 'jacket', 'RETRO MATE LEATHER CUT', 25, 'A beautiful RETRO MATE LEATHER CUT jacket.', 'thumbnail5843.png', 'disapproved'),
+(5, 2, 0, '2017-08-21 15:22:26', 'boot', 'Heavy Duty Leather Boots', 13, 'A new Heavy Duty Leather Boots.', 'thumbnailffb9.png', 'on'),
+(6, 2, 0, '2017-08-25 05:48:58', 'boot', 'Heavy Duty Leather Boots', 45, 'A new Heavy Duty Leather Boots.', 'thumbnailffb9.png', 'on'),
+(7, 3, 0, '2017-08-25 10:35:12', 'belt', 'Mirage Black Leather Belt', 13, 'A beautiful Mirage Black Leather Belt.', 'thumbnail32f1.png', 'disapproved'),
+(8, 5, 0, '2017-08-25 10:36:18', 'SHIRT', 'Printed Shirt', 34, 'A New Printed Shirt', 'Penguins.jpg', 'on'),
+(9, 0, 0, '0000-00-00 00:00:00', '', 'Denim Jeans', 50, 'Accidental Jeans', 'Desert.jpg', 'on'),
+(10, 0, 0, '2017-08-22 12:28:02', '4', 'colorful Jeans', 45, 'A colorful attractive Jeans', 'Jellyfish.jpg', 'on'),
+(11, 4, 0, '2017-08-26 06:58:10', 'JEANS', 'New jeans', 34, 'A colorful attractive Jeans', 'Jellyfish.jpg', 'disapproved'),
+(12, 6, 0, '2017-08-25 10:37:29', 'TOP', 'fancy  top', 25, 'A colorful attractive top', 'Tulips.jpg', 'disapproved'),
+(13, 4, 0, '2017-08-26 06:58:10', 'JEANS', 'accidental Denim Jeans', 70, 'A New Printed jeans', 'Hydrangeas.jpg', 'disapproved'),
+(14, 4, 0, '2017-08-26 06:58:10', 'JEANS', 'accidental Denim Jeans', 70, 'A New Printed jeans', 'Jellyfish.jpg', 'disapproved'),
+(15, 6, 0, '2017-08-25 05:49:12', 'TOP', 'fancy printed top', 55, 'a new fancy printed top', 'Chrysanthemum.jpg', 'on'),
+(16, 6, 0, '2017-08-24 07:49:09', 'TOP', 'fancy printed top', 25, 'A colorful attractive top', 'Jellyfish.jpg', 'on'),
+(17, 4, 0, '2017-08-26 06:58:10', 'JEANS', 'jeans from vendor', 44, 'new jeans', 'Jellyfish.jpg', 'disapproved'),
+(18, 2, 0, '2017-08-25 10:29:15', 'Boot', 'Leather Boot', 44, 'a new fancy boot', 'Jellyfish.jpg', 'on'),
+(19, 3, 0, '2017-08-25 10:31:39', 'belt', 'leather belt', 10, 'A colorful attractive belt', 'Lighthouse.jpg', 'on'),
+(20, 6, 1, '2017-08-26 11:16:55', 'TOP', 'fancy printed top', 44, 'A colorful fancy top', 'Chrysanthemum.jpg', 'off');
 
 -- --------------------------------------------------------
 
@@ -203,6 +212,7 @@ INSERT INTO `products` (`product_id`, `cat_id`, `date`, `product_title`, `produc
 CREATE TABLE `products_color` (
   `color_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
+  `vendor_id` int(100) NOT NULL,
   `product_color` varchar(100) NOT NULL,
   `product_image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -211,19 +221,19 @@ CREATE TABLE `products_color` (
 -- Dumping data for table `products_color`
 --
 
-INSERT INTO `products_color` (`color_id`, `product_id`, `product_color`, `product_image`) VALUES
-(1, 1, 'Black', 'thumbnail3d3b.png'),
-(2, 1, 'Red', 'thumbnail3d3b.png'),
-(3, 2, 'Black', 'thumbnail5843.png'),
-(4, 2, 'Greeen6', 'thumbnail5843.png'),
-(5, 4, 'Black', 'thumbnail5843.png'),
-(6, 4, 'Blue', 'thumbnail5843.png'),
-(7, 5, 'Black', 'thumbnailffb9.png'),
-(8, 5, 'Pink', 'thumbnailffb9.png'),
-(9, 16, 'Yellow', ''),
-(10, 16, 'Yellow', ''),
-(11, 16, 'Blue', ''),
-(13, 16, 'Green', 'Jellyfish.jpg');
+INSERT INTO `products_color` (`color_id`, `product_id`, `vendor_id`, `product_color`, `product_image`) VALUES
+(1, 1, 0, 'Black', 'thumbnail3d3b.png'),
+(2, 1, 0, 'Red', 'thumbnail3d3b.png'),
+(3, 2, 0, 'Black', 'thumbnail5843.png'),
+(4, 2, 0, 'Greeen6', 'thumbnail5843.png'),
+(5, 4, 0, 'Black', 'thumbnail5843.png'),
+(6, 4, 0, 'Blue', 'thumbnail5843.png'),
+(7, 5, 0, 'Black', 'thumbnailffb9.png'),
+(8, 5, 0, 'Pink', 'thumbnailffb9.png'),
+(9, 16, 0, 'Yellow', ''),
+(10, 16, 0, 'Yellow', ''),
+(11, 16, 0, 'Blue', ''),
+(13, 16, 0, 'Green', 'Jellyfish.jpg');
 
 -- --------------------------------------------------------
 
@@ -285,6 +295,26 @@ INSERT INTO `size_tb` (`size_id`, `product_id`, `color_id`, `product_size`) VALU
 (10, 6, 4, 'small'),
 (11, 8, 5, 'XL');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendorlogin_tb`
+--
+
+CREATE TABLE `vendorlogin_tb` (
+  `id` int(3) NOT NULL,
+  `email` varchar(55) NOT NULL,
+  `password` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `vendorlogin_tb`
+--
+
+INSERT INTO `vendorlogin_tb` (`id`, `email`, `password`) VALUES
+(1, 'admin@gmail.com', 'admin@123'),
+(2, 'jhatulsi2011@gmail.com', 'jhatulsi@123');
+
 --
 -- Indexes for dumped tables
 --
@@ -344,6 +374,12 @@ ALTER TABLE `size_tb`
   ADD PRIMARY KEY (`size_id`);
 
 --
+-- Indexes for table `vendorlogin_tb`
+--
+ALTER TABLE `vendorlogin_tb`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -361,7 +397,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `customers`
 --
@@ -376,7 +412,7 @@ ALTER TABLE `pending_order`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `products_color`
 --
@@ -392,6 +428,11 @@ ALTER TABLE `shipping`
 --
 ALTER TABLE `size_tb`
   MODIFY `size_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `vendorlogin_tb`
+--
+ALTER TABLE `vendorlogin_tb`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
