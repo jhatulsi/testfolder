@@ -1,3 +1,37 @@
+<?php 
+	session_start();
+	include 'includes/dbconn.php';
+
+	if (isset($_GET['email']) && !empty($_GET['email'])) {
+		
+		$check_mail = $_GET['email'];
+		
+		 $sql = "SELECT * FROM vendorlogin_tb where email=$check_mail";
+		// echo '<pre>';print_r($sql);exit;
+		 
+		   mysql_select_db('ecommsite');
+		   $retval = mysql_query( $sql, $conn );
+		   
+		   if(! $retval ) {
+			  die('Could not get data: ' . mysql_error());
+		   }
+		   
+		   $row = mysql_fetch_array($retval, MYSQL_ASSOC);
+				$mail_id = $row['id'];
+		  // echo '<pre>';print_r($mail_id);exit;
+}
+
+
+
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,17 +110,17 @@
                 <ul class="nav side-menu">
                   
 				
-				  <li  class="" ><a href="dashboardIndex.php?insert_product"> Insert New Product</a>
+				  <li  class="" ><a href="dashboardIndex.php?insert_product&id=<?php echo $mail_id;?>"> Insert New Product</a>
 					
-				  <li><a href="dashboardIndex.php?view_products"><i class=""></i> View All Products <span class=""></span></a>
+				  <li><a href="dashboardIndex.php?view_products&id=<?php echo $mail_id;?>"><i class=""></i> View My Products <span class=""></span></a>
 						
-                  <li><a  href="dashboardIndex.php?insert_category"><i class=""></i> Insert New Category<span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?insert_category&id=<?php echo $mail_id;?>"><i class=""></i> Insert New Category<span class=""></span></a>
 						
-                  <li><a  href="dashboardIndex.php?view_categories"><i class=""></i>View All Categories <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?view_categories&id=<?php echo $mail_id;?>"><i class=""></i>View My Categories <span class=""></span></a>
 						
-				   <li> <a href="dashboardIndex.php?insert_brand"><i></i> Insert New Brand<span class=""></span></a>
+				   <li> <a href="dashboardIndex.php?insert_brand&id=<?php echo $mail_id;?>"><i></i> Insert New Brand<span class=""></span></a>
 						
-                  <li><a  href="dashboardIndex.php?view_brands"><i class=""></i>View All Brands <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?view_brands&id=<?php echo $mail_id;?>"><i class=""></i>View All Brands <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_customers"><i class=""></i>View customers <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_orders"><i class=""></i>View Orders <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_payments"><i class=""></i>View Payments <span class=""></span></a>

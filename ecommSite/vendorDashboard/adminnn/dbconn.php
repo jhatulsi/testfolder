@@ -8,4 +8,5 @@ $dbhost = 'localhost';
       die('Could not connect: ' . mysql_error());
    }
    mysql_select_db("ecommsite")or die("cannot select DB"); 
+  
 ?>

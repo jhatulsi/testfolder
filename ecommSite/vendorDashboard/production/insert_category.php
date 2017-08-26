@@ -1,7 +1,14 @@
-
+	
 <?php 
 
 	include 'includes/dbconn.php';
+	if(isset($_GET['id'])){
+		
+		$vendor_id = $_GET['id'];
+		
+		//echo '<pre>';print_r($vendor_id);exit;
+	}
+	
 
 ?>
 
@@ -32,16 +39,16 @@
 	//echo 'hello';exit;
 		if(isset($_POST['insert_category'])){
 		$cat_title = $_POST['cat_title'];
-		
-		$insert_cat = "insert into categories (cat_title)  values ('$cat_title')";
+		$status="off";
+		$insert_cat = "insert into categories (cat_title,vendor_id,status)  values ('$cat_title','$vendor_id','$status')";
 		//exit($insert_cat);
 		
 		$run_cat = mysql_query($insert_cat, $conn);
 		
 		if($run_cat){
 				//echo "<script>$('#categoryErr').('New category inserted')</script>";
-				echo "<script>alert('New category inserted.')</script>";
-		echo "<script>window.open('dashboardIndex.php?view_brands','_self' )</script>";
+				echo "<script>alert('New category Requested.')</script>";
+		echo "<script>window.open('dashboardIndex.php?insert_category','_self' )</script>";
 			
 			
 		}

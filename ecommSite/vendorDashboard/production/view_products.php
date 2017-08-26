@@ -1,3 +1,22 @@
+
+
+<?php 
+	//session_start();
+	include 'includes/dbconn.php';
+	if(isset($_GET['id'])){
+		
+		$vendor_id = $_GET['id'];
+		
+		//echo '<pre>';print_r($vendor_id);exit;
+	}
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +30,7 @@
 if(isset($_GET['view_products'])){ ?>
 		<table align="center" width="794" bgcolor="#FFCC99">
 			<tr align="center">
-			<td colspan="6"><h2>View All Products</h2></td>
+			<td colspan="6"><h2>View My Products</h2></td>
 			</tr>
 			<tr>
 				<th><b>S.No.</b></th>
@@ -26,8 +45,11 @@ if(isset($_GET['view_products'])){ ?>
 				</tr>
 			<?php 
 				include 'includes/dbconn.php';
-				$i = 0;
-				$get_pro = "select * from products";
+				$i = 1;
+				$get_pro = "select * from products where vendor_id=$vendor_id";
+				
+				//echo '<pre>';print_r($get_pro);exit;
+				
 				$run_pro = mysql_query($get_pro, $conn);
 				
 				while($row_pro = mysql_fetch_array($run_pro)){
@@ -50,7 +72,7 @@ if(isset($_GET['view_products'])){ ?>
 			
 			
 			
-			<tr align="">
+			<tr align="center">
 			<td><?php echo $i;?></td>
 			<td><?php echo $p_id;?></td>
 			<td><?php echo $p_title;?></td>

@@ -1,20 +1,4 @@
 
-	
-<?php 
-
-	include 'includes/dbconn.php';
-	if(isset($_GET['id'])){
-		
-		$vendor_id = $_GET['id'];
-		
-		//echo '<pre>';print_r($vendor_id);exit;
-	}
-	
-
-?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,12 +18,14 @@
 				<th><b>Delete</b></th>
 				<th><b>Edit</b></th>
 				<th><b>Delete</b></th>
+				<th><b>Check</b></th>
 				</tr>
 				</hr>
 				<?php 
 					include 'includes/dbconn.php';
+				$status ='off';
 				
-				$get_categories = "select * from categories where vendor_id=$vendor_id";
+				$get_categories = "select * from categories where status='$status'";
 				$run_categories = mysql_query($get_categories,$conn);
 				while($row_categories = mysql_fetch_array($run_categories)){
 					
@@ -54,7 +40,7 @@
 				<td><a href="index.php?edit_brand=<?php echo $category_id;?>">Edit</a></td>
 				<td><a href="index.php?edit_brand=<?php echo $category_id;?>">Delete</a></td>
 				<td><a href="delete_brand.php?delete_brand=<?php echo $category_id;?>">Delete</a></td>
-				
+				<td><a href="approve_category.php?appr_cat=<?php echo $category_id; ?>">Approve</a> / <a href="approve_category.php?disappr_cat=<?php echo $category_id; ?>" id="dis_appr">Disapprove</a> </td>
 				</tr>
 				<?php } ?>
 	</table>

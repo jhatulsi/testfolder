@@ -1,6 +1,12 @@
 <?php 
-
+	//session_start();
 	include 'includes/dbconn.php';
+	if(isset($_GET['id'])){
+		
+		$vendor_id = $_GET['id'];
+		
+		//echo '<pre>';print_r($vendor_id);exit;
+	}
 
 ?>
 
@@ -15,13 +21,13 @@
 
 	   <form class="form-horizontal form-label-left" method="post" action="" enctype="multipart/form-data">
 
-					<div class="form-group">
+			<!--		<div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Company Name:</i></label>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                           <input type="text" name="comp_name" id="comp_name" class="form-control" data-inputmask="'mask': '99/99/9999'">
                         </div>
                       </div>
-	   
+	    -->
 	   
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Product title:</i></label>
@@ -126,7 +132,7 @@
 //text data variable
 	
 	
-	$comp_name = $_POST['comp_name'];
+//	$comp_name = $_POST['comp_name'];
 	$product_title = $_POST['product_title'];
 	$cat_id= $_POST['cat_id'];
 	$product_keywords = $_POST['product_keywords'];
@@ -154,7 +160,7 @@
 
 
 	
-		if($comp_name=='' OR $product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
+		if($product_title =='' OR $cat_id =='' OR $product_price == '' OR $product_desc == '' OR $product_keywords == '' OR $image1 == ''){
 		
 		echo "<script>alert('Please fill all the Fields!')</script>";
 		
@@ -165,7 +171,7 @@
 				//move_uploaded_file($temp_name2,"product_images/$image2");
 				//move_uploaded_file($temp_name3,"product_images/$image3");
 				
-				$insert_product = " insert into products (	company_name,cat_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$comp_name','$cat_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
+				$insert_product = " insert into products (cat_id,vendor_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$cat_id','$vendor_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
 				
 				//echo '<pre>';print_r($insert_product);exit;
 				
@@ -232,6 +238,7 @@
 		 // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
 		 $row = mysql_fetch_array($retval, MYSQL_ASSOC);
 			$pro_id = $row['product_id'];
+			$ven_id = $row['vendor_id'];
 			//echo'<pre>';print_r($pro_id);exit; 
 		
 		$p_color = $_POST['p_color'];
@@ -240,7 +247,7 @@
 		
 			move_uploaded_file($temp_image,"$p_image");
 		
-		$insert_color = " insert into products_color (product_id,product_color,product_image) values ('$pro_id','$p_color','$p_image')";
+		$insert_color = " insert into products_color (product_id,vendor_id,product_color,product_image) values ('$pro_id','$ven_id','$p_color','$p_image')";
 		
 		
 		

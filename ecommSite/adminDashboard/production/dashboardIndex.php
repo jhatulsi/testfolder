@@ -84,6 +84,8 @@
                   <li><a  href="dashboardIndex.php?insert_category"><i class=""></i> Insert New Category<span class=""></span></a>
 						
                   <li><a  href="dashboardIndex.php?view_categories"><i class=""></i>View All Categories <span class=""></span></a>
+                  
+				  <li><a  href="dashboardIndex.php?added_category"><i class=""></i>Added Categories <span class=""></span></a>
 						
 				   <li> <a href="dashboardIndex.php?insert_brand"><i></i> Insert New Brand<span class=""></span></a>
 						
@@ -297,6 +299,10 @@
 					
 				}
 		
+		if(isset($_GET['added_category'])){
+						include 'added_category.php';
+					
+				}
 			?>
 			
 			

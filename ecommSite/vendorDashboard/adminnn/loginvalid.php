@@ -1,11 +1,13 @@
 <?php 
-//session_start();
+session_start();
 		include 'dbconn.php';
 		$error = "";
 		if(count($_POST)>0){
 			
-			$email = $_POST['email']; 
-			$password = $_POST['password'];
+			//echo '<pre>';print_r($_POST);exit;
+			
+			$email = $_POST['vendor_email']; 
+			$password = $_POST['vendor_password'];
 			if(isset($_POST['re'])){
 				$re = "on";
 			}else{
@@ -20,15 +22,17 @@
 				$password = stripslashes($password);
 				
 				//exit($email);
-				$sql = "SELECT * FROM vendorlogin_tb where password='$password' and email='$email'";
+				$sql = "SELECT * FROM vendors where vendor_password='$password' and vendor_email='$email'";
 				
 				
 				//echo '<pre>';print_r($sql);exit;
 				$result = mysql_query($sql,$conn);
 				
+				//echo '<pre>';print_r($result);exit;
+				
 				$rows = mysql_num_rows($result);
 				
-				//echo '<pre>';print_r($rows);exit;
+					echo '<pre>';print_r(mysql_num_rows($result));exit;
 				
 				if($rows == 1){
 					if($re == "on"){
@@ -41,11 +45,11 @@
 					}
 					
 					session_start();
-					$_SESSION['loginUser'] = $rows['email'];
+					$_SESSION['loginUser'] = $rows['vendor_name'];
 					
 					echo "<script>alert('logged in')</script>";
 				//	echo "<script>window_open('../production/dashboardIndex','_self')</script>";
-				header("location:../production/dashboardIndex.php?email='$email'");
+				header('location:../production/dashboardIndex.php');
 					//echo "user loggedin";
 					//exit;
 					

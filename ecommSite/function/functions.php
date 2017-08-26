@@ -15,8 +15,9 @@ return $ip;
 function get_categories(){
 		$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
+						$status ='on';
 						
-						$get_cats = "select * From categories";
+						$get_cats = "select * From categories where status='$status'";
 						//echo '<pre>';print_r($get_cats);exit;
 						
 					$run_cats =mysql_query($get_cats , $db);
@@ -37,7 +38,8 @@ function get_categories(){
 				
 				$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
-						$get_cat_pro =  "select * from products where cat_id='$cat_id'"; 
+						$status ='on'; 
+						$get_cat_pro =  "select * from products where cat_id='$cat_id' AND status='$status'"; 
 						$run_cat_pro = mysql_query($get_cat_pro , $db);
 						
 						$count = mysql_num_rows($run_cat_pro);
@@ -488,7 +490,11 @@ function getPro(){
 				if(!isset($_GET['brand'])){
 						$db = mysql_connect('localhost','root','');
 						mysql_select_db('ecommsite');
-						$get_products = "select * from products order by rand() LIMIT 0,6"; 
+						$status = 'on';
+						
+						$get_products = "select * from products where status='$status' order by rand() LIMIT 0,6"; 
+						//echo $get_products;exit;
+						
 						$run_products = mysql_query($get_products , $db);
 						
 						while($row_products = mysql_fetch_array($run_products)){
