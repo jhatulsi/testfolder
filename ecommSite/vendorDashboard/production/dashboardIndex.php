@@ -42,7 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gentelella Alela! | </title>
-	<h3><a href="onepage-template/index.php" style= "color:white">Website</a></h3>
+	<h3><a href="../../index.php" style= "color:white">Website</a></h3>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -124,6 +124,7 @@
                   <li><a  href="dashboardIndex.php?view_customers"><i class=""></i>View customers <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_orders"><i class=""></i>View Orders <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_payments"><i class=""></i>View Payments <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?update_profile&id=<?php echo $mail_id;?>"><i class=""></i>Update Profile <span class=""></span></a>
 						
 				
 					<li><a href="../admin/logout.php"><i class=""></i><b>ADMIN LogOut </b><span class=""></span></a>
@@ -321,6 +322,12 @@
 				
 				if(isset($_GET['view_products'])){
 						include 'view_products.php';
+					
+					
+				}
+				
+				if(isset($_GET['update_profile'])){
+						include 'update_vendorForm.php';
 					
 					
 				}

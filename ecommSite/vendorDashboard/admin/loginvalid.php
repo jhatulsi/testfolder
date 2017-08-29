@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 		include 'dbconn.php';
 		$error = "";
 		if(count($_POST)>0){

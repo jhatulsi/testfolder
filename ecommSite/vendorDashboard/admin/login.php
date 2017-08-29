@@ -23,7 +23,7 @@ include 'loginvalid.php';
  Remember Me<input type="checkbox" name="re" id="re" value="on" <?php if(isset($_COOKIE['password_cookie'])) echo 'checked';?> ><br>
 <input id="submit" type="submit" name="submit" value="Log-In" >
 <a href="fpassword.php">forgetpassword</a>
-
+<h4><a href="signInForm.php" color="red">NEW USER?? Sign-in </a></h4>
 
  </form>
  </fieldset> 
@@ -31,3 +31,27 @@ include 'loginvalid.php';
  </div> 
  </body>
  </html>
+ <?php 
+ 
+	if(count($_POST)>0){
+		
+		echo '<pre>';print_r($_POST);exit;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+ 
+ 
+ 
+ 
+ ?>

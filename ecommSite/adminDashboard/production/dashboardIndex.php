@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gentelella Alela! | </title>
-	<h3><a href="onepage-template/index.php" style= "color:white">Website</a></h3>
+	<h3><a href="../../index.php" style= "color:white">Website</a></h3>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +28,9 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+	
+	
+	
 	
 	<style>
 		.menu_section li:hover {
@@ -91,6 +94,7 @@
 						
                   <li><a  href="dashboardIndex.php?view_brands"><i class=""></i>View All Brands <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_customers"><i class=""></i>View customers <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?view_vendors"><i class=""></i>View vendors <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_orders"><i class=""></i>View Orders <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_payments"><i class=""></i>View Payments <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_companies"><i class=""></i>All Companies <span class=""></span></a>
@@ -303,6 +307,12 @@
 						include 'added_category.php';
 					
 				}
+				
+				if(isset($_GET['view_vendors'])){
+						include 'view_vendors.php';
+					
+				}
+				
 			?>
 			
 			

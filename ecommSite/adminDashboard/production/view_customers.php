@@ -1,4 +1,33 @@
-  <div class="col-md-6 col-sm-6 col-xs-12">
+ 
+
+
+  <style>
+	.x_panel {
+    width: 200%;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+}
+  
+  </style>	
+
+
+
+
+
+
+
+
+
+
+
+ <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Customer List:<small></small></h2>

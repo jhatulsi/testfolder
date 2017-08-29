@@ -80,10 +80,14 @@
         </ul>
         <div id="FRAME_SEARCH" ><!--START: FRAME_SEARCH-->
           <div id="searchBox" class="hidden-mobile">
-            <form method="get" name="searchForm" action="http://blackeagle-preview-com.3dcartstores.com/search.asp">
-              <input type="text" id="searchlight" name="keyword" value="" placeholder="Search" />
+            <form method="GET" name="" action="#">
+              <input type="text" id="keyword" name="keyword" value="" placeholder="Search" />
               <input type="submit" name="search" value="" />
+			
             </form>
+			  
+		
+			
             <div class="clear"></div>
           </div>
           <!--END: FRAME_SEARCH--></div>
@@ -96,6 +100,7 @@
     <div class="wrapper">
       <div id="welcome-msg" class="welcome-msg">
         <!--START: login-->
+		<h3><a href="vendorDashboard/admin/login.php"><b>ADD</b> <b>product?</b></a> </h3>
         <a href="myaccount.html" class="link">My Account</a> | Hi Guest, <a href="myaccount.html">Login?</a>
         <!--END: login--> 
         <!--START: username--><!--END: username-->
@@ -166,6 +171,51 @@
 <!--START: FEATURE_MENU-->
 <h2 class="header-specials">Featured Products</h2>
 <!--START: CATEGORY_ITEMS--><div class="productBlockContainer columns-3"><div class="product-container first-item"> 
+<!------------------------------------code for data on search---------------------------------------------->
+	  <?php 
+				if(isset( $_GET['keyword'])){
+					$search_value = $_GET['keyword'];
+					
+					//echo $search_value;exit;
+					$sql = "select * from products where product_title LIKE '%".$search_value."%'";
+					
+					$run_products = mysql_query($sql , $conn);
+						
+						while($row_products = mysql_fetch_array($run_products)){
+							 $pro_id = $row_products['product_id'];
+							 $pro_title = $row_products['product_title'];
+							 $pro_cat = $row_products['cat_id'];
+							  $pro_key = $row_products['product_keywords'];
+							 
+							 //$pro_brand = $row_products['brand_id'];
+							 $pro_desc = $row_products['product_desc'];
+							 $pro_price = $row_products['product_price'];
+							 $pro_image = $row_products['product_image'];
+							
+						//	 echo '<pre>';print_r($row_products);exit;
+						 	
+							echo "
+							<div id='single_product'>
+								<h3>$pro_title</h3>
+								
+								<img src='$pro_image' width='180' height='180' /> <br>
+								<p><b>Price: $pro_price</b></p>
+								<a href='details.php?pro_id=$pro_id&pro_keyword=$pro_key' style='float:left;'>Details</a> <br>
+								<a href='index.php?add_cart=$pro_id' style='float:right; background:#FFF;'>Add To Cart</a>
+								</div>
+								";
+						
+						}
+					
+					exit;
+					
+			  
+				}
+			  
+			  ?>
+			  
+			  
+			  <!-------------------------------------code for data on search--------------------------------------------->
 
 <?php getIP(); ?>
 

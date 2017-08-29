@@ -1,24 +1,27 @@
 
 <?php
-   include '../dbconn.php';
+   include 'dbconn.php';
    if(count($_POST)>0){
+	  // echo '<pre>';print_r($_POST);exit;
 	   
-	   $username = $_POST['username'];
+	   $email = $_POST['email'];
 	   $password = $_POST['password'];
    
-		$newpassword = stripslashes(md5($password));
+  
+		//$newpassword = stripslashes(md5($password));
 		
-   $sql ="INSERT INTO sliderlogin_tb(`username`, `password`,is_active)
-   VALUES ('$username', '$newpassword', 1)";
+   $sql ="INSERT INTO vendorlogin_tb(`email`, `password`,is_active)
+   VALUES ('$email', '$password', 1)";
       
-   mysql_select_db('example');
+   mysql_select_db('ecommsite');
    $retval = mysql_query( $sql, $conn );
    
    if(! $retval ) {
       die('Could not enter data: ' . mysql_error());
    }
    
-   echo "Entered data successfully\n";
+   echo "<script>Entered data successfully</script>";
+   echo "<script>window.open('../production/dashboardIndex.php',_self)</script>";
    
    mysql_close($conn);
    
