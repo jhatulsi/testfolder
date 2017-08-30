@@ -18,6 +18,8 @@
 		   
 		   $row = mysql_fetch_array($retval, MYSQL_ASSOC);
 				$mail_id = $row['id'];
+				$email = $row['email'];
+				//$setEmail = . ' . $email . ' .;
 		  // echo '<pre>';print_r($mail_id);exit;
 }
 
@@ -124,7 +126,7 @@
                   <li><a  href="dashboardIndex.php?view_customers"><i class=""></i>View customers <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_orders"><i class=""></i>View Orders <span class=""></span></a>
                   <li><a  href="dashboardIndex.php?view_payments"><i class=""></i>View Payments <span class=""></span></a>
-                  <li><a  href="dashboardIndex.php?update_profile&id=<?php echo $mail_id;?>"><i class=""></i>Update Profile <span class=""></span></a>
+                  <li><a  href="dashboardIndex.php?update_profile&id=<?php echo $mail_id;?>&email= '<?php echo $email;?> '"><i class=""></i>Update Profile <span class=""></span></a>
 						
 				
 					<li><a href="../admin/logout.php"><i class=""></i><b>ADMIN LogOut </b><span class=""></span></a>

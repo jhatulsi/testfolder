@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include 'loginvalid.php';
 
 ?>
@@ -31,27 +32,4 @@ include 'loginvalid.php';
  </div> 
  </body>
  </html>
- <?php 
  
-	if(count($_POST)>0){
-		
-		echo '<pre>';print_r($_POST);exit;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
- 
- 
- 
- 
- ?>

@@ -11,34 +11,15 @@
 		
 	}
 	
-   $sql = "SELECT * FROM vendorreg where email=$vendor_email"; 
- //  echo '<pre>';print_r( $sql);exit;
- //  $sql = 'SELECT * FROM vendorreg';
-
-   mysql_select_db('ecommsite');
-   $retval = mysql_query( $sql, $conn );
-   
-   if(! $retval ) {
-      die('Could not get data: ' . mysql_error());
-   }
-   
-   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
-      $name = $row['name'];
-      $comp_name = $row['comp_name'];
-      $state = $row['state'];
-      $country = $row['country'];
-      $gender = $row['gender'];
-      $email = $row['email'];
-   } 
+ 
  // echo "Fetched data successfully\n";
    //mysql_close($conn);
 ?>
 
 
-<div align="right" color="black">
-<h3><b><a href="changePassword.php?email=<?php echo $vendor_email?>">Change password?</a></b></h3>
-</div>
-      <!-- page content -->
+
+
+        <!-- page content -->
        
           <div class="">
             <div class="page-title">
@@ -77,61 +58,21 @@
                     <br />
                     <form method="post" action="update_query.php" class="form-horizontal form-label-left">
 
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"  >Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $name;?>">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Company's Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="comp_name" name="comp_name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $comp_name;?>">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">State</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" name="state" type="text" name="middle-name" value="<?php echo $state;?>">
-                        </div>
-                      </div>
-					   <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" name="country" type="text" name="middle-name" value="<?php echo $country;?>">
-                        </div>
-                      </div>
-					  
+                       
 					   <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" name="email" type="email" name="middle-name" value="<?php echo $email;?>">
+                          <input id="middle-name" class="form-control col-md-7 col-xs-12" name="email" type="email" name="middle-name" value="<?php echo $vendor_email;?>">
                         </div>
                       </div>
 					  
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="female"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                     <!-- <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"  >Password <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                          <input type="text" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12" value="">
                         </div>
-                      </div>--->
-					
+                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -144,8 +85,6 @@
                     </form>
                   </div>
                 </div>
-				
-
               </div>
             </div>
 
@@ -201,3 +140,48 @@
 	
   </body>
 </html>
+
+
+<?php 
+		include 'includes/dbconn.php';
+		
+		if(count($_POST['submit'])>0){
+			
+			$password = $_POST['password'];
+			
+			
+			
+			$sql = "update vendorlogin_tb SET password= '$password' where email='$email' AND is_active=1";
+										
+			//echo '<pre>';print_r($sql);exit;
+			$run_sql = mysql_query($sql,$conn);
+			if(! $run_sql ) {
+				
+			  die('Could not get data: ' . mysql_error());
+		   }else{
+			   
+			   echo "updated Password successfully\n";
+			   header ('Location:dashboardIndex.php');
+			   
+		   }
+			
+			
+				  mysql_close($conn);
+			//echo '<pre>';print_r($_POST);exit;
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ?>
+	

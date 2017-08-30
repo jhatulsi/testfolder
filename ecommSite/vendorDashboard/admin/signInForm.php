@@ -1,7 +1,4 @@
-<?php 
-include 'loginvalid.php';
 
-?>
 
 <!DOCTYPE HTML>
  <html> 
@@ -35,9 +32,11 @@ include 'loginvalid.php';
  
  
 <?php
+
    include 'dbconn.php';
    if(count($_POST)>0){
-	  // echo '<pre>';print_r($_POST);exit;
+	  
+	  //echo '<pre>';print_r($_POST);exit;
 	   
 	   $email = $_POST['email'];
 	   $password = $_POST['password'];
@@ -55,8 +54,8 @@ include 'loginvalid.php';
       die('Could not enter data: ' . mysql_error());
    }
    
-   echo "<script>Entered data successfully</script>";
-   echo "<script>window.open('../production/dashboardIndex.php',_self)</script>";
+   echo "Entered data successfully";
+   header ('location:../production/vendor_form.php');
    
    mysql_close($conn);
    

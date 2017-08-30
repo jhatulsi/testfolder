@@ -11,10 +11,12 @@
 			$gender = $_POST['gender'];
 			
 			
-			$sql = "update vendorReg (`name`,`comp_name`,`state`,`country`,`gender`,`email`,`is_active`) values('$name','$comp_name','$state','$country','$gender','$email',1)";
-			
+			$sql = "update vendorReg SET name= '$name',comp_name= '$comp_name',state= '$state',country= '$country',gender= '$gender' where email='$email' AND is_active=1";
+										
+			//echo '<pre>';print_r($sql);exit;
 			$run_sql = mysql_query($sql,$conn);
 			if(! $run_sql ) {
+				
 			  die('Could not get data: ' . mysql_error());
 		   }else{
 			   

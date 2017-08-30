@@ -5,8 +5,6 @@
 	if(isset($_GET['id'])){
 		
 		$vendor_id = $_GET['id'];
-		
-		//echo '<pre>';print_r($vendor_id);exit;
 	}
 	
 
