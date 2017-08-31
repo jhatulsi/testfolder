@@ -1,4 +1,11 @@
 
+<?php 
+if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		
+	}
+
+?>
 
 
 

@@ -7,5 +7,5 @@ $dbhost = 'localhost';
    if(! $conn ) {
       die('Could not connect: ' . mysql_error());
    }
-   mysql_select_db("login")or die("cannot select DB"); 
+   mysql_select_db("ecommsite")or die("cannot select DB"); 
 ?>

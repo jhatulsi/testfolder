@@ -1,8 +1,9 @@
 <?php 
-//session_start();
+session_start();
 		include 'dbconn.php';
 		$error = "";
 		if(count($_POST)>0){
+			//echo'<pre>';print_r($_POST);exit;
 			
 			$email = $_POST['email']; 
 			$password = $_POST['password'];
@@ -20,7 +21,7 @@
 				$password = stripslashes($password);
 				
 				//exit($email);
-				$sql = "SELECT * FROM sliderlogin_tb where password='$password' and email='$email'";
+				$sql = "SELECT * FROM admins where password='$password' and email='$email'";
 				
 				
 				//echo '<pre>';print_r($sql);exit;
@@ -38,8 +39,13 @@
 						setcookie("password_cookie",$password,time()-(86400 * 10));
 					}
 					
-					session_start();
-					$_SESSION['loginUser'] = $rows['email'];
+					$new_row = mysql_fetch_array($result);
+				
+					$_SESSION['loginUserId'] = $new_row['id'];
+					$_SESSION['loginUserEmail'] = $new_row['email'];
+					
+					//exit($_SESSION['loginUserId']);
+					
 					
 					echo "<script>alert('logged in')</script>";
 				//	echo "<script>window_open('../production/dashboardIndex','_self')</script>";

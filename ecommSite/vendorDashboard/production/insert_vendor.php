@@ -18,8 +18,8 @@
 			  die('Could not get data: ' . mysql_error());
 		   }else{
 			   
-			   echo "Inserted data successfully\n";
-			   header ('Location:dashboardIndex.php');
+			   echo "You Are Registered.THANK YOU\n";
+			   header ('Location:../admin/login.php');
 			   
 		   }
 			

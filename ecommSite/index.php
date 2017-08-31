@@ -100,7 +100,7 @@
     <div class="wrapper">
       <div id="welcome-msg" class="welcome-msg">
         <!--START: login-->
-		<h3><a href="vendorDashboard/admin/login.php"><b>ADD</b> <b>product?</b></a> </h3>
+		<h3><b>ADD</b> <b>product </b><a href="vendorDashboard/admin/login.php">Login?</a> <a href="vendorDashboard/admin/signInForm.php">SignIn?</a></h3>
         <a href="myaccount.html" class="link">My Account</a> | Hi Guest, <a href="myaccount.html">Login?</a>
         <!--END: login--> 
         <!--START: username--><!--END: username-->

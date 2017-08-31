@@ -10,9 +10,27 @@
 		//echo '<pre>';print_r($sess_id);exit;
 	}
 	
+	// if(isset($_GET['email'])){
+		
+		// $vendor_email = $_GET['email'];
+		
+		
+	// }
 	
-	
-	
+	// $sql = "SELECT * FROM vendorreg where email=$vendor_email"; 
+ 
+
+   // mysql_select_db('ecommsite');
+   // $retval = mysql_query( $sql, $conn );
+   
+   // if(! $retval ) {
+      // die('Could not get data: ' . mysql_error());
+   // }
+   
+   // while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+     
+      // $email = $row['email'];
+   // } 
 	
 ?>
 
@@ -80,7 +98,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"  >Password <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12" value="">
+                          <input type="password" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12" value="">
                         </div>
                       </div>
                       <div class="ln_solid"></div>
@@ -112,7 +130,7 @@
 			
 			
 			
-			$sql = "update vendorlogin_tb SET password= '$password' where email='$sess_email' AND is_active=1";
+			$sql = "update admins SET password= '$password' where email='$sess_email' AND is_active=1";
 										
 			//echo '<pre>';print_r($sql);exit;
 			$run_sql = mysql_query($sql,$conn);
@@ -121,7 +139,7 @@
 			  die('Could not get data: ' . mysql_error());
 		   }else{
 			   
-			  echo "<script>alert('Updated password Successfully.')</script>";
+			echo "<script>alert('Updated password successfully.')</script>";
 			  // header ('Location:dashboardIndex.php?update_profile');
 			   
 		   }

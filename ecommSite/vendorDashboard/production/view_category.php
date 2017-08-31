@@ -3,6 +3,14 @@
 <?php 
 	//	session_start();
 	include 'includes/dbconn.php';
+	
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		$sess_email	= $_SESSION['loginUserEmail'];
+		//echo $sess_id;exit;
+		//echo '<pre>';print_r($sess_id);exit;
+	}
+	
 	if(isset($_GET['id'])){
 		
 		$vendor_id = $_GET['id'];
@@ -39,7 +47,7 @@
 				<?php 
 					include 'includes/dbconn.php';
 				
-				$get_categories = "select * from categories where vendor_id=$vendor_id";
+				$get_categories = "select * from categories where vendor_id=$sess_id";
 				$run_categories = mysql_query($get_categories,$conn);
 				while($row_categories = mysql_fetch_array($run_categories)){
 					

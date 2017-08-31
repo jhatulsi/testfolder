@@ -3,16 +3,23 @@
 <?php
 	include 'includes/dbconn.php';
 	
-	if(isset($_GET['email'])){
-		
-		$vendor_email = $_GET['email'];
-		
-		//echo $vendor_email;exit;
-		
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		$sess_email	= $_SESSION['loginUserEmail'];
+		//echo $sess_id;exit;
+		//echo '<pre>';print_r($sess_id);exit;
 	}
 	
-   $sql = "SELECT * FROM vendorreg where email=$vendor_email"; 
- //  echo '<pre>';print_r( $sql);exit;
+	// if(isset($_GET['email'])){
+		
+		// $vendor_email = $_GET['email'];
+		
+		// echo $vendor_email;exit;
+		
+	// }
+	
+   $sql = "SELECT * FROM vendorreg where email='$sess_email'"; 
+  // echo '<pre>';print_r( $sql);exit;
  //  $sql = 'SELECT * FROM vendorreg';
 
    mysql_select_db('ecommsite');
@@ -35,9 +42,15 @@
 ?>
 
 
-<div align="right" color="black">
-<h3><b><a href="changePassword.php?email=<?php echo $vendor_email?>">Change password?</a></b></h3>
-</div>
+
+<?php 
+		if(isset($_GET['changePswd'])){
+						include 'changePassword.php';
+					
+				}
+
+?>
+
       <!-- page content -->
        
           <div class="">

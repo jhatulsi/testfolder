@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+session_start();
 		include 'dbconn.php';
 		$error = "";
 		if(count($_POST)>0){
@@ -40,12 +40,15 @@
 						setcookie("password_cookie",$password,time()-(86400 * 10));
 					}
 					
-					session_start();
-					$_SESSION['loginUser'] = $rows['email'];
+					$new_row = mysql_fetch_array($result);
+				//	echo '<pre>';print_r($new_row);exit;
+				
+					$_SESSION['loginUserId'] = $new_row['id'];
+					$_SESSION['loginUserEmail'] = $new_row['email'];
 					
 					echo "<script>alert('logged in')</script>";
 				//	echo "<script>window_open('../production/dashboardIndex','_self')</script>";
-				header("location:../production/dashboardIndex.php?email='$email'");
+				header("location:../production/dashboardIndex.php");
 					//echo "user loggedin";
 					//exit;
 					

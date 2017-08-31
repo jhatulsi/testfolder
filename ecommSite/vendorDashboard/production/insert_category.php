@@ -2,6 +2,12 @@
 <?php 
 	//	session_start();
 	include 'includes/dbconn.php';
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		//echo $sess_id;exit;
+		//echo '<pre>';print_r($sess_id);exit;
+	}
+	
 	if(isset($_GET['id'])){
 		
 		$vendor_id = $_GET['id'];
@@ -38,7 +44,7 @@
 		if(isset($_POST['insert_category'])){
 		$cat_title = $_POST['cat_title'];
 		$status="off";
-		$insert_cat = "insert into categories (cat_title,vendor_id,status)  values ('$cat_title','$vendor_id','$status')";
+		$insert_cat = "insert into categories (cat_title,vendor_id,status)  values ('$cat_title','$sess_id','$status')";
 		//exit($insert_cat);
 		
 		$run_cat = mysql_query($insert_cat, $conn);

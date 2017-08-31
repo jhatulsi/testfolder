@@ -1,4 +1,22 @@
-  <style>
+ 
+
+<?php 
+if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		
+	}
+
+?>
+
+
+
+
+
+
+
+
+
+ <style>
 	.x_panel {
     width: 200%;
     padding: 10px 17px;

@@ -3,12 +3,19 @@
 <?php 
 	//session_start();
 	include 'includes/dbconn.php';
-	if(isset($_GET['id'])){
-		
-		$vendor_id = $_GET['id'];
-		
-		//echo '<pre>';print_r($vendor_id);exit;
+	
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		//echo $sess_id;exit;
+		//echo '<pre>';print_r($sess_id);exit;
 	}
+	
+	// if(isset($_GET['id'])){
+		
+		// $vendor_id = $_GET['id'];
+		
+		// echo '<pre>';print_r($vendor_id);exit;
+	// }
 
 ?>
 
@@ -46,7 +53,7 @@ if(isset($_GET['view_products'])){ ?>
 			<?php 
 				include 'includes/dbconn.php';
 				$i = 1;
-				$get_pro = "select * from products where vendor_id=$vendor_id";
+				$get_pro = "select * from products where vendor_id=$sess_id";
 				
 				//echo '<pre>';print_r($get_pro);exit;
 				

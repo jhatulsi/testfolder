@@ -1,12 +1,19 @@
 <?php 
 	//session_start();
 	include 'includes/dbconn.php';
-	if(isset($_GET['id'])){
-		
-		$vendor_id = $_GET['id'];
-		
-		//echo '<pre>';print_r($vendor_id);exit;
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		//echo $sess_id;exit;
+		//echo '<pre>';print_r($sess_id);exit;
 	}
+	
+	
+	// if(isset($_GET['id'])){
+		
+		// $vendor_id = $_GET['id'];
+		
+		// echo '<pre>';print_r($vendor_id);exit;
+	// }
 
 ?>
 
@@ -171,7 +178,7 @@
 				//move_uploaded_file($temp_name2,"product_images/$image2");
 				//move_uploaded_file($temp_name3,"product_images/$image3");
 				
-				$insert_product = " insert into products (cat_id,vendor_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$cat_id','$vendor_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
+				$insert_product = " insert into products (cat_id,vendor_id,product_title,date,product_price,product_keywords,product_desc,product_image,status) values ('$cat_id','$sess_id','$product_title',NOW(),'$product_price','$product_keywords','$product_desc','$image1','$status')";
 				
 				//echo '<pre>';print_r($insert_product);exit;
 				
