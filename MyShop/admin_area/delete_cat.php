@@ -8,13 +8,13 @@
 		
 		$run_delete = mysql_query($delete_pro, $conn);
 		
-	if($run_delete){
-		echo "<script>alert('One product has been deleted.')</script>";
-		echo "<script>window.open('index.php?view_cats','_self' )</script>";
-		
-		
-		
-	}
+		if($run_delete){
+			echo "<script>alert('One product has been deleted.')</script>";
+			echo "<script>window.open('index.php?view_cats','_self' )</script>";
+			
+			
+			
+		}
 		
 		
 		
