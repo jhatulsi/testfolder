@@ -4,7 +4,7 @@
 	if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		
-	}
+	
 
 ?>
 
@@ -253,13 +253,10 @@
 ?>					 
 </form>
 	<div class="ln_solid"></div>			  
-            
-
-
-
-
-
-					 
+     					 
 	
 </body>
 </html>
+
+
+<?php } ?>

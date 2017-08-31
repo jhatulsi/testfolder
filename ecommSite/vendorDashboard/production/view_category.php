@@ -7,18 +7,7 @@
 	if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		$sess_email	= $_SESSION['loginUserEmail'];
-		//echo $sess_id;exit;
-		//echo '<pre>';print_r($sess_id);exit;
-	}
 	
-	if(isset($_GET['id'])){
-		
-		$vendor_id = $_GET['id'];
-		
-		//echo '<pre>';print_r($vendor_id);exit;
-	}
-	
-
 ?>
 
 
@@ -70,3 +59,5 @@
 
 </body>
 </html>
+
+	<?php } ?>

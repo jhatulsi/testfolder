@@ -4,16 +4,9 @@
 	include 'includes/dbconn.php';
 	if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
-		//echo $sess_id;exit;
-		//echo '<pre>';print_r($sess_id);exit;
-	}
-	
-	if(isset($_GET['id'])){
 		
-		$vendor_id = $_GET['id'];
-	}
 	
-
+	
 ?>
 
 
@@ -37,6 +30,10 @@
                       </div>
 			
 	</form>
+	
+	
+	<?php } ?>
+	
 	
 <?php 
 	

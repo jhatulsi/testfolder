@@ -4,7 +4,7 @@
 if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		
-	}
+	
 
 ?>
 
@@ -180,3 +180,6 @@ if(isset($_SESSION['loginUserId'])){
                         </tbody>
                       </table>
 					  </div>
+					  
+					  
+<?php } ?>

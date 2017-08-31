@@ -1,4 +1,15 @@
  
+ 
+<?php 
+	
+	include 'includes/dbconn.php';
+	
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+	
+	
+
+?>
 
   <style>
 	.x_panel {
@@ -92,3 +103,7 @@
                   </div>
                 </div>
               </div>
+			  
+			  
+			  
+	<?php } ?>

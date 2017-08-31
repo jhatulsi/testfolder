@@ -1,5 +1,16 @@
 
 
+<?php 
+	
+	include 'includes/dbconn.php';
+	
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+	
+	
+
+?>
+
 
 
 
@@ -173,3 +184,7 @@
                         </tbody>
                       </table>
 					  </div>
+					  
+					  
+					  
+	<?php } ?>

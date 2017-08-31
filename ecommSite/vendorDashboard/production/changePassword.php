@@ -8,7 +8,7 @@
 		
 		//echo $sess_id;exit;
 		//echo '<pre>';print_r($sess_id);exit;
-	}
+	
 	
 	
 	
@@ -101,7 +101,7 @@
     </div>
   </body>
 </html>
-
+<?php } ?>
 							
 <?php 
 

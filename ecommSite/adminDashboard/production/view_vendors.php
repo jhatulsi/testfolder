@@ -4,7 +4,7 @@
 if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		
-	}
+	
 
 ?>
 
@@ -109,3 +109,6 @@ if(isset($_SESSION['loginUserId'])){
                   </div>
                 </div>
               </div>
+			  
+			  
+<?php }?>

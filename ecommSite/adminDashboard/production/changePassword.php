@@ -8,33 +8,8 @@
 		
 		//echo $sess_id;exit;
 		//echo '<pre>';print_r($sess_id);exit;
-	}
-	
-	// if(isset($_GET['email'])){
-		
-		// $vendor_email = $_GET['email'];
-		
-		
-	// }
-	
-	// $sql = "SELECT * FROM vendorreg where email=$vendor_email"; 
- 
-
-   // mysql_select_db('ecommsite');
-   // $retval = mysql_query( $sql, $conn );
-   
-   // if(! $retval ) {
-      // die('Could not get data: ' . mysql_error());
-   // }
-   
-   // while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
-     
-      // $email = $row['email'];
-   // } 
 	
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,6 +95,9 @@
   </body>
 </html>
 
+
+
+	<?php } ?>
 							
 <?php 
 

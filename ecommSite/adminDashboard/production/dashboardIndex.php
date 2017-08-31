@@ -5,29 +5,7 @@
 	if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		$sess_email	= $_SESSION['loginUserEmail'];
-		
-	}
 
-	// if (isset($_GET['email']) && !empty($_GET['email'])) {
-		
-		// $check_mail = $_GET['email'];
-		
-		 // $sql = "SELECT * FROM vendorlogin_tb where email=$check_mail";
-		// echo '<pre>';print_r($sql);exit;
-		 
-		   // mysql_select_db('ecommsite');
-		   // $retval = mysql_query( $sql, $conn );
-		   
-		   // if(! $retval ) {
-			  // die('Could not get data: ' . mysql_error());
-		   // }
-		   
-		   // $row = mysql_fetch_array($retval, MYSQL_ASSOC);
-				// $mail_id = $row['id'];
-				// $email = $row['email'];
-				// $setEmail = . ' . $email . ' .;
-		  // echo '<pre>';print_r($mail_id);exit;
-// }
 
 
 ?>
@@ -425,3 +403,7 @@
 	
   </body>
 </html>
+
+
+<?php 
+	} ?>

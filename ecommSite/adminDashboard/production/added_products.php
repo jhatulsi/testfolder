@@ -2,7 +2,7 @@
 if(isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		
-	}
+	
 
 ?>
 
@@ -128,3 +128,7 @@ if(isset($_GET['added_products'])){ ?>
 </body>
 
 </html>
+
+
+
+<?php } ?>

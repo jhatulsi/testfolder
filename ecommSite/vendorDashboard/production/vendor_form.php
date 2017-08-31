@@ -1,3 +1,24 @@
+
+
+	
+<?php 
+	//	session_start();
+	include 'includes/dbconn.php';
+	
+	if(isset($_SESSION['loginUserId'])){
+		$sess_id = $_SESSION['loginUserId'];
+		$sess_email	= $_SESSION['loginUserEmail'];
+	
+?>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -245,3 +266,5 @@
 	
   </body>
 </html>
+
+	<?php } ?>
