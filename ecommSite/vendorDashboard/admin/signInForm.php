@@ -1,42 +1,81 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!DOCTYPE HTML>
- <html> 
- <head> <title>Sign-In</title> <link rel="stylesheet" type="text/css" href="style-sign.css"> </head>
- <body id="body-color"> 
- <div id="Sign-In"> 
- <fieldset style="width:30%";  ><legend>LOG-IN HERE</legend> 
- <form method="POST" action="" >
- <?php $error="";?>
- <span <?php echo $error; ?>></span>
- <br>
- 
- Username:<input type="text" id="email" name="email" placeholder="email" value="">
- <br> 
- <br>
- Password:<input type="password" id="password" name="password" value="" placeholder="password">
- <br>
- 
- Remember Me<input type="checkbox" name="re" id="re" value="on" <?php if(isset($_COOKIE['password_cookie'])) echo 'checked';?> ><br>
-<input id="submit" type="submit" name="submit" value="Log-In" >
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form method="post" action="">
+             <h1>Create Account</h1>
+              <div>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="">
+              </div>
+              <div>
+			  <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password">
+              </div>
+             
+              <div>
+                
+				<input id="submit" type="submit" name="submit" value="Sign-In" class="btn btn-default submit" >
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="login.php" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+               
+              </div>
+            </form>
+          </section>
+        </div>
+
+     
+      </div>
+    </div>
+  </body>
+</html>
 
 
 
- </form>
- </fieldset> 
-
- </div> 
- </body>
- </html>
- 
- 
  
 <?php
 
    include 'dbconn.php';
    if(count($_POST)>0){
 	  
-	  //echo '<pre>';print_r($_POST);exit;
+	 // echo '<pre>';print_r($_POST);exit;
 	   
 	   $email = $_POST['email'];
 	   $password = $_POST['password'];
@@ -62,3 +101,12 @@
    }
    
 ?> 	
+
+
+
+
+
+
+
+
+
