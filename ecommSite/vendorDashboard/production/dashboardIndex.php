@@ -320,6 +320,12 @@
 					
 					
 				}
+				
+				if(isset($_GET['edit_pro'])){
+						include 'edit_pro.php';
+					
+					
+				}
 		
 			?>
 			

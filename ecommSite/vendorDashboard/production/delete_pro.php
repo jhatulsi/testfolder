@@ -10,7 +10,7 @@
 		
 		if($run_delete){
 			echo "<script>alert('One product has been deleted.')</script>";
-			echo "<script>window.open('index.php?view_products','_self' )</script>";
+			echo "<script>window.open('dashboardIndex.php?view_products','_self' )</script>";
 			
 			
 			

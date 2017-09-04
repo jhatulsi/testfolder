@@ -94,7 +94,7 @@
 			<!--<td><img src="customer_photos/<?php echo $c_image;?>" height="80" width="80"></td> -->
 			<td><?php echo $c_state;?></td>
 			<td><?php echo $c_country;?></td>
-			<td><a href="delete_customer.php?delete_c=<?php echo $c_id; ?>">Delete</td>
+			<td><a href="delete_customer.php?delete_cust=<?php echo $c_id; ?>">Delete</td>
 			
 <?php } ?>
 			
