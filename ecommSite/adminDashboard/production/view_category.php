@@ -23,7 +23,6 @@ if(isset($_SESSION['loginUserId'])){
 			<tr>
 				<th><b>Category ID</b></th>
 				<th><b>Category Title</b></th>
-				<th><b>Delete</b></th>
 				<th><b>Edit</b></th>
 				<th><b>Delete</b></th>
 				</tr>
@@ -43,9 +42,9 @@ if(isset($_SESSION['loginUserId'])){
 				<tr align="">
 				<td><?php echo $category_id;?></td>
 				<td><?php echo $category_title;?></td>
-				<td><a href="index.php?edit_brand=<?php echo $category_id;?>">Edit</a></td>
-				<td><a href="index.php?edit_brand=<?php echo $category_id;?>">Delete</a></td>
-				<td><a href="delete_brand.php?delete_brand=<?php echo $category_id;?>">Delete</a></td>
+				<td><a href="dashboardIndex.php?edit_cat=<?php echo $category_id;?>">Edit</a></td>
+				
+				<td><a href="delete_cat.php?delete_cat=<?php echo $category_id;?>">Delete</a></td>
 				
 				</tr>
 				<?php } ?>

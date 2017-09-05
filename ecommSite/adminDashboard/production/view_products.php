@@ -102,7 +102,7 @@ if(isset($_GET['view_products'])){ ?>
 					
 				?>
 		
-			<td><a href="index.php?edit_pro=<?php echo $p_id; ?>">Edit</a></td>
+			<td><a href="dashboardIndex.php?edit_pro=<?php echo $p_id; ?>">Edit</a></td>
 			<td><a href="delete_pro.php?delete_pro=<?php echo $p_id; ?>">Delete</a></td>
 			
 		</tr>
