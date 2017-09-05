@@ -5,7 +5,7 @@
 	//	session_start();
 	include 'includes/dbconn.php';
 	
-	if(isset($_SESSION['loginUserId'])){
+	if(!isset($_SESSION['loginUserId'])){
 		$sess_id = $_SESSION['loginUserId'];
 		$sess_email	= $_SESSION['loginUserEmail'];
 	
@@ -142,7 +142,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form method="post" action="insert_vendor.php" class="form-horizontal form-label-left">
+                    <form method="post" action="insert_vendor.php" class="form-horizontal form-label-left" enctype="multipart/form-data"  >
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"  >Name <span class="required">*</span>
@@ -191,14 +191,16 @@
                           </div>
                         </div>
                       </div>
-                     <!-- <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+					  
+					   <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3"><i>Image:</i></label>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+								
+                          <input type="file" name="image" id="image" value="">
+                         
                         </div>
-                      </div>--->
-					
+                      </div>
+                    
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

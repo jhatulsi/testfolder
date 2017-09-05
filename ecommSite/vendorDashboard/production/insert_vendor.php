@@ -3,6 +3,9 @@
 		
 		if(count($_POST['submit'])>0){
 			
+			echo '<pre>';print_r($_POST);exit;
+			
+			
 			$name = $_POST['name'];
 			$comp_name = $_POST['comp_name'];
 			$state = $_POST['state'];
@@ -10,6 +13,7 @@
 			$email = $_POST['email'];
 			$gender = $_POST['gender'];
 			
+			$image= $_FILES['image']['name'];
 			
 			$sql = "insert into vendorReg (`name`,`comp_name`,`state`,`country`,`gender`,`email`,`is_active`) values('$name','$comp_name','$state','$country','$gender','$email',1)";
 			
