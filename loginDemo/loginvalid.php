@@ -1,0 +1,72 @@
+<?php 
+		include 'dbconn.php';
+		$error = "";
+		if(count($_POST)>0){
+			
+			$email = $_POST['email']; 
+			$password = $_POST['password'];
+			if(isset($_POST['re'])){
+				$re = "on";
+			}else{
+				$re="";
+			}
+			
+			//$re = $_POST['re'];
+			//echo '<pre>';print_r($_POST);exit;		
+			if($email !='' && $password != '' ){
+				$email = stripslashes($email);
+				//$password = stripslashes(md5($password));
+				$password = stripslashes($password);
+				
+				//exit($email);
+				$sql = "SELECT * FROM sliderlogin_tb where password='$password' and email='$email'";
+				
+				//echo '<pre>';print_r($sql);exit;
+				$result = mysql_query($sql,$conn);
+				
+				$rows = mysql_num_rows($result);
+				
+				if($rows == 1){
+					if($re == "on"){
+						setcookie("username_cookie",$email,time() + (86400 * 10));
+						setcookie("password_cookie",$password,time() + (86400 * 10));
+					}else{
+						
+						setcookie("username_cookie",$email,time()-(86400 * 10));
+						setcookie("password_cookie",$password,time()-(86400 * 10));
+					}
+					
+					session_start();
+					$_SESSION['loginUser'] =$row['email'];
+					echo "user loggedin";
+					exit;
+					
+				}
+				echo "Invalid Username and Password";
+				exit();
+				
+			/*	
+				session_start();
+				
+				$row = mysql_fetch_array($result,MYSQL_ASSOC);
+			//	echo '<pre>';print_r($row['email']);exit;
+				if(!empty($row['email']) && !empty($row['password'])){
+					
+						$_SESSION['loginUser'] = $row['email'];
+						echo 'done succesfully';
+					//	header('location:../production/indexpage.php');
+						
+				}else{
+					
+					$_SESSION['loginUser'] != $row['email'];
+					$error = "Invalid Email Or Password";
+				}
+				
+				*/
+			} 
+			
+		
+			
+		}
+		
+?>
