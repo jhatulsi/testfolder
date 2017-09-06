@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2017 at 05:22 AM
+-- Generation Time: Sep 06, 2017 at 11:55 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `myshop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `admin_id` int(10) NOT NULL,
+  `admin_email` varchar(100) NOT NULL,
+  `admin_pass` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_email`, `admin_pass`) VALUES
+(1, 'tulsi@gmail.com', 'tulsi'),
+(2, 'admin@gmail.com', 'admin');
 
 -- --------------------------------------------------------
 
@@ -39,7 +59,8 @@ INSERT INTO `brands` (`brand_id`, `brand_title`) VALUES
 (1, 'Nokia'),
 (2, 'Samsung'),
 (3, 'Sony'),
-(4, 'Lenovo');
+(4, 'Lenovo'),
+(5, '');
 
 -- --------------------------------------------------------
 
@@ -70,9 +91,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (1, 'Mobile'),
-(2, 'Computer'),
-(3, 'Camera'),
-(4, 'Tablet');
+(2, 'Computer');
 
 -- --------------------------------------------------------
 
@@ -98,7 +117,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`, `customer_image`, `customer_ip`) VALUES
-(7, 'two', 'two@gmail.com', 'two', 'India', 'delhi', 123456789, 'my address', 'Koala.jpeg', 1);
+(1, 'tulsi', 'tulsi@gmail.com', 'tulsi', 'india', 'delhi', 123456789, 'my address', 'Koala.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -121,10 +140,17 @@ CREATE TABLE `customer_order` (
 --
 
 INSERT INTO `customer_order` (`order_id`, `customer_id`, `due_amount`, `invoice_no`, `total_products`, `order_date`, `order_status`) VALUES
+(1, 7, 800, 883259475, 2, '2017-08-03 10:17:52', 'Pending'),
 (16, 7, 400, 842567732, 1, '2017-08-02 02:14:21', 'complete'),
 (17, 7, 400, 570864618, 1, '2017-08-02 02:10:40', 'complete'),
 (18, 7, 400, 1632577160, 1, '2017-08-02 02:00:29', 'complete'),
-(19, 7, 700, 1320763292, 1, '2017-08-02 01:58:03', 'complete');
+(19, 7, 700, 1320763292, 1, '2017-08-02 01:58:03', 'complete'),
+(21, 1, 1100, 31246294, 2, '2017-08-03 11:09:34', 'complete'),
+(22, 1, 1500, 118576743, 3, '2017-08-18 07:39:13', 'Pending'),
+(23, 1, 400, 1985904828, 1, '2017-08-23 06:22:49', 'Pending'),
+(24, 1, 0, 91176211, 0, '2017-08-23 06:23:50', 'Pending'),
+(25, 1, 0, 2084555817, 0, '2017-08-23 06:24:28', 'Pending'),
+(26, 1, 0, 1099051826, 0, '2017-08-23 10:52:16', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -133,7 +159,7 @@ INSERT INTO `customer_order` (`order_id`, `customer_id`, `due_amount`, `invoice_
 --
 
 CREATE TABLE `payment` (
-  `payment-id` int(10) NOT NULL,
+  `payment_id` int(10) NOT NULL,
   `invoice_no` int(10) NOT NULL,
   `amount` int(10) NOT NULL,
   `payment_mode` text NOT NULL,
@@ -146,9 +172,12 @@ CREATE TABLE `payment` (
 -- Dumping data for table `payment`
 --
 
-INSERT INTO `payment` (`payment-id`, `invoice_no`, `amount`, `payment_mode`, `ref_no`, `code`, `payment_date`) VALUES
+INSERT INTO `payment` (`payment_id`, `invoice_no`, `amount`, `payment_mode`, `ref_no`, `code`, `payment_date`) VALUES
 (1, 570864618, 400, 'Bank Transfer', 432347523, 34334, ''),
-(2, 842567732, 400, 'Bank Transfer', 43234334, 34534, '12 April 2017');
+(2, 842567732, 400, 'Bank Transfer', 43234334, 34534, '12 April 2017'),
+(3, 31246294, 1100, 'Bank Transfer', 2147483647, 45463, '8/3/2017'),
+(4, 31246294, 1100, 'Bank Transfer', 2147483647, 45463, '8/3/2017'),
+(5, 31246294, 1100, 'Bank Transfer', 2147483647, 45463, '8/3/2017');
 
 -- --------------------------------------------------------
 
@@ -157,6 +186,7 @@ INSERT INTO `payment` (`payment-id`, `invoice_no`, `amount`, `payment_mode`, `re
 --
 
 CREATE TABLE `pending_order` (
+  `order_id` int(10) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `invoice_no` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
@@ -168,9 +198,8 @@ CREATE TABLE `pending_order` (
 -- Dumping data for table `pending_order`
 --
 
-INSERT INTO `pending_order` (`customer_id`, `invoice_no`, `product_id`, `qty`, `order_status`) VALUES
-(1, 171232651, 3, 1, 'Pending'),
-(7, 487452352, 2, 1, 'Pending');
+INSERT INTO `pending_order` (`order_id`, `customer_id`, `invoice_no`, `product_id`, `qty`, `order_status`) VALUES
+(0, 1, 31246294, 3, 1, 'complete');
 
 -- --------------------------------------------------------
 
@@ -200,11 +229,18 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`product_id`, `cat_id`, `brand_id`, `date`, `product_title`, `product_img1`, `product_img2`, `product_img3`, `product_price`, `product_desc`, `product_keywords`, `status`) VALUES
 (1, 1, 1, '2017-07-28 05:55:07.971679', 'mobile', 'Hydrangeas.jpg', 'Desert.jpg', 'Desert.jpg', 400, 'kl.j', 'camera, laptop', 'on'),
 (2, 2, 3, '2017-07-28 05:55:40.180664', 'computer', 'Chrysanthemum.jpg', '', '', 400, 'sdcsadc', 'mobile, computer', 'on'),
-(3, 3, 1, '2017-07-28 05:56:17.364257', 'camera', 'Koala.jpg', 'Koala.jpg', '', 700, 'fgbfgh', 'nokia, sony', 'on');
+(3, 3, 1, '2017-07-28 05:56:17.364257', 'camera', 'Koala.jpg', 'Koala.jpg', '', 700, 'fgbfgh', 'nokia, sony', 'on'),
+(4, 1, 2, '0000-00-00 00:00:00.000000', 'sony', 'Jellyfish.jpg', 'Koala.jpg', 'Lighthouse.jpg', 100, 'ghfgh', '', 'on');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `brands`
@@ -240,7 +276,7 @@ ALTER TABLE `customer_order`
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`payment-id`);
+  ADD PRIMARY KEY (`payment_id`);
 
 --
 -- Indexes for table `pending_order`
@@ -259,40 +295,45 @@ ALTER TABLE `products`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `brand_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cat_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment-id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `payment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pending_order`
 --
 ALTER TABLE `pending_order`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
